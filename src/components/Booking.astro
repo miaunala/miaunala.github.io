@@ -1,0 +1,57 @@
+---
+import profile from "../data/profile.json";
+const services = profile.services ?? [];
+const booking = profile.booking ?? { intro: "", cta_label: "Kontakt" };
+const email = profile.links.email;
+---
+
+<section id="booking" class="booking">
+  <div class="wrap">
+    <p class="eyebrow">Zusammenarbeit</p>
+    <h2>Als Consultant buchen</h2>
+    {booking.intro && <p class="lead">{booking.intro}</p>}
+
+    {services.length > 0 && (
+      <div class="svc-grid">
+        {services.map((s: { title: string; desc: string }) => (
+          <div class="svc">
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {email && (
+      <div class="cta">
+        <a class="btn btn-primary"
+           href={`mailto:${email}?subject=${encodeURIComponent("Projektanfrage")}`}>
+          {booking.cta_label} ↗
+        </a>
+        {profile.links.linkedin && (
+          <a class="btn btn-ghost" href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+        )}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .booking { background: var(--accent-wash); }
+  .lead { color: var(--text-muted); max-width: 46rem; margin-top: -0.4rem; }
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+    gap: 1.1rem;
+    margin: 1.8rem 0;
+  }
+  .svc {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+  }
+  .svc h3 { margin: 0 0 0.5rem; font-size: 1.2rem; }
+  .svc p { margin: 0; color: var(--text-muted); }
+  .cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+</style>

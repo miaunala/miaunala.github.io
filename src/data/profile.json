@@ -1,0 +1,61 @@
+{
+  "name": "Nathalie Guibert",
+  "alias": "Nathi",
+  "handle": "miaunala",
+  "photo": "/portrait.svg",
+  "headerImage": "",
+  "tagline": "Machine Learning · Data Engineering · Data Science — von der Datenpipeline bis zum Modell.",
+  "status": {
+    "open": true,
+    "text": "offen für neue Projekte & Rollen"
+  },
+  "location": "[Ort — Platzhalter]",
+  "bio": [
+    "[Platzhalter — kurze Vorstellung: Wer bist du, was machst du, wofür brennst du? 2–3 Sätze.]",
+    "[Platzhalter — zweiter Absatz: dein Hintergrund, Schwerpunkte, was dich auszeichnet.]"
+  ],
+  "current": "[Platzhalter — woran arbeitest du gerade? Aktuelle Rolle, Projekt oder Studium.]",
+  "links": {
+    "github": "https://github.com/miaunala",
+    "linkedin": "",
+    "email": "nathalie.guibert.office@gmail.com",
+    "duolingo": "https://www.duolingo.com/profile/[dein-nutzername]"
+  },
+  "languages": [
+    { "name": "Deutsch", "level": "Muttersprache" },
+    { "name": "Französisch", "level": "[Niveau — z. B. C1]" },
+    { "name": "Englisch", "level": "[Niveau — z. B. C1]" },
+    { "name": "[weitere Sprache]", "level": "[Niveau / gerade am Lernen]" }
+  ],
+  "interests": [
+    { "icon": "🥾", "image": "", "label": "Wandern", "note": "[optional — z. B. Lieblingsregion]" },
+    { "icon": "🚲", "image": "", "label": "Radfahren", "note": "" },
+    { "icon": "🎵", "image": "", "label": "Musik", "note": "[optional — Genre/Instrument]" },
+    { "icon": "🌿", "image": "", "label": "Natur & Draussen", "note": "" },
+    { "icon": "🌈", "image": "", "label": "Inklusion & Awareness", "note": "[optional — Engagement, Themen]" }
+  ],
+  "engagement": [
+    { "label": "[Engagement/Community — Platzhalter]", "url": "https://example.com" }
+  ],
+  "events": [
+    { "name": "[Veranstaltung/Talk — Platzhalter]", "date": "2026-09-01", "url": "" }
+  ],
+  "booking": {
+    "intro": "Ich unterstütze Teams und Projekte flexibel — von der Datenpipeline über Analysen bis zum ML-Modell. Für Anfragen einfach melden.",
+    "cta_label": "Anfrage per E-Mail"
+  },
+  "services": [
+    {
+      "title": "Data Engineering",
+      "desc": "ELT-/ETL-Pipelines, Datenmodellierung, Orchestrierung — robuste Datenbasis für Analytics & ML."
+    },
+    {
+      "title": "Data Science",
+      "desc": "Analysen, Forecasting, Feature-Engineering und aussagekräftige Auswertungen für Entscheidungen."
+    },
+    {
+      "title": "Machine Learning / NLP",
+      "desc": "Modelle von Klassifikation bis NLP (z. B. Zero-shot), inkl. Evaluierung und Einbettung in Pipelines."
+    }
+  ]
+}

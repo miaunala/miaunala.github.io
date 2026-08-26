@@ -1,0 +1,98 @@
+---
+import profile from "../data/profile.json";
+---
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-main">
+      <p class="eyebrow">Über mich</p>
+      <h2>{profile.alias}, kurz vorgestellt</h2>
+      {profile.bio.map((para: string) => <p>{para}</p>)}
+      <p><a class="more-link" href="#interests">Neben der Arbeit: meine Interessen &amp; Engagement ↓</a></p>
+    </div>
+
+    <aside class="about-side">
+      {profile.current && (
+        <div class="card-mini">
+          <h3>Aktuell</h3>
+          <p>{profile.current}</p>
+        </div>
+      )}
+
+      {profile.languages?.length > 0 && (
+        <div class="card-mini">
+          <h3>Sprachen</h3>
+          <ul class="lang-list">
+            {profile.languages.map((l: { name: string; level: string }) => (
+              <li><span class="lang-name">{l.name}</span> <span class="date">{l.level}</span></li>
+            ))}
+          </ul>
+          {profile.links.duolingo && (
+            <a class="duo" href={profile.links.duolingo} target="_blank" rel="noopener">
+              🦉 Duolingo ↗
+            </a>
+          )}
+        </div>
+      )}
+
+      {profile.engagement?.length > 0 && (
+        <div class="card-mini">
+          <h3>Engagement</h3>
+          <ul>
+            {profile.engagement.map((e: { label: string; url: string }) => (
+              <li><a href={e.url} target="_blank" rel="noopener">{e.label} ↗</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {profile.events?.length > 0 && (
+        <div class="card-mini">
+          <h3>Veranstaltungen</h3>
+          <ul>
+            {profile.events.map((ev: { name: string; date: string; url: string }) => (
+              <li>
+                <span class="date">{ev.date}</span>{" "}
+                {ev.url ? <a href={ev.url} target="_blank" rel="noopener">{ev.name} ↗</a> : ev.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </aside>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+  .about-side { display: grid; gap: 1rem; }
+  .card-mini {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+  }
+  .card-mini h3 {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 0 0 0.6rem;
+  }
+  .card-mini ul { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 0.5rem; }
+  .card-mini p { margin: 0; color: var(--text-muted); }
+  .date { color: var(--text-muted); font-variant-numeric: tabular-nums; font-size: 0.9rem; }
+  .lang-name { font-weight: 500; }
+  .lang-list li { display: flex; justify-content: space-between; gap: 0.75rem; }
+  .duo { display: inline-block; margin-top: 0.7rem; font-size: 0.9rem; font-weight: 500; }
+  .more-link { font-weight: 500; }
+  @media (max-width: 46rem) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+</style>

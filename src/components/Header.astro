@@ -1,0 +1,52 @@
+---
+import profile from "../data/profile.json";
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#top">{profile.alias} · {profile.name}</a>
+    <nav aria-label="Hauptnavigation">
+      <a href="#about">About</a>
+      <a href="#projects">Projekte</a>
+      <a href="#skills">Skills</a>
+      <a href="#booking">Buchen</a>
+      <a href="#cv">CV</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.8rem;
+  }
+  .brand {
+    font-family: var(--font-serif);
+    font-weight: 550;
+    color: var(--text);
+    font-size: 1.02rem;
+  }
+  .brand:hover { text-decoration: none; }
+  nav {
+    display: flex;
+    gap: 1.3rem;
+    font-size: 0.94rem;
+  }
+  nav a { color: var(--text-muted); }
+  nav a:hover { color: var(--accent); text-decoration: none; }
+  @media (max-width: 34rem) {
+    nav { gap: 0.9rem; font-size: 0.86rem; }
+    .brand { font-size: 0.9rem; }
+  }
+</style>

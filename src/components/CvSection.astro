@@ -1,0 +1,47 @@
+---
+// Placeholder for the CV variants. The print-styled routes (/cv/...) and
+// automated PDF generation come in later build steps; from the same JSON source.
+const variants = [
+  { key: "data-engineering", label: "Data Engineering" },
+  { key: "data-science", label: "Data Science" },
+  { key: "general", label: "Generisch" },
+];
+const stand = new Date().toLocaleDateString("de-DE", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<section id="cv">
+  <div class="wrap">
+    <p class="eyebrow">Lebenslauf</p>
+    <h2>CV-Varianten</h2>
+    <p class="lead">Je Schwerpunkt eine Variante, automatisch aus denselben Projektdaten gefiltert. Stand: {stand}.</p>
+
+    <div class="cv-cards">
+      {variants.map((v) => (
+        <div class="cv-card">
+          <h3>{v.label}</h3>
+          <p class="soon">PDF-Download folgt (kommt im nächsten Build-Schritt).</p>
+          <span class="btn btn-ghost is-disabled" aria-disabled="true">CV (PDF) ↓</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .lead { color: var(--text-muted); margin-top: -0.4rem; }
+  .cv-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    gap: 1.1rem;
+    margin-top: 1.6rem;
+  }
+  .cv-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+  }
+  .cv-card h3 { margin: 0 0 0.5rem; font-size: 1.2rem; }
+  .soon { color: var(--text-muted); font-size: 0.9rem; }
+  .is-disabled { opacity: 0.5; pointer-events: none; }
+</style>

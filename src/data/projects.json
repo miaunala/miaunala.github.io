@@ -1,0 +1,50 @@
+[
+  {
+    "id": "churn-nlp",
+    "title": "Churn-Prediction aus Support-Tickets",
+    "summary": "Zero-shot-Klassifikation eingehender Support-Tickets, Feature-Pipeline und Modell zur Vorhersage von Kundenabwanderung.",
+    "repo": "https://github.com/miaunala/example-churn-nlp",
+    "year": 2025,
+    "highlight": true,
+    "tags": {
+      "method": ["zero-shot classification", "text classification"],
+      "domain": ["customer analytics", "nlp"],
+      "tool": ["Python", "Hugging Face", "scikit-learn"]
+    },
+    "cv_bullets": [
+      "[Platzhalter — messbares Ergebnis, z. B. „Churn-Fehlklassifikation um X % reduziert.“]"
+    ]
+  },
+  {
+    "id": "lakehouse-pipeline",
+    "title": "Lakehouse-Datenpipeline",
+    "summary": "End-to-end ELT-Pipeline mit dbt und Orchestrierung; modellierte Datenschichten für Analytics-Teams.",
+    "repo": "https://github.com/miaunala/example-lakehouse",
+    "year": 2024,
+    "highlight": true,
+    "tags": {
+      "method": ["elt", "data modeling"],
+      "domain": ["data engineering"],
+      "tool": ["dbt", "Airflow", "SQL", "Python"]
+    },
+    "cv_bullets": [
+      "[Platzhalter — z. B. „Reduzierte Pipeline-Laufzeit um X %.“]"
+    ]
+  },
+  {
+    "id": "demand-forecast",
+    "title": "Nachfrageprognose (Time Series)",
+    "summary": "Prognosemodelle für Nachfrage mit Feature-Engineering und Backtesting; Vergleich klassischer und ML-Verfahren.",
+    "repo": "https://github.com/miaunala/example-forecast",
+    "year": 2024,
+    "highlight": false,
+    "tags": {
+      "method": ["time series forecasting", "regression"],
+      "domain": ["data science"],
+      "tool": ["Python", "pandas", "XGBoost"]
+    },
+    "cv_bullets": [
+      "[Platzhalter — z. B. „Prognosefehler (MAPE) um X Prozentpunkte verbessert.“]"
+    ]
+  }
+]

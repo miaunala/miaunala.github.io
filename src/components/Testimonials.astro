@@ -1,0 +1,55 @@
+---
+import testimonials from "../data/testimonials.json";
+const items = testimonials ?? [];
+---
+
+{items.length > 0 && (
+  <section id="testimonials">
+    <div class="wrap">
+      <p class="eyebrow">Referenzen</p>
+      <h2>Stimmen zu meiner Arbeit</h2>
+      <p class="lead">
+        Zitate aus Arbeitszeugnissen, attribuiert nach Rolle und Branche.
+      </p>
+
+      <div class="quote-grid">
+        {items.map((t: { quote: string; role: string; industry: string; year: number }) => (
+          <figure class="quote">
+            <blockquote>{t.quote}</blockquote>
+            <figcaption>
+              <span class="src">{t.role}</span>
+              <span class="meta">{t.industry} · {t.year}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .lead { color: var(--text-muted); margin-top: -0.4rem; }
+  .quote-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+    gap: 1.1rem;
+    margin-top: 1.6rem;
+  }
+  .quote {
+    margin: 0;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem;
+  }
+  blockquote {
+    margin: 0 0 1rem;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  figcaption { display: flex; flex-direction: column; }
+  .src { font-weight: 600; }
+  .meta { color: var(--text-muted); font-size: 0.9rem; }
+</style>

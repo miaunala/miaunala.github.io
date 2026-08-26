@@ -1,0 +1,65 @@
+---
+import profile from "../data/profile.json";
+const interests = profile.interests ?? [];
+---
+
+{interests.length > 0 && (
+  <section id="interests">
+    <div class="wrap">
+      <p class="eyebrow">Neben der Arbeit</p>
+      <h2>Interessen &amp; Engagement</h2>
+      <p class="lead">Was mich ausserhalb von Code und Daten ausmacht.</p>
+
+      <ul class="interest-grid">
+        {interests.map((it: { icon?: string; image?: string; label: string; note?: string }) => (
+          <li class="interest">
+            <span class={`thumb ${it.image ? "has-image" : ""}`} aria-hidden="true">
+              {it.image
+                ? <img src={it.image} alt="" loading="lazy" />
+                : <span class="emoji">{it.icon}</span>}
+            </span>
+            <div>
+              <span class="label">{it.label}</span>
+              {it.note && <span class="note">{it.note}</span>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .lead { color: var(--text-muted); margin-top: -0.4rem; }
+  .interest-grid {
+    list-style: none;
+    margin: 1.6rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+    gap: 0.9rem;
+  }
+  .interest {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.9rem 1.1rem;
+  }
+  .thumb {
+    flex: 0 0 auto;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: var(--accent-soft);
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .emoji { font-size: 1.5rem; line-height: 1; }
+  .label { display: block; font-weight: 550; }
+  .note { display: block; color: var(--text-muted); font-size: 0.85rem; }
+</style>

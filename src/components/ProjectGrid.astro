@@ -1,0 +1,87 @@
+---
+import projects from "../data/projects.json";
+import ProjectCard from "./ProjectCard.astro";
+
+// Build the union of all tags across levels -> these become the filter chips.
+// This chip filter is the accessible/mobile fallback that the Cytoscape
+// skill-network (added in a later build step) will sit on top of.
+type Level = "method" | "domain" | "tool";
+const levels: Level[] = ["method", "domain", "tool"];
+const tagSet = new Map<string, Level>();
+for (const p of projects as any[]) {
+  for (const lvl of levels) {
+    for (const t of p.tags?.[lvl] ?? []) if (!tagSet.has(t)) tagSet.set(t, lvl);
+  }
+}
+const filterTags = [...tagSet.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+---
+
+<section id="projects">
+  <div class="wrap">
+    <p class="eyebrow">Arbeit</p>
+    <h2>Projekte</h2>
+    <p class="lead">Nach Thema filterbar — Methode, Domäne oder Tool.</p>
+
+    <div class="filter" role="group" aria-label="Projekte nach Tag filtern">
+      <button class="chip is-active" data-filter="*">Alle</button>
+      {filterTags.map(([tag, lvl]) => (
+        <button class={`chip chip-${lvl}`} data-filter={tag}>{tag}</button>
+      ))}
+    </div>
+
+    <div class="grid" id="project-grid">
+      {(projects as any[]).map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+    <p class="empty" id="empty-msg" hidden>Keine Projekte mit diesem Tag.</p>
+  </div>
+</section>
+
+<style>
+  .lead { color: var(--text-muted); margin-top: -0.4rem; }
+  .filter { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.4rem 0 2rem; }
+  .chip {
+    font: inherit;
+    font-size: 0.82rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  }
+  .chip:hover { border-color: var(--accent); }
+  .chip.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: 1.1rem;
+  }
+  .empty { color: var(--text-muted); }
+</style>
+
+<script>
+  const grid = document.getElementById("project-grid");
+  const chips = document.querySelectorAll<HTMLButtonElement>(".chip");
+  const empty = document.getElementById("empty-msg");
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chips.forEach((c) => c.classList.remove("is-active"));
+      chip.classList.add("is-active");
+      const filter = chip.dataset.filter;
+      let visible = 0;
+
+      grid?.querySelectorAll<HTMLElement>(".card").forEach((card) => {
+        const tags = (card.dataset.tags ?? "").split("|");
+        const show = filter === "*" || tags.includes(filter!);
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+
+      if (empty) empty.hidden = visible !== 0;
+    });
+  });
+</script>

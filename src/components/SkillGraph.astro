@@ -1,0 +1,339 @@
+---
+import skills from "../data/skills.json";
+import projects from "../data/projects.json";
+
+type Proj = {
+  id: string; title: string; repo?: string;
+  tags: { method?: string[]; domain?: string[]; tool?: string[] };
+};
+const projList = projects as Proj[];
+
+const slug = (s: string) =>
+  s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+function projectsForLabel(label: string) {
+  const key = label.toLowerCase();
+  return projList
+    .filter((p) => {
+      const all = [
+        ...(p.tags.method ?? []),
+        ...(p.tags.domain ?? []),
+        ...(p.tags.tool ?? []),
+      ].map((t) => t.toLowerCase());
+      return all.includes(key);
+    })
+    .map((p) => ({ id: p.id, title: p.title, repo: p.repo ?? "" }));
+}
+
+type Node = { data: Record<string, any> };
+type Edge = { data: Record<string, any> };
+const nodes: Node[] = [];
+const edges: Edge[] = [];
+const projSeen = new Set<string>();
+
+function addProjectNodes(sourceId: string, prs: { id: string; title: string; repo: string }[]) {
+  for (const pr of prs) {
+    const pid = `proj/${pr.id}`;
+    if (!projSeen.has(pid)) {
+      projSeen.add(pid);
+      nodes.push({ data: { id: pid, label: pr.title, type: "project", repo: pr.repo } });
+    }
+    edges.push({ data: { id: `e-${sourceId}-${pid}`, source: sourceId, target: pid } });
+  }
+}
+
+for (const cat of skills.categories) {
+  nodes.push({
+    data: { id: cat.id, label: cat.label, type: "category", cvVariant: cat.cvVariant ?? "", description: cat.description ?? "" },
+  });
+  for (const sk of cat.skills) {
+    const skId = `${cat.id}/${slug(sk.label)}`;
+    const skProjects = projectsForLabel(sk.label);
+    nodes.push({ data: { id: skId, label: sk.label, type: "skill", projects: skProjects } });
+    edges.push({ data: { id: `e-${cat.id}-${skId}`, source: cat.id, target: skId } });
+    addProjectNodes(skId, skProjects);
+    for (const ch of (sk as any).children ?? []) {
+      const chId = `${skId}/${slug(ch.label)}`;
+      const chProjects = projectsForLabel(ch.label);
+      nodes.push({ data: { id: chId, label: ch.label, type: "subskill", projects: chProjects } });
+      edges.push({ data: { id: `e-${skId}-${chId}`, source: skId, target: chId } });
+      addProjectNodes(chId, chProjects);
+    }
+  }
+}
+
+const graph = { nodes, edges };
+---
+
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow">Skills</p>
+    <h2>Skill-Netzwerk</h2>
+    <p class="lead">
+      Klicke einen Oberbegriff, um tiefere Skills aufzuklappen — bis hin zu den
+      verbundenen Projekten. Lieber eine Liste? Die Tag-Chips bei den
+      <a href="#projects">Projekten</a> filtern nach denselben Themen.
+    </p>
+
+    <div class="graph-wrap">
+      <div id="skill-graph" class="graph" role="img"
+           aria-label="Interaktives Skill-Netzwerk. Alternative: Tag-Filter im Projekte-Bereich."></div>
+      <aside id="skill-panel" class="panel">
+        <p class="panel-hint">Tippe auf einen Knoten, um Details &amp; Projekte zu sehen.</p>
+      </aside>
+    </div>
+
+    <div class="graph-controls">
+      <button id="graph-reset" class="chip" type="button">Alles einklappen</button>
+    </div>
+  </div>
+
+  <script type="application/json" id="skill-graph-data" set:html={JSON.stringify(graph)}></script>
+
+  <script>
+    import cytoscape from "cytoscape";
+
+    const dataEl = document.getElementById("skill-graph-data");
+    const container = document.getElementById("skill-graph");
+    const panel = document.getElementById("skill-panel");
+    if (dataEl && container && panel) {
+      const graph = JSON.parse(dataEl.textContent || "{}");
+      const css = (name: string) =>
+        getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+      const C = {
+        accent: css("--accent") || "#1f6f92",
+        onAccent: css("--on-accent") || "#fff",
+        mid: css("--accent-mid") || "#8fb8cc",
+        soft: css("--accent-soft") || "#dce9f2",
+        elev: css("--bg-elev") || "#fff",
+        text: css("--text") || "#16202b",
+        muted: css("--text-muted") || "#586675",
+        border: css("--border") || "#dfe6ee",
+      };
+
+      const cy = cytoscape({
+        container,
+        elements: graph,
+        minZoom: 0.4,
+        maxZoom: 2.5,
+        wheelSensitivity: 0.2,
+        style: [
+          {
+            selector: "node",
+            style: {
+              label: "data(label)",
+              color: C.text,
+              "font-size": 12,
+              "font-family": "IBM Plex Sans, sans-serif",
+              "text-valign": "center",
+              "text-halign": "center",
+              "text-wrap": "wrap",
+              "text-max-width": "110px",
+              width: "label",
+              height: "label",
+              padding: "11px",
+              "text-margin-y": 1,
+              shape: "round-rectangle",
+              "border-width": 1,
+              "border-color": C.border,
+              "transition-property": "opacity, border-width, border-color",
+              "transition-duration": "0.18s",
+            },
+          },
+          {
+            selector: 'node[type="category"]',
+            style: {
+              "background-color": C.accent, color: C.onAccent,
+              "font-size": 16, "font-weight": 600, "border-width": 0, padding: "16px",
+            },
+          },
+          { selector: 'node[type="skill"]', style: { "background-color": C.mid, color: C.text, "font-size": 13, padding: "13px" } },
+          { selector: 'node[type="subskill"]', style: { "background-color": C.soft, color: C.text } },
+          {
+            selector: 'node[type="project"]',
+            style: { "background-color": C.elev, color: C.text, "border-color": C.accent, "border-width": 2, "font-style": "italic", shape: "round-rectangle" },
+          },
+          { selector: "node.sel", style: { "border-width": 3, "border-color": C.accent } },
+          { selector: "node.faded", style: { opacity: 0.16 } },
+          {
+            selector: "edge",
+            style: {
+              width: 1.6, "line-color": C.mid, "curve-style": "bezier",
+              "target-arrow-shape": "none", opacity: 0.55,
+              "transition-property": "opacity", "transition-duration": "0.18s",
+            },
+          },
+          { selector: "edge.faded", style: { opacity: 0.06 } },
+        ],
+        layout: { name: "preset" },
+      });
+
+      // Start: only categories visible.
+      const isCategory = (n: any) => n.data("type") === "category";
+      cy.nodes().forEach((n: any) => { if (!isCategory(n)) n.style("display", "none"); });
+      cy.edges().forEach((e: any) => e.style("display", "none"));
+
+      const childrenOf = (n: any) => n.outgoers("node");
+      const visible = (n: any) => n.style("display") !== "none";
+
+      function relayout() {
+        const vis = cy.elements().filter((el: any) => el.style("display") !== "none");
+        const hasEdges = vis.edges().length > 0;
+        const opts = hasEdges
+          ? { name: "breadthfirst", animate: true, animationDuration: 450, animationEasing: "ease-out",
+              padding: 40, spacingFactor: 1.1, directed: false, grid: false, avoidOverlap: true }
+          : { name: "circle", animate: true, animationDuration: 400,
+              padding: 40, radius: vis.nodes().length > 1 ? 140 : 0 };
+        const layout = vis.layout(opts as any);
+        layout.one("layoutstop", () => {
+          cy.animate({
+            fit: { eles: vis, padding: 40 },
+            duration: 300,
+            complete: () => { if (cy.zoom() > 1.6) { cy.zoom(1.6); cy.center(vis); } },
+          });
+        });
+        layout.run();
+      }
+
+      function focusOn(n: any) {
+        const vis = cy.elements().filter((el: any) => el.style("display") !== "none");
+        const keep = n.closedNeighborhood().filter((el: any) => el.style("display") !== "none");
+        vis.addClass("faded");
+        keep.removeClass("faded");
+      }
+      function clearFocus() { cy.elements().removeClass("faded"); }
+
+      cy.on("mouseover", "node", () => { container.style.cursor = "pointer"; });
+      cy.on("mouseout", "node", () => { container.style.cursor = "default"; });
+      cy.on("tap", (evt: any) => {
+        if (evt.target === cy) { clearFocus(); cy.nodes().removeClass("sel"); }
+      });
+
+      function hideDescendants(n: any) {
+        childrenOf(n).forEach((c: any) => {
+          hideDescendants(c);
+          c.style("display", "none");
+          c.connectedEdges().style("display", "none");
+        });
+      }
+
+      function toggle(n: any) {
+        const kids = childrenOf(n);
+        if (kids.length === 0) return false;
+        const anyVisible = kids.some((c: any) => visible(c));
+        if (anyVisible) {
+          kids.forEach((c: any) => {
+            hideDescendants(c);
+            c.style("display", "none");
+            c.connectedEdges().style("display", "none");
+          });
+        } else {
+          kids.forEach((c: any) => {
+            c.style("display", "element");
+            cy.getElementById(n.id()).edgesTo(c).style("display", "element");
+          });
+        }
+        return true;
+      }
+
+      function esc(s: string) {
+        return String(s).replace(/[&<>"]/g, (c) =>
+          ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c] as string));
+      }
+
+      function renderPanel(n: any) {
+        const type = n.data("type");
+        const label = esc(n.data("label"));
+        let html = `<h3 class="panel-title">${label}</h3>`;
+        if (type === "category") {
+          if (n.data("description")) html += `<p class="panel-desc">${esc(n.data("description"))}</p>`;
+          const cv = n.data("cvVariant");
+          if (cv) html += `<a class="panel-cv" href="#cv" data-cv="${esc(cv)}">→ Passender Lebenslauf (${esc(cv)})</a>`;
+          html += `<p class="panel-note">Klick auf den Knoten klappt die Skills auf/zu.</p>`;
+        } else if (type === "project") {
+          const repo = n.data("repo");
+          html += `<p class="panel-desc">Projekt</p>`;
+          if (repo) html += `<a class="panel-cv" href="${esc(repo)}" target="_blank" rel="noopener">Repository ↗</a>`;
+        } else {
+          const prs = n.data("projects") || [];
+          if (prs.length) {
+            html += `<p class="panel-desc">Verbundene Projekte:</p><ul class="panel-projects">`;
+            for (const p of prs) {
+              html += `<li>${p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.title)} ↗</a>` : esc(p.title)}</li>`;
+            }
+            html += `</ul>`;
+          } else {
+            html += `<p class="panel-desc">Noch keine verknüpften Projekte.</p>`;
+          }
+        }
+        panel.innerHTML = html;
+      }
+
+      cy.on("tap", "node", (evt: any) => {
+        const n = evt.target;
+        cy.nodes().removeClass("sel");
+        n.addClass("sel");
+        if (n.data("type") === "project") {
+          const repo = n.data("repo");
+          if (repo) window.open(repo, "_blank", "noopener");
+        } else {
+          toggle(n);
+          relayout();
+        }
+        focusOn(n);
+        renderPanel(n);
+      });
+
+      document.getElementById("graph-reset")?.addEventListener("click", () => {
+        cy.nodes().forEach((n: any) => { if (!isCategory(n)) n.style("display", "none"); });
+        cy.edges().forEach((e: any) => e.style("display", "none"));
+        cy.nodes().removeClass("sel");
+        clearFocus();
+        panel.innerHTML = '<p class="panel-hint">Tippe auf einen Knoten, um Details &amp; Projekte zu sehen.</p>';
+        relayout();
+      });
+
+      relayout();
+    }
+  </script>
+</section>
+
+<style>
+  .lead { color: var(--text-muted); margin-top: -0.4rem; max-width: 46rem; }
+  .graph-wrap {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 1rem;
+    margin-top: 1.6rem;
+  }
+  .graph {
+    height: 460px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .panel {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem;
+    min-height: 0;
+  }
+  .panel-hint, .panel-note { color: var(--text-muted); font-size: 0.9rem; }
+  .panel-title { margin: 0 0 0.6rem; font-size: 1.15rem; }
+  .panel-desc { color: var(--text-muted); margin: 0 0 0.6rem; }
+  .panel-cv { display: inline-block; font-weight: 550; margin-bottom: 0.6rem; }
+  .panel-projects { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.35rem; }
+  .graph-controls { margin-top: 0.9rem; }
+  .graph-controls .chip {
+    font: inherit; font-size: 0.82rem; padding: 0.35rem 0.8rem; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--bg-elev); color: var(--text-muted); cursor: pointer;
+  }
+  .graph-controls .chip:hover { border-color: var(--accent); }
+  @media (max-width: 46rem) {
+    .graph-wrap { grid-template-columns: 1fr; }
+    .graph { height: 380px; }
+  }
+</style>

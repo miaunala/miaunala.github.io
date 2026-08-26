@@ -1,0 +1,16 @@
+[
+  {
+    "quote": "[Platzhalter — wörtliches Zitat aus einem Arbeitszeugnis. 1–2 Sätze, sinngemäss korrekt.]",
+    "role": "[Rolle der Referenz — z. B. Teamlead]",
+    "industry": "[Branche — z. B. Logistik]",
+    "year": 2024,
+    "project": "lakehouse-pipeline"
+  },
+  {
+    "quote": "[Platzhalter — zweites Zitat.]",
+    "role": "[Rolle — z. B. Projektleitung]",
+    "industry": "[Branche — z. B. E-Commerce]",
+    "year": 2023,
+    "project": ""
+  }
+]

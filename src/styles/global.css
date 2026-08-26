@@ -1,0 +1,97 @@
+/* ---- Design tokens -------------------------------------------------- */
+:root {
+  --bg: #f4f7fb;            /* cool, faintly blue near-white (no more beige) */
+  --bg-elev: #ffffff;
+  --text: #16202b;          /* cool dark slate */
+  --text-muted: #586675;
+  --border: #dfe6ee;        /* cool light border */
+  --accent: #1f6f92;        /* blue-teal, less green, readable */
+  --on-accent: #ffffff;     /* text on top of --accent */
+  --accent-mid: #8fb8cc;    /* soft blue */
+  --accent-soft: #dce9f2;   /* soft wash */
+  --accent-wash: #e9f1f8;   /* very light header/section background */
+  --ring: rgba(31, 111, 146, 0.4);
+
+  /* tag levels */
+  --tag-method: #3f6f5b;
+  --tag-domain: #4a5b8c;
+  --tag-tool:   #8a6d3b;
+
+  --maxw: 68rem;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(20, 18, 16, 0.04), 0 8px 24px rgba(20, 18, 16, 0.06);
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1720;            /* cool dark slate */
+    --bg-elev: #17212c;
+    --text: #e7edf3;
+    --text-muted: #9aa7b4;
+    --border: #263442;
+    --accent: #7cc0dc;        /* light blue for text/links on dark */
+    --on-accent: #0b1620;     /* dark text on top of --accent */
+    --accent-mid: #4a7f97;
+    --accent-soft: #1a2a37;
+    --accent-wash: #14202b;
+    --ring: rgba(124, 192, 220, 0.4);
+    --tag-method: #7db39a;
+    --tag-domain: #90a2d6;
+    --tag-tool:   #d0b078;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* ---- Base ----------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin: 0 0 0.4em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 0.8rem; }
+p { margin: 0 0 1rem; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; border-radius: 4px; }
+
+/* ---- Layout --------------------------------------------------------- */
+.wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 1.25rem; }
+section { padding-block: clamp(3rem, 8vw, 6rem); }
+section + section { border-top: 1px solid var(--border); }
+.eyebrow {
+  text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.78rem;
+  font-weight: 600; color: var(--accent); margin-bottom: 0.6rem;
+}
+
+/* ---- Buttons -------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.62rem 1.15rem; border-radius: 999px;
+  font-weight: 550; font-size: 0.95rem; border: 1px solid transparent;
+  cursor: pointer; transition: transform 0.08s ease, background 0.15s ease;
+}
+.btn:hover { text-decoration: none; transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+
+/* ---- Chips / status ------------------------------------------------- */
+.status-chip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.85rem; color: var(--text-muted);
+  padding: 0.3rem 0.7rem; border: 1px solid var(--border);
+  border-radius: 999px; background: var(--bg-elev);
+}
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #3f9d6b;
+  box-shadow: 0 0 0 3px rgba(63, 157, 107, 0.2);
+}

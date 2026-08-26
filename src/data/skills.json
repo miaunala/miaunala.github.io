@@ -1,0 +1,60 @@
+{
+  "categories": [
+    {
+      "id": "data-engineering",
+      "label": "Data Engineering",
+      "cvVariant": "data-engineering",
+      "description": "Robuste Datenbasis: Pipelines, Modellierung, Orchestrierung.",
+      "skills": [
+        {
+          "label": "Airflow",
+          "children": [
+            { "label": "DAGs" },
+            { "label": "Scheduling" }
+          ]
+        },
+        {
+          "label": "ELT",
+          "children": [
+            { "label": "Data Modeling" }
+          ]
+        },
+        { "label": "dbt" },
+        { "label": "SQL" }
+      ]
+    },
+    {
+      "id": "data-science",
+      "label": "Data Science",
+      "cvVariant": "data-science",
+      "description": "Analysen, Prognosen und aussagekräftige Auswertungen.",
+      "skills": [
+        {
+          "label": "Time Series Forecasting",
+          "children": [
+            { "label": "Backtesting" }
+          ]
+        },
+        { "label": "Regression" },
+        { "label": "pandas" },
+        { "label": "XGBoost" }
+      ]
+    },
+    {
+      "id": "ml-nlp",
+      "label": "Machine Learning / NLP",
+      "cvVariant": "general",
+      "description": "Modelle von Klassifikation bis NLP, eingebettet in Pipelines.",
+      "skills": [
+        {
+          "label": "Zero-shot Classification",
+          "children": [
+            { "label": "Text Classification" }
+          ]
+        },
+        { "label": "Hugging Face" },
+        { "label": "scikit-learn" }
+      ]
+    }
+  ]
+}

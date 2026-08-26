@@ -1,0 +1,25 @@
+---
+import profile from "../data/profile.json";
+const year = new Date().getFullYear();
+---
+
+<footer id="contact">
+  <div class="wrap foot">
+    <div>
+      <h2>Kontakt</h2>
+      <div class="links">
+        {profile.links.github && <a href={profile.links.github} target="_blank" rel="noopener">GitHub ↗</a>}
+        {profile.links.linkedin && <a href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>}
+        {profile.links.email && <a href={`mailto:${profile.links.email}`}>E-Mail</a>}
+      </div>
+    </div>
+    <p class="colophon">© {year} {profile.name} · gebaut mit Astro · gehostet auf GitHub Pages</p>
+  </div>
+</footer>
+
+<style>
+  footer { border-top: 1px solid var(--border); padding-block: clamp(2.5rem, 6vw, 4rem); }
+  .foot { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; align-items: end; }
+  .links { display: flex; gap: 1.2rem; }
+  .colophon { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+</style>
