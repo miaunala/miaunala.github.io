@@ -14,3 +14,11 @@ pnpm-debug.log*
 .env.production
 # macOS
 .DS_Store
+# Python
+__pycache__/
+*.pyc
+.venv/
+# fastembed lädt sein ONNX-Modell hierhin (nicht committen)
+pipeline/.fastembed_cache/
+# Hinweis: pipeline/warehouse.duckdb wird ABSICHTLICH mitversioniert,
+# damit die Wochen-Trends zwischen den Läufen erhalten bleiben.

@@ -1,0 +1,495 @@
+{
+  "generated_at": "2026-09-02T13:15:35",
+  "week": "2026-08-31",
+  "categories": [
+    {
+      "id": "data-engineering",
+      "label": "Data Engineering",
+      "description": "Robuste Datenbasis: Pipelines, Modellierung, Orchestrierung.",
+      "skills": [
+        {
+          "label": "Python",
+          "count": 5,
+          "confidence": 0.741,
+          "trend": 5,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "SQL",
+          "count": 4,
+          "confidence": 0.748,
+          "trend": 4,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Docker",
+          "count": 3,
+          "confidence": 0.704,
+          "trend": 3,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Airflow",
+          "count": 3,
+          "confidence": 0.739,
+          "trend": 3,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Data Warehousing",
+          "count": 2,
+          "confidence": 0.836,
+          "trend": 2,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Kubernetes",
+          "count": 2,
+          "confidence": 0.704,
+          "trend": 2,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "dbt",
+          "count": 2,
+          "confidence": 0.726,
+          "trend": 2,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Spark",
+          "count": 1,
+          "confidence": 0.732,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Kafka",
+          "count": 1,
+          "confidence": 0.744,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Terraform",
+          "count": 1,
+          "confidence": 0.692,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Redshift",
+          "count": 1,
+          "confidence": 0.748,
+          "trend": 1,
+          "also": [
+            "Data Science"
+          ],
+          "mine": false
+        },
+        {
+          "label": "Snowflake",
+          "count": 1,
+          "confidence": 0.749,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "CI/CD",
+          "count": 1,
+          "confidence": 0.689,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "BigQuery",
+          "count": 1,
+          "confidence": 0.743,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Airbyte",
+          "count": 1,
+          "confidence": 0.722,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Databricks",
+          "count": 1,
+          "confidence": 0.787,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        }
+      ]
+    },
+    {
+      "id": "data-science",
+      "label": "Data Science",
+      "description": "Analysen, Prognosen und aussagekraeftige Auswertungen.",
+      "skills": [
+        {
+          "label": "Data Modeling",
+          "count": 1,
+          "confidence": 0.798,
+          "trend": 1,
+          "also": [
+            "Data Engineering",
+            "Machine Learning"
+          ],
+          "mine": false
+        },
+        {
+          "label": "pandas",
+          "count": 1,
+          "confidence": 0.694,
+          "trend": 1,
+          "also": [
+            "Machine Learning",
+            "NLP",
+            "Data Engineering"
+          ],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "Regression",
+          "count": 1,
+          "confidence": 0.772,
+          "trend": 1,
+          "also": [
+            "Machine Learning"
+          ],
+          "mine": false
+        },
+        {
+          "label": "Time Series Forecasting",
+          "count": 1,
+          "confidence": 0.786,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "A/B Testing",
+          "count": 1,
+          "confidence": 0.68,
+          "trend": 1,
+          "also": [
+            "Machine Learning"
+          ],
+          "mine": false
+        },
+        {
+          "label": "Statistics",
+          "count": 1,
+          "confidence": 0.783,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Data Visualization",
+          "count": 1,
+          "confidence": 0.756,
+          "trend": 1,
+          "also": [
+            "Data Engineering"
+          ],
+          "mine": false
+        },
+        {
+          "label": "Power BI",
+          "count": 1,
+          "confidence": 0.739,
+          "trend": 1,
+          "also": [
+            "Data Engineering"
+          ],
+          "mine": false
+        },
+        {
+          "label": "Tableau",
+          "count": 1,
+          "confidence": 0.726,
+          "trend": 1,
+          "also": [
+            "Data Engineering"
+          ],
+          "mine": false
+        },
+        {
+          "label": "matplotlib",
+          "count": 1,
+          "confidence": 0.675,
+          "trend": 1,
+          "also": [
+            "Data Engineering"
+          ],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "Plotly",
+          "count": 1,
+          "confidence": 0.661,
+          "trend": 1,
+          "also": [
+            "Data Engineering"
+          ],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "statsmodels",
+          "count": 1,
+          "confidence": 0.726,
+          "trend": 1,
+          "also": [
+            "Machine Learning"
+          ],
+          "mine": false,
+          "lang": "Python"
+        }
+      ]
+    },
+    {
+      "id": "machine-learning",
+      "label": "Machine Learning",
+      "description": "Modelle von Klassifikation bis Deep Learning.",
+      "skills": [
+        {
+          "label": "XGBoost",
+          "count": 2,
+          "confidence": 0.704,
+          "trend": 2,
+          "also": [
+            "NLP",
+            "Data Science",
+            "Data Engineering"
+          ],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "Classification",
+          "count": 2,
+          "confidence": 0.807,
+          "trend": 2,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "scikit-learn",
+          "count": 2,
+          "confidence": 0.749,
+          "trend": 2,
+          "also": [],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "Optuna",
+          "count": 2,
+          "confidence": 0.715,
+          "trend": 2,
+          "also": [],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "NumPy",
+          "count": 1,
+          "confidence": 0.715,
+          "trend": 1,
+          "also": [
+            "Data Science"
+          ],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "Feature Engineering",
+          "count": 1,
+          "confidence": 0.837,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "MLflow",
+          "count": 1,
+          "confidence": 0.812,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Deep Learning",
+          "count": 1,
+          "confidence": 0.878,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Keras",
+          "count": 1,
+          "confidence": 0.839,
+          "trend": 1,
+          "also": [],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "LightGBM",
+          "count": 1,
+          "confidence": 0.691,
+          "trend": 1,
+          "also": [
+            "NLP"
+          ],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "PyTorch",
+          "count": 1,
+          "confidence": 0.768,
+          "trend": 1,
+          "also": [],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "TensorFlow",
+          "count": 1,
+          "confidence": 0.817,
+          "trend": 1,
+          "also": [],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "LLM",
+          "count": 1,
+          "confidence": 0.733,
+          "trend": 1,
+          "also": [
+            "NLP"
+          ],
+          "mine": false
+        },
+        {
+          "label": "Zero-shot Classification",
+          "count": 1,
+          "confidence": 0.727,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        }
+      ]
+    },
+    {
+      "id": "nlp",
+      "label": "NLP",
+      "description": "Sprache verstehen: Embeddings, LLMs, Textklassifikation.",
+      "skills": [
+        {
+          "label": "Hugging Face",
+          "count": 1,
+          "confidence": 0.681,
+          "trend": 1,
+          "also": [
+            "Machine Learning"
+          ],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "Embeddings",
+          "count": 1,
+          "confidence": 0.823,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Named Entity Recognition",
+          "count": 1,
+          "confidence": 0.855,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "Text Classification",
+          "count": 1,
+          "confidence": 0.847,
+          "trend": 1,
+          "also": [],
+          "mine": false
+        },
+        {
+          "label": "spaCy",
+          "count": 1,
+          "confidence": 0.653,
+          "trend": 1,
+          "also": [
+            "Machine Learning",
+            "Data Science"
+          ],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "NLTK",
+          "count": 1,
+          "confidence": 0.761,
+          "trend": 1,
+          "also": [],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "Gensim",
+          "count": 1,
+          "confidence": 0.707,
+          "trend": 1,
+          "also": [
+            "Machine Learning",
+            "Data Science"
+          ],
+          "mine": false,
+          "lang": "Python"
+        },
+        {
+          "label": "LangChain",
+          "count": 1,
+          "confidence": 0.692,
+          "trend": 1,
+          "also": [],
+          "mine": false,
+          "lang": "Python"
+        }
+      ]
+    }
+  ],
+  "uncategorized": []
+}

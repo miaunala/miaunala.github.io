@@ -1,0 +1,37 @@
+[
+  {
+    "source": "sample",
+    "external_id": "de-001",
+    "role": "data engineer",
+    "title": "Data Engineer (m/w/d)",
+    "description": "We are looking for a Data Engineer to build and maintain our data pipelines. Requirements: strong SQL, hands-on experience with Apache Airflow for orchestration, dbt for transformations, and a cloud data warehouse such as Snowflake or BigQuery. You will work with Spark and Kafka for streaming ingestion. Nice to have: Docker, Kubernetes, Terraform, and CI/CD experience. Python is required."
+  },
+  {
+    "source": "sample",
+    "external_id": "de-002",
+    "role": "data engineer",
+    "title": "Senior Data Engineer",
+    "description": "Your profile: several years building ELT pipelines with Airflow and dbt. Deep knowledge of data modeling and data warehousing. Experience with AWS (Redshift) or GCP. Comfortable with Python, SQL, Docker and version control (Git). Bonus: Airbyte or Fivetran, Databricks."
+  },
+  {
+    "source": "sample",
+    "external_id": "ds-001",
+    "role": "data scientist",
+    "title": "Data Scientist",
+    "description": "As a Data Scientist you will design experiments and predictive models. Requirements: solid statistics, A/B testing, regression and classification, time series forecasting. Strong Python with pandas, NumPy, scikit-learn and XGBoost. You visualize results with matplotlib, seaborn and Plotly, and build dashboards (Tableau or Power BI). Bonus: statsmodels, Optuna. SQL is expected."
+  },
+  {
+    "source": "sample",
+    "external_id": "ml-001",
+    "role": "machine learning engineer",
+    "title": "Machine Learning Engineer",
+    "description": "Requirements: production machine learning with feature engineering, deep learning (PyTorch, Keras or TensorFlow), and model tracking with MLflow. You serve models via FastAPI and deploy them with Docker and Kubernetes. Strong Python and SQL. Familiarity with scikit-learn, LightGBM and XGBoost. Hyperparameter tuning with Optuna."
+  },
+  {
+    "source": "sample",
+    "external_id": "ml-002",
+    "role": "machine learning engineer",
+    "title": "NLP Engineer",
+    "description": "We build NLP products. Your skills: text classification, named entity recognition, embeddings, large language models (LLM) and the Hugging Face transformers ecosystem. Experience with spaCy, NLTK, Gensim and LangChain. We ship demos with Streamlit. Zero-shot classification is a plus. Python required, some data engineering with Airflow to feed the pipelines."
+  }
+]

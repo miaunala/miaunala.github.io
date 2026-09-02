@@ -1,0 +1,7 @@
+duckdb>=1.1
+fastembed>=0.3
+scikit-learn>=1.4
+numpy>=1.26
+requests>=2.31
+# Airflow ist optional -- nur noetig, wenn man den DAG lokal ausfuehren will.
+# Bewusst nicht hier gepinnt, weil es die CI schwer macht; siehe README.
