@@ -13,6 +13,7 @@ import datetime as dt
 import re
 
 from db import connect
+from own_skills import own_skills
 from seed_skills import SEED_SKILLS
 
 # canonical -> Liste vorkompilierter Alias-Patterns (Wortgrenzen, case-insensitive)
@@ -83,9 +84,29 @@ def extract(run_date: dt.date | None = None) -> int:
                    ON CONFLICT DO NOTHING""",
                 [term, snippet, week],
             )
+    # Eigene Skills mit aufnehmen, damit sie im Netz auftauchen, auch wenn der
+    # Markt sie (noch) nicht nennt. total_count bleibt bei 0 -> kleiner Punkt.
+    own_added = 0
+    for own in own_skills():
+        label, hint = own["label"], own["hint"]
+        cur = con.execute("SELECT 1 FROM skill_terms WHERE term = ?", [label]).fetchone()
+        if cur is None:
+            con.execute(
+                """INSERT INTO skill_terms (term, first_seen, last_seen, total_count)
+                   VALUES (?, ?, ?, 0)""",
+                [label, week, week],
+            )
+            own_added += 1
+        # Herkunfts-Hinweis als Kontext -> gute Einordnung auch ohne Anzeigentext.
+        con.execute(
+            "INSERT INTO skill_contexts (term, snippet, week) VALUES (?, ?, ?) ON CONFLICT DO NOTHING",
+            [label, hint, week],
+        )
+
     con.close()
-    print(f"[extract] Woche {week}: {len(counts)} Skills, "
-          f"{sum(len(v) for v in contexts.values())} Kontext-Saetze.")
+    print(f"[extract] Woche {week}: {len(counts)} Skills aus Anzeigen, "
+          f"{sum(len(v) for v in contexts.values())} Kontext-Saetze, "
+          f"{own_added} eigene Skills ergaenzt.")
     return len(counts)
 
 

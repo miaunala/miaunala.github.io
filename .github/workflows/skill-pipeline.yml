@@ -30,6 +30,10 @@ jobs:
           # Pipeline automatisch die Beispiel-Anzeigen.
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_KEY: ${{ secrets.ADZUNA_KEY }}
+          # Fuer die GitHub-Belege (eigene Repos lesen). Der Standard-Token des
+          # Workflows reicht; die gh-CLI ist auf den Runnern vorinstalliert.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python run.py
 
       - name: Commit updated network

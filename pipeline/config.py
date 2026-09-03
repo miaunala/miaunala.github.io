@@ -60,3 +60,14 @@ TOP_N_PER_CATEGORY = 16
 
 # Embedding-Modell (fastembed / ONNX, leichtgewichtig, 384 Dimensionen).
 EMBED_MODEL = "BAAI/bge-small-en-v1.5"
+
+# --- GitHub-Belege ---------------------------------------------------------
+# Aus welchen Repos Skills belegt werden. Das Portfolio-Repo selbst ist
+# ausgeschlossen: seine README *diskutiert* Skills als Thema (Snowflake, dbt,
+# ...) und wuerde sonst Koennen vortaeuschen, das nicht belegt ist.
+GITHUB_USER = "miaunala"
+EXCLUDE_REPOS = {"miaunala.github.io"}
+
+# Hochzaehlen, wenn sich die Erkennungslogik aendert -- erzwingt einen
+# vollstaendigen Neu-Scan trotz unveraenderter Repos.
+DETECTOR_VERSION = "3"

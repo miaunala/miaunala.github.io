@@ -1,141 +1,441 @@
 {
-  "generated_at": "2026-09-02T13:15:35",
+  "generated_at": "2026-09-03T00:29:28",
   "week": "2026-08-31",
   "categories": [
     {
       "id": "data-engineering",
       "label": "Data Engineering",
       "description": "Robuste Datenbasis: Pipelines, Modellierung, Orchestrierung.",
+      "x": -0.4193,
+      "y": 0.4244,
       "skills": [
         {
           "label": "Python",
-          "count": 5,
-          "confidence": 0.741,
-          "trend": 5,
-          "also": [],
-          "mine": false
+          "count": 12,
+          "confidence": 0.718,
+          "trend": 12,
+          "also": [
+            "Machine Learning",
+            "NLP"
+          ],
+          "x": -0.1698,
+          "y": -0.0459,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "file"
+            },
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "language"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "dependency"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "file"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "language"
+            },
+            {
+              "repo": "Computational_Forensics",
+              "kind": "file"
+            },
+            {
+              "repo": "Computational_Forensics",
+              "kind": "language"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "file"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "language"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "file"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "language"
+            },
+            {
+              "repo": "Reddit_Mormons_SM_HS23",
+              "kind": "file"
+            },
+            {
+              "repo": "Reddit_Mormons_SM_HS23",
+              "kind": "language"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "file"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "language"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "readme"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "file"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "language"
+            }
+          ]
         },
         {
           "label": "SQL",
-          "count": 4,
-          "confidence": 0.748,
-          "trend": 4,
+          "count": 9,
+          "confidence": 0.767,
+          "trend": 9,
           "also": [],
-          "mine": false
-        },
-        {
-          "label": "Docker",
-          "count": 3,
-          "confidence": 0.704,
-          "trend": 3,
-          "also": [],
-          "mine": false
+          "x": -0.4036,
+          "y": 0.0361,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "sql-logic"
+            },
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "sql-logic"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "sql-logic"
+            }
+          ]
         },
         {
           "label": "Airflow",
-          "count": 3,
-          "confidence": 0.739,
-          "trend": 3,
+          "count": 6,
+          "confidence": 0.745,
+          "trend": 6,
           "also": [],
-          "mine": false
+          "x": -0.7146,
+          "y": 0.5403,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ]
         },
         {
-          "label": "Data Warehousing",
-          "count": 2,
-          "confidence": 0.836,
-          "trend": 2,
+          "label": "Docker",
+          "count": 5,
+          "confidence": 0.742,
+          "trend": 5,
           "also": [],
-          "mine": false
+          "x": -0.6991,
+          "y": 0.5077,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ]
         },
         {
           "label": "Kubernetes",
-          "count": 2,
-          "confidence": 0.704,
-          "trend": 2,
-          "also": [],
-          "mine": false
-        },
-        {
-          "label": "dbt",
-          "count": 2,
-          "confidence": 0.726,
-          "trend": 2,
-          "also": [],
-          "mine": false
-        },
-        {
-          "label": "Spark",
-          "count": 1,
+          "count": 4,
           "confidence": 0.732,
-          "trend": 1,
+          "trend": 4,
           "also": [],
-          "mine": false
-        },
-        {
-          "label": "Kafka",
-          "count": 1,
-          "confidence": 0.744,
-          "trend": 1,
-          "also": [],
-          "mine": false
-        },
-        {
-          "label": "Terraform",
-          "count": 1,
-          "confidence": 0.692,
-          "trend": 1,
-          "also": [],
-          "mine": false
-        },
-        {
-          "label": "Redshift",
-          "count": 1,
-          "confidence": 0.748,
-          "trend": 1,
-          "also": [
-            "Data Science"
-          ],
-          "mine": false
-        },
-        {
-          "label": "Snowflake",
-          "count": 1,
-          "confidence": 0.749,
-          "trend": 1,
-          "also": [],
-          "mine": false
+          "x": -0.6387,
+          "y": 0.6189,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
         },
         {
           "label": "CI/CD",
-          "count": 1,
-          "confidence": 0.689,
-          "trend": 1,
+          "count": 4,
+          "confidence": 0.694,
+          "trend": 4,
           "also": [],
-          "mine": false
+          "x": -0.6795,
+          "y": 0.2315,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "dbt",
+          "count": 3,
+          "confidence": 0.784,
+          "trend": 3,
+          "also": [],
+          "x": -0.4662,
+          "y": 0.3028,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "Terraform",
+          "count": 3,
+          "confidence": 0.684,
+          "trend": 3,
+          "also": [],
+          "x": -0.6878,
+          "y": 0.4544,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "Snowflake",
+          "count": 3,
+          "confidence": 0.758,
+          "trend": 3,
+          "also": [],
+          "x": -0.4119,
+          "y": 0.2496,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "Data Modeling",
+          "count": 3,
+          "confidence": 0.822,
+          "trend": 3,
+          "also": [
+            "Data Science",
+            "Machine Learning"
+          ],
+          "x": 0.0726,
+          "y": -0.0738,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "code"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "llm"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "llm"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ]
+        },
+        {
+          "label": "AWS",
+          "count": 2,
+          "confidence": 0.763,
+          "trend": 2,
+          "also": [],
+          "x": -0.8485,
+          "y": 0.2575,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "Fivetran",
+          "count": 2,
+          "confidence": 0.74,
+          "trend": 2,
+          "also": [],
+          "x": -0.3766,
+          "y": 0.3166,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "Git",
+          "count": 2,
+          "confidence": 0.674,
+          "trend": 2,
+          "also": [],
+          "x": -0.6041,
+          "y": 0.1603,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "Kafka",
+          "count": 2,
+          "confidence": 0.74,
+          "trend": 2,
+          "also": [],
+          "x": -0.5409,
+          "y": 0.4068,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
         },
         {
           "label": "BigQuery",
-          "count": 1,
-          "confidence": 0.743,
-          "trend": 1,
+          "count": 2,
+          "confidence": 0.737,
+          "trend": 2,
           "also": [],
-          "mine": false
-        },
-        {
-          "label": "Airbyte",
-          "count": 1,
-          "confidence": 0.722,
-          "trend": 1,
-          "also": [],
-          "mine": false
+          "x": -0.5372,
+          "y": -0.0932,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
         },
         {
           "label": "Databricks",
+          "count": 2,
+          "confidence": 0.808,
+          "trend": 2,
+          "also": [],
+          "x": -0.6387,
+          "y": 0.2165,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "ELT",
           "count": 1,
-          "confidence": 0.787,
+          "confidence": 0.8,
           "trend": 1,
           "also": [],
-          "mine": false
+          "x": -0.1447,
+          "y": 0.2354,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "DAGs",
+          "count": 0,
+          "confidence": 0.722,
+          "trend": 0,
+          "also": [
+            "Data Science"
+          ],
+          "x": -0.3543,
+          "y": 0.0921,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "Java",
+          "count": 0,
+          "confidence": 0.636,
+          "trend": 0,
+          "also": [],
+          "x": -0.1506,
+          "y": 0.1952,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Software_Construction",
+              "kind": "code"
+            },
+            {
+              "repo": "Software_Construction",
+              "kind": "file"
+            },
+            {
+              "repo": "Software_Construction",
+              "kind": "language"
+            }
+          ]
+        },
+        {
+          "label": "JavaScript",
+          "count": 0,
+          "confidence": 0.587,
+          "trend": 0,
+          "also": [
+            "Data Science",
+            "NLP",
+            "Machine Learning"
+          ],
+          "x": -0.2065,
+          "y": 0.04,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "code"
+            }
+          ]
+        },
+        {
+          "label": "Scheduling",
+          "count": 0,
+          "confidence": 0.746,
+          "trend": 0,
+          "also": [],
+          "x": -0.3583,
+          "y": 0.355,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": []
         }
       ]
     },
@@ -143,129 +443,726 @@
       "id": "data-science",
       "label": "Data Science",
       "description": "Analysen, Prognosen und aussagekraeftige Auswertungen.",
+      "x": 0.2929,
+      "y": -0.4649,
       "skills": [
         {
-          "label": "Data Modeling",
-          "count": 1,
-          "confidence": 0.798,
-          "trend": 1,
-          "also": [
-            "Data Engineering",
-            "Machine Learning"
-          ],
-          "mine": false
-        },
-        {
           "label": "pandas",
-          "count": 1,
-          "confidence": 0.694,
-          "trend": 1,
+          "count": 4,
+          "confidence": 0.751,
+          "trend": 4,
           "also": [
             "Machine Learning",
-            "NLP",
-            "Data Engineering"
+            "NLP"
           ],
-          "mine": false,
+          "x": 0.1951,
+          "y": -0.408,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "dependency"
+            },
+            {
+              "repo": "Computational_Forensics",
+              "kind": "code"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ],
           "lang": "Python"
         },
         {
-          "label": "Regression",
-          "count": 1,
-          "confidence": 0.772,
-          "trend": 1,
-          "also": [
-            "Machine Learning"
-          ],
-          "mine": false
-        },
-        {
-          "label": "Time Series Forecasting",
-          "count": 1,
-          "confidence": 0.786,
-          "trend": 1,
-          "also": [],
-          "mine": false
-        },
-        {
-          "label": "A/B Testing",
-          "count": 1,
-          "confidence": 0.68,
-          "trend": 1,
-          "also": [
-            "Machine Learning"
-          ],
-          "mine": false
-        },
-        {
-          "label": "Statistics",
-          "count": 1,
-          "confidence": 0.783,
-          "trend": 1,
-          "also": [],
-          "mine": false
-        },
-        {
           "label": "Data Visualization",
-          "count": 1,
+          "count": 3,
+          "confidence": 0.792,
+          "trend": 3,
+          "also": [
+            "Data Engineering"
+          ],
+          "x": -0.3719,
+          "y": -0.5552,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "llm"
+            },
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "code"
+            },
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "readme"
+            },
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "llm"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "llm"
+            },
+            {
+              "repo": "ResearchDesign_Homeworks",
+              "kind": "llm"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "llm"
+            }
+          ]
+        },
+        {
+          "label": "statsmodels",
+          "count": 3,
           "confidence": 0.756,
-          "trend": 1,
+          "trend": 3,
           "also": [
-            "Data Engineering"
+            "Machine Learning"
           ],
-          "mine": false
+          "x": 0.2185,
+          "y": -0.3958,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            }
+          ],
+          "lang": "Python"
         },
         {
-          "label": "Power BI",
-          "count": 1,
-          "confidence": 0.739,
-          "trend": 1,
+          "label": "NumPy",
+          "count": 3,
+          "confidence": 0.735,
+          "trend": 3,
           "also": [
-            "Data Engineering"
+            "Machine Learning"
           ],
-          "mine": false
-        },
-        {
-          "label": "Tableau",
-          "count": 1,
-          "confidence": 0.726,
-          "trend": 1,
-          "also": [
-            "Data Engineering"
+          "x": 0.1206,
+          "y": -0.4036,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "dependency"
+            },
+            {
+              "repo": "Computational_Forensics",
+              "kind": "code"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            }
           ],
-          "mine": false
-        },
-        {
-          "label": "matplotlib",
-          "count": 1,
-          "confidence": 0.675,
-          "trend": 1,
-          "also": [
-            "Data Engineering"
-          ],
-          "mine": false,
           "lang": "Python"
         },
         {
           "label": "Plotly",
-          "count": 1,
-          "confidence": 0.661,
-          "trend": 1,
+          "count": 3,
+          "confidence": 0.71,
+          "trend": 3,
           "also": [
             "Data Engineering"
           ],
+          "x": -0.3492,
+          "y": -0.7375,
           "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": [],
           "lang": "Python"
         },
         {
-          "label": "statsmodels",
+          "label": "Regression",
+          "count": 3,
+          "confidence": 0.828,
+          "trend": 3,
+          "also": [
+            "Machine Learning"
+          ],
+          "x": 0.2873,
+          "y": -0.4027,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "BAThesis",
+              "kind": "code"
+            },
+            {
+              "repo": "BAThesis",
+              "kind": "readme"
+            },
+            {
+              "repo": "Computational_Forensics",
+              "kind": "code"
+            },
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "code"
+            },
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "code"
+            },
+            {
+              "repo": "PPE_ResearchSeminar_HS23FS24",
+              "kind": "code"
+            },
+            {
+              "repo": "ResearchDesign_Homeworks",
+              "kind": "code"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            },
+            {
+              "repo": "Statistical_Modelling",
+              "kind": "code"
+            },
+            {
+              "repo": "Statistical_Modelling",
+              "kind": "readme"
+            },
+            {
+              "repo": "Statistical_Modelling",
+              "kind": "llm"
+            }
+          ]
+        },
+        {
+          "label": "Statistics",
+          "count": 3,
+          "confidence": 0.784,
+          "trend": 3,
+          "also": [],
+          "x": 0.0541,
+          "y": -0.5138,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "code"
+            },
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "readme"
+            }
+          ]
+        },
+        {
+          "label": "Time Series Forecasting",
+          "count": 3,
+          "confidence": 0.867,
+          "trend": 3,
+          "also": [],
+          "x": 0.1902,
+          "y": -0.4531,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "code"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ]
+        },
+        {
+          "label": "A/B Testing",
+          "count": 3,
+          "confidence": 0.765,
+          "trend": 3,
+          "also": [
+            "Machine Learning"
+          ],
+          "x": 0.0199,
+          "y": -0.3519,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "seaborn",
+          "count": 2,
+          "confidence": 0.71,
+          "trend": 2,
+          "also": [
+            "Data Engineering"
+          ],
+          "x": -0.4277,
+          "y": -0.54,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Computational_Forensics",
+              "kind": "code"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            }
+          ],
+          "lang": "Python"
+        },
+        {
+          "label": "Power BI",
+          "count": 2,
+          "confidence": 0.734,
+          "trend": 2,
+          "also": [
+            "Data Engineering",
+            "Machine Learning"
+          ],
+          "x": -0.3249,
+          "y": -0.3524,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "Tableau",
+          "count": 2,
+          "confidence": 0.712,
+          "trend": 2,
+          "also": [
+            "Data Engineering"
+          ],
+          "x": -0.3512,
+          "y": -0.4257,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "matplotlib",
+          "count": 2,
+          "confidence": 0.683,
+          "trend": 2,
+          "also": [
+            "Data Engineering"
+          ],
+          "x": -0.3555,
+          "y": -0.7448,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Computational_Forensics",
+              "kind": "code"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            }
+          ],
+          "lang": "Python"
+        },
+        {
+          "label": "ggplot2",
           "count": 1,
-          "confidence": 0.726,
+          "confidence": 0.704,
+          "trend": 1,
+          "also": [],
+          "x": 0.2323,
+          "y": -1.0,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "code"
+            },
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "code"
+            },
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "code"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "code"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            },
+            {
+              "repo": "PPE_ResearchSeminar_HS23FS24",
+              "kind": "code"
+            },
+            {
+              "repo": "Reddit_Mormons_SM_HS23",
+              "kind": "code"
+            },
+            {
+              "repo": "ResearchDesign_Homeworks",
+              "kind": "code"
+            },
+            {
+              "repo": "Statistical_Modelling",
+              "kind": "code"
+            }
+          ],
+          "lang": "R"
+        },
+        {
+          "label": "dplyr",
+          "count": 1,
+          "confidence": 0.717,
+          "trend": 1,
+          "also": [],
+          "x": 0.2106,
+          "y": -0.949,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "code"
+            },
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "code"
+            },
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "code"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            },
+            {
+              "repo": "PPE_ResearchSeminar_HS23FS24",
+              "kind": "code"
+            },
+            {
+              "repo": "ResearchDesign_Homeworks",
+              "kind": "code"
+            }
+          ],
+          "lang": "R"
+        },
+        {
+          "label": "Hypothesis Testing",
+          "count": 1,
+          "confidence": 0.743,
           "trend": 1,
           "also": [
             "Machine Learning"
           ],
+          "x": 0.3445,
+          "y": -0.4748,
           "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "tidyverse",
+          "count": 1,
+          "confidence": 0.73,
+          "trend": 1,
+          "also": [],
+          "x": 0.1836,
+          "y": -0.8348,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "code"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "code"
+            },
+            {
+              "repo": "Reddit_Mormons_SM_HS23",
+              "kind": "code"
+            },
+            {
+              "repo": "ResearchDesign_Homeworks",
+              "kind": "code"
+            },
+            {
+              "repo": "Statistical_Modelling",
+              "kind": "code"
+            }
+          ],
+          "lang": "R"
+        },
+        {
+          "label": "Backtesting",
+          "count": 0,
+          "confidence": 0.785,
+          "trend": 0,
+          "also": [
+            "Machine Learning"
+          ],
+          "x": 0.2035,
+          "y": -0.2515,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "Jupyter",
+          "count": 0,
+          "confidence": 0.623,
+          "trend": 0,
+          "also": [
+            "NLP",
+            "Machine Learning"
+          ],
+          "x": -0.0003,
+          "y": -0.4201,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "file"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "language"
+            }
+          ]
+        },
+        {
+          "label": "Polars",
+          "count": 0,
+          "confidence": 0.614,
+          "trend": 0,
+          "also": [
+            "NLP",
+            "Machine Learning"
+          ],
+          "x": 0.0474,
+          "y": -0.2415,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "code"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ],
           "lang": "Python"
+        },
+        {
+          "label": "R",
+          "count": 0,
+          "confidence": 0.682,
+          "trend": 0,
+          "also": [
+            "NLP",
+            "Machine Learning"
+          ],
+          "x": 0.1626,
+          "y": -0.5399,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "file"
+            },
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "language"
+            },
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "file"
+            },
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "language"
+            },
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "file"
+            },
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "language"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "file"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "language"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "file"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "language"
+            },
+            {
+              "repo": "PPE_ResearchSeminar_HS23FS24",
+              "kind": "file"
+            },
+            {
+              "repo": "Reddit_Mormons_SM_HS23",
+              "kind": "file"
+            },
+            {
+              "repo": "Reddit_Mormons_SM_HS23",
+              "kind": "language"
+            },
+            {
+              "repo": "ResearchDesign_Homeworks",
+              "kind": "file"
+            },
+            {
+              "repo": "ResearchDesign_Homeworks",
+              "kind": "readme"
+            },
+            {
+              "repo": "Statistical_Modelling",
+              "kind": "file"
+            }
+          ]
+        },
+        {
+          "label": "SciPy",
+          "count": 0,
+          "confidence": 0.655,
+          "trend": 0,
+          "also": [
+            "Machine Learning"
+          ],
+          "x": 0.1104,
+          "y": -0.374,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            }
+          ],
+          "lang": "Python"
+        },
+        {
+          "label": "Stata",
+          "count": 0,
+          "confidence": 0.673,
+          "trend": 0,
+          "also": [],
+          "x": 0.1071,
+          "y": -0.8502,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "BAThesis",
+              "kind": "file"
+            },
+            {
+              "repo": "BAThesis",
+              "kind": "language"
+            },
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "code"
+            },
+            {
+              "repo": "Statistical_Modelling",
+              "kind": "code"
+            }
+          ]
         }
       ]
     },
@@ -273,136 +1170,276 @@
       "id": "machine-learning",
       "label": "Machine Learning",
       "description": "Modelle von Klassifikation bis Deep Learning.",
+      "x": 0.8607,
+      "y": 0.3214,
       "skills": [
         {
-          "label": "XGBoost",
-          "count": 2,
-          "confidence": 0.704,
-          "trend": 2,
-          "also": [
-            "NLP",
-            "Data Science",
-            "Data Engineering"
-          ],
+          "label": "Feature Engineering",
+          "count": 4,
+          "confidence": 0.859,
+          "trend": 4,
+          "also": [],
+          "x": 0.3321,
+          "y": 0.2836,
           "mine": false,
-          "lang": "Python"
+          "declared": false,
+          "suggested": false,
+          "evidence": []
         },
         {
-          "label": "Classification",
-          "count": 2,
-          "confidence": 0.807,
-          "trend": 2,
-          "also": [],
-          "mine": false
+          "label": "XGBoost",
+          "count": 4,
+          "confidence": 0.736,
+          "trend": 4,
+          "also": [
+            "Data Science",
+            "Data Engineering",
+            "NLP"
+          ],
+          "x": 0.0972,
+          "y": -0.1369,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [],
+          "lang": "Python"
         },
         {
           "label": "scikit-learn",
-          "count": 2,
-          "confidence": 0.749,
-          "trend": 2,
+          "count": 4,
+          "confidence": 0.797,
+          "trend": 4,
           "also": [],
-          "mine": false,
-          "lang": "Python"
-        },
-        {
-          "label": "Optuna",
-          "count": 2,
-          "confidence": 0.715,
-          "trend": 2,
-          "also": [],
-          "mine": false,
-          "lang": "Python"
-        },
-        {
-          "label": "NumPy",
-          "count": 1,
-          "confidence": 0.715,
-          "trend": 1,
-          "also": [
-            "Data Science"
+          "x": 0.353,
+          "y": -0.1064,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Computational_Forensics",
+              "kind": "code"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            }
           ],
-          "mine": false,
           "lang": "Python"
-        },
-        {
-          "label": "Feature Engineering",
-          "count": 1,
-          "confidence": 0.837,
-          "trend": 1,
-          "also": [],
-          "mine": false
-        },
-        {
-          "label": "MLflow",
-          "count": 1,
-          "confidence": 0.812,
-          "trend": 1,
-          "also": [],
-          "mine": false
         },
         {
           "label": "Deep Learning",
-          "count": 1,
-          "confidence": 0.878,
-          "trend": 1,
+          "count": 3,
+          "confidence": 0.86,
+          "trend": 3,
           "also": [],
-          "mine": false
+          "x": 0.739,
+          "y": 0.5594,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
         },
         {
-          "label": "Keras",
-          "count": 1,
-          "confidence": 0.839,
-          "trend": 1,
+          "label": "Optuna",
+          "count": 3,
+          "confidence": 0.742,
+          "trend": 3,
           "also": [],
+          "x": 0.1735,
+          "y": 0.1783,
           "mine": false,
-          "lang": "Python"
-        },
-        {
-          "label": "LightGBM",
-          "count": 1,
-          "confidence": 0.691,
-          "trend": 1,
-          "also": [
-            "NLP"
-          ],
-          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": [],
           "lang": "Python"
         },
         {
           "label": "PyTorch",
-          "count": 1,
-          "confidence": 0.768,
-          "trend": 1,
+          "count": 3,
+          "confidence": 0.802,
+          "trend": 3,
           "also": [],
+          "x": 0.5149,
+          "y": 0.5151,
           "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": [],
           "lang": "Python"
         },
         {
-          "label": "TensorFlow",
-          "count": 1,
-          "confidence": 0.817,
-          "trend": 1,
-          "also": [],
-          "mine": false,
+          "label": "FastAPI",
+          "count": 2,
+          "confidence": 0.7,
+          "trend": 2,
+          "also": [
+            "Data Engineering",
+            "NLP"
+          ],
+          "x": -0.2232,
+          "y": 0.4518,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ],
           "lang": "Python"
         },
         {
-          "label": "LLM",
-          "count": 1,
-          "confidence": 0.733,
-          "trend": 1,
+          "label": "Gensim",
+          "count": 2,
+          "confidence": 0.77,
+          "trend": 2,
           "also": [
             "NLP"
           ],
-          "mine": false
+          "x": 0.5205,
+          "y": 0.4131,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": [],
+          "lang": "Python"
+        },
+        {
+          "label": "Hugging Face",
+          "count": 2,
+          "confidence": 0.774,
+          "trend": 2,
+          "also": [
+            "NLP"
+          ],
+          "x": 0.8007,
+          "y": 0.415,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "dependency"
+            }
+          ],
+          "lang": "Python"
+        },
+        {
+          "label": "LightGBM",
+          "count": 2,
+          "confidence": 0.716,
+          "trend": 2,
+          "also": [
+            "NLP"
+          ],
+          "x": 0.226,
+          "y": 0.1211,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": [],
+          "lang": "Python"
+        },
+        {
+          "label": "MLflow",
+          "count": 2,
+          "confidence": 0.819,
+          "trend": 2,
+          "also": [],
+          "x": 0.0582,
+          "y": 0.6073,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "TensorFlow",
+          "count": 2,
+          "confidence": 0.833,
+          "trend": 2,
+          "also": [],
+          "x": 0.5457,
+          "y": 0.545,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": [],
+          "lang": "Python"
         },
         {
           "label": "Zero-shot Classification",
+          "count": 2,
+          "confidence": 0.775,
+          "trend": 2,
+          "also": [
+            "NLP"
+          ],
+          "x": 0.7929,
+          "y": 0.2264,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "code"
+            }
+          ]
+        },
+        {
+          "label": "spaCy",
+          "count": 2,
+          "confidence": 0.749,
+          "trend": 2,
+          "also": [
+            "NLP"
+          ],
+          "x": 0.464,
+          "y": 0.4054,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Computational_Forensics",
+              "kind": "code"
+            }
+          ],
+          "lang": "Python"
+        },
+        {
+          "label": "Keras",
           "count": 1,
-          "confidence": 0.727,
+          "confidence": 0.812,
           "trend": 1,
           "also": [],
-          "mine": false
+          "x": 0.5821,
+          "y": 0.4155,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": [],
+          "lang": "Python"
         }
       ]
     },
@@ -410,53 +1447,140 @@
       "id": "nlp",
       "label": "NLP",
       "description": "Sprache verstehen: Embeddings, LLMs, Textklassifikation.",
+      "x": 0.9609,
+      "y": 0.2975,
       "skills": [
         {
-          "label": "Hugging Face",
-          "count": 1,
-          "confidence": 0.681,
-          "trend": 1,
+          "label": "Classification",
+          "count": 3,
+          "confidence": 0.835,
+          "trend": 3,
           "also": [
             "Machine Learning"
           ],
-          "mine": false,
-          "lang": "Python"
+          "x": 0.748,
+          "y": 0.1649,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Computational_Forensics",
+              "kind": "llm"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "readme"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            }
+          ]
         },
         {
           "label": "Embeddings",
-          "count": 1,
-          "confidence": 0.823,
-          "trend": 1,
+          "count": 2,
+          "confidence": 0.875,
+          "trend": 2,
           "also": [],
-          "mine": false
+          "x": 0.8706,
+          "y": 0.3235,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "code"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            }
+          ]
+        },
+        {
+          "label": "LLM",
+          "count": 2,
+          "confidence": 0.818,
+          "trend": 2,
+          "also": [
+            "Machine Learning"
+          ],
+          "x": 0.7401,
+          "y": 0.3597,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "code"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            },
+            {
+              "repo": "ResearchDesign_Homeworks",
+              "kind": "code"
+            }
+          ]
+        },
+        {
+          "label": "LangChain",
+          "count": 2,
+          "confidence": 0.764,
+          "trend": 2,
+          "also": [],
+          "x": 0.4406,
+          "y": 0.3188,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            }
+          ],
+          "lang": "Python"
         },
         {
           "label": "Named Entity Recognition",
-          "count": 1,
-          "confidence": 0.855,
-          "trend": 1,
+          "count": 2,
+          "confidence": 0.888,
+          "trend": 2,
           "also": [],
-          "mine": false
+          "x": 0.8311,
+          "y": 0.2732,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ]
         },
         {
           "label": "Text Classification",
-          "count": 1,
-          "confidence": 0.847,
-          "trend": 1,
+          "count": 2,
+          "confidence": 0.9,
+          "trend": 2,
           "also": [],
-          "mine": false
-        },
-        {
-          "label": "spaCy",
-          "count": 1,
-          "confidence": 0.653,
-          "trend": 1,
-          "also": [
-            "Machine Learning",
-            "Data Science"
-          ],
-          "mine": false,
-          "lang": "Python"
+          "x": 0.968,
+          "y": 0.253,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": []
         },
         {
           "label": "NLTK",
@@ -464,29 +1588,187 @@
           "confidence": 0.761,
           "trend": 1,
           "also": [],
-          "mine": false,
+          "x": 0.3199,
+          "y": 0.3214,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "code"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "code"
+            },
+            {
+              "repo": "Reddit_Mormons_SM_HS23",
+              "kind": "code"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            }
+          ],
           "lang": "Python"
         },
         {
-          "label": "Gensim",
-          "count": 1,
-          "confidence": 0.707,
-          "trend": 1,
+          "label": "Data Cleaning",
+          "count": 0,
+          "confidence": 0.643,
+          "trend": 0,
+          "also": [
+            "Data Engineering",
+            "Data Science"
+          ],
+          "x": -0.0497,
+          "y": -0.4268,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "llm"
+            },
+            {
+              "repo": "Statistical_Modelling",
+              "kind": "code"
+            }
+          ]
+        },
+        {
+          "label": "LaTeX",
+          "count": 0,
+          "confidence": 0.589,
+          "trend": 0,
+          "also": [
+            "Data Science",
+            "Data Engineering"
+          ],
+          "x": 0.0717,
+          "y": -0.4391,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "code"
+            }
+          ]
+        },
+        {
+          "label": "Pydantic",
+          "count": 0,
+          "confidence": 0.612,
+          "trend": 0,
           "also": [
             "Machine Learning",
             "Data Science"
           ],
-          "mine": false,
+          "x": 0.0519,
+          "y": 0.0388,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "dependency"
+            }
+          ],
           "lang": "Python"
         },
         {
-          "label": "LangChain",
-          "count": 1,
-          "confidence": 0.692,
-          "trend": 1,
-          "also": [],
-          "mine": false,
+          "label": "SQLAlchemy",
+          "count": 0,
+          "confidence": 0.66,
+          "trend": 0,
+          "also": [
+            "Data Engineering"
+          ],
+          "x": -0.0776,
+          "y": -0.0266,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ],
           "lang": "Python"
+        },
+        {
+          "label": "Sentiment Analysis",
+          "count": 0,
+          "confidence": 0.731,
+          "trend": 0,
+          "also": [],
+          "x": 0.3725,
+          "y": -0.2483,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "code"
+            },
+            {
+              "repo": "Reddit_Mormons_SM_HS23",
+              "kind": "readme"
+            },
+            {
+              "repo": "Reddit_Mormons_SM_HS23",
+              "kind": "llm"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "readme"
+            }
+          ]
+        },
+        {
+          "label": "Web Scraping",
+          "count": 0,
+          "confidence": 0.675,
+          "trend": 0,
+          "also": [],
+          "x": -0.0353,
+          "y": -0.3297,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "AutomatingQueriesRSelenium",
+              "kind": "llm"
+            },
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "readme"
+            },
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "llm"
+            }
+          ]
         }
       ]
     }

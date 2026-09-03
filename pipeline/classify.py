@@ -35,6 +35,28 @@ def _embed(texts: list[str]) -> np.ndarray:
     return _normalize(vecs)
 
 
+def _store_coords(con, terms, term_emb, anchor_names, anchor_emb) -> None:
+    """PCA der Embeddings auf 2D -- Anker und Begriffe im selben Raum, damit die
+    Scatter-Ansicht die echte semantische Naehe zeigt (Punkte nah = aehnlich)."""
+    from sklearn.decomposition import PCA
+
+    stacked = np.vstack([anchor_emb, term_emb])
+    coords = PCA(n_components=2, random_state=42).fit_transform(stacked)
+    # auf ~[-1, 1] skalieren, damit das Frontend leicht positionieren kann
+    span = np.abs(coords).max() or 1.0
+    coords = coords / span
+
+    a = len(anchor_names)
+    con.execute("DELETE FROM anchor_coords")
+    con.execute("DELETE FROM skill_coords")
+    for i, name in enumerate(anchor_names):
+        con.execute("INSERT INTO anchor_coords (anchor, x, y) VALUES (?, ?, ?)",
+                    [name, float(coords[i, 0]), float(coords[i, 1])])
+    for j, term in enumerate(terms):
+        con.execute("INSERT INTO skill_coords (term, x, y) VALUES (?, ?, ?)",
+                    [term, float(coords[a + j, 0]), float(coords[a + j, 1])])
+
+
 def _term_texts(con, term: str) -> list[str]:
     """Begriff angereichert um Hand-Gloss und echte Kontext-Saetze."""
     texts = [term]
@@ -69,6 +91,8 @@ def classify() -> dict[str, str]:
         flat_texts.extend(tt)
     flat_emb = _embed(flat_texts)
     term_emb = _normalize(np.array([flat_emb[a:b].mean(axis=0) for a, b in groups]))
+
+    _store_coords(con, terms, term_emb, anchor_names, anchor_emb)  # 2D fuer die Scatter-Ansicht
 
     sims = term_emb @ anchor_emb.T                    # (T, A) Cosine
 

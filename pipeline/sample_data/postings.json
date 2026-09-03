@@ -15,10 +15,38 @@
   },
   {
     "source": "sample",
+    "external_id": "de-003",
+    "role": "data engineer",
+    "title": "Analytics Engineer",
+    "description": "As an Analytics Engineer you own the transformation layer: dbt models on top of Snowflake, tested and documented. Strong SQL and data modeling. You orchestrate with Airflow, ingest with Fivetran, and track quality with Great Expectations. Python for tooling. Git and CI/CD are standard here."
+  },
+  {
+    "source": "sample",
+    "external_id": "de-004",
+    "role": "data engineer",
+    "title": "Platform / Data Engineer",
+    "description": "Build our streaming platform: Kafka, Spark and Databricks on AWS. Infrastructure as code with Terraform, deployments via Docker and Kubernetes. Strong Python and SQL. You care about CI/CD, observability and data modeling. Orchestration with Airflow or Dagster."
+  },
+  {
+    "source": "sample",
     "external_id": "ds-001",
     "role": "data scientist",
     "title": "Data Scientist",
     "description": "As a Data Scientist you will design experiments and predictive models. Requirements: solid statistics, A/B testing, regression and classification, time series forecasting. Strong Python with pandas, NumPy, scikit-learn and XGBoost. You visualize results with matplotlib, seaborn and Plotly, and build dashboards (Tableau or Power BI). Bonus: statsmodels, Optuna. SQL is expected."
+  },
+  {
+    "source": "sample",
+    "external_id": "ds-002",
+    "role": "data scientist",
+    "title": "Senior Data Scientist",
+    "description": "You lead analyses end to end: statistics, hypothesis testing, A/B testing and time series forecasting. Strong Python (pandas, NumPy, scikit-learn, statsmodels). Communicate with data visualization in seaborn and Plotly. Comfortable writing SQL against Snowflake. Bonus: XGBoost, LightGBM, Optuna."
+  },
+  {
+    "source": "sample",
+    "external_id": "ds-003",
+    "role": "data scientist",
+    "title": "Product Data Scientist",
+    "description": "Drive product decisions with experimentation and causal analysis. Requirements: statistics, A/B testing, regression. Strong Python with pandas and scikit-learn. You build dashboards in Tableau or Power BI and present to stakeholders. SQL required. R (tidyverse, ggplot2, dplyr) is a plus."
   },
   {
     "source": "sample",
@@ -33,5 +61,26 @@
     "role": "machine learning engineer",
     "title": "NLP Engineer",
     "description": "We build NLP products. Your skills: text classification, named entity recognition, embeddings, large language models (LLM) and the Hugging Face transformers ecosystem. Experience with spaCy, NLTK, Gensim and LangChain. We ship demos with Streamlit. Zero-shot classification is a plus. Python required, some data engineering with Airflow to feed the pipelines."
+  },
+  {
+    "source": "sample",
+    "external_id": "ml-003",
+    "role": "machine learning engineer",
+    "title": "MLOps Engineer",
+    "description": "Own the ML platform: model training pipelines, feature engineering, experiment tracking with MLflow, deployment via Docker, Kubernetes and FastAPI. Strong Python. Deep learning with PyTorch or TensorFlow. You automate with CI/CD and infrastructure as code (Terraform). Familiar with Ray for distributed training."
+  },
+  {
+    "source": "sample",
+    "external_id": "ml-004",
+    "role": "machine learning engineer",
+    "title": "Applied Scientist, NLP",
+    "description": "Research and ship NLP models: embeddings, named entity recognition, text classification and large language models (LLM). Deep learning with PyTorch, the Hugging Face transformers stack, spaCy and Gensim. Strong Python. Feature engineering and evaluation. Bonus: LangChain, retrieval and zero-shot classification."
+  },
+  {
+    "source": "sample",
+    "external_id": "ds-004",
+    "role": "data scientist",
+    "title": "Data Scientist, Forecasting",
+    "description": "Forecast demand at scale: time series forecasting, backtesting, regression. Strong Python with pandas, NumPy, statsmodels and XGBoost. Feature engineering and model evaluation. You query data with SQL from BigQuery and visualize with matplotlib and Plotly. Airflow schedules the retraining."
   }
 ]

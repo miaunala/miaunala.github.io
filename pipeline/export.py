@@ -12,6 +12,7 @@ import json
 from config import (ANCHOR_DESCRIPTIONS, ANCHORS, EXPORT_PATH,
                     TOP_N_PER_CATEGORY)
 from db import connect
+from own_skills import own_labels
 from seed_skills import SEED_LANGUAGE
 
 
@@ -21,6 +22,7 @@ def _slug(s: str) -> str:
 
 def export() -> None:
     con = connect()
+    mine_labels = own_labels()
 
     # Trend: Frequenz der letzten vs. vorletzten erfassten Woche.
     weeks = [r[0] for r in con.execute(
@@ -33,6 +35,25 @@ def export() -> None:
     for term, anchor in con.execute(
         "SELECT term, anchor FROM skill_clusters WHERE NOT is_primary").fetchall():
         also_map.setdefault(term, []).append(anchor)
+
+    # Belege aus den eigenen GitHub-Repos: term -> [{repo, kind}]
+    evidence_map: dict[str, list[dict]] = {}
+    for term, repo, kind in con.execute(
+            "SELECT term, repo, kind FROM skill_evidence ORDER BY term, repo").fetchall():
+        evidence_map.setdefault(term, []).append({"repo": repo, "kind": kind})
+    # Harte Belege = alles ausser LLM. Ein LLM-Fund allein macht einen Skill NICHT
+    # zu "meinem" -- Sprachmodelle behaupten sonst Kubernetes & Co. Er wird nur
+    # vorgeschlagen und muss bestaetigt werden (spaeterer Editor).
+    hard_evidence = {t for t, evs in evidence_map.items()
+                     if any(e["kind"] != "llm" for e in evs)}
+
+    # 2D-Koordinaten (PCA) je Begriff und je Kategorie.
+    coord_map: dict[str, tuple[float, float]] = {
+        t: (x, y) for t, x, y in con.execute("SELECT term, x, y FROM skill_coords").fetchall()
+    }
+    anchor_coord: dict[str, tuple[float, float]] = {
+        a: (x, y) for a, x, y in con.execute("SELECT anchor, x, y FROM anchor_coords").fetchall()
+    }
 
     categories = []
     for anchor in list(ANCHORS.keys()):
@@ -47,28 +68,46 @@ def export() -> None:
             LEFT JOIN skill_weekly_freq f_prev ON f_prev.term = t.term AND f_prev.week = ?
             WHERE c.anchor = ? AND c.is_primary          -- nur wo dies der Haupt-Anker ist
             ORDER BY t.total_count DESC
-            LIMIT ?
             """,
-            [last_week, prev_week, anchor, TOP_N_PER_CATEGORY],
+            [last_week, prev_week, anchor],
         ).fetchall()
 
+        # Top-N nach Nachfrage, ABER eigene Skills immer behalten (sonst fehlen
+        # sie im Netz, nur weil der Markt sie gerade nicht nennt).
+        top = rows[:TOP_N_PER_CATEGORY]
+        kept = list(top) + [r for r in rows[TOP_N_PER_CATEGORY:]
+                            if r[0] in mine_labels or r[0] in hard_evidence]
+
         skills = []
-        for term, total, conf, freq_now, freq_prev in rows:
+        for term, total, conf, freq_now, freq_prev in kept:
+            x, y = coord_map.get(term, (0.0, 0.0))
             skill = {
                 "label": term,
                 "count": int(total),
                 "confidence": round(float(conf), 3),
                 "trend": int(freq_now) - int(freq_prev),
                 "also": also_map.get(term, []),   # weitere Kategorien (Mehrfach-Zuordnung)
-                "mine": False,                     # wird spaeter im Editor auf True gesetzt
+                "x": round(float(x), 4),          # 2D-Position (PCA) fuer die Scatter-Ansicht
+                "y": round(float(y), 4),
+                # "mine" = selbst deklariert (skills.json) ODER in einem eigenen
+                # Repo nachweisbar. Belege stehen in "evidence".
+                "mine": (term in mine_labels) or (term in hard_evidence),
+                "declared": term in mine_labels,
+                # nur vom LLM vermutet, noch unbestaetigt
+                "suggested": term in evidence_map and term not in hard_evidence
+                             and term not in mine_labels,
+                "evidence": evidence_map.get(term, []),
             }
             if term in SEED_LANGUAGE:
                 skill["lang"] = SEED_LANGUAGE[term]  # Library -> Programmiersprache
             skills.append(skill)
+        ax, ay = anchor_coord.get(anchor, (0.0, 0.0))
         categories.append({
             "id": _slug(anchor),
             "label": anchor,
             "description": ANCHOR_DESCRIPTIONS.get(anchor, ""),
+            "x": round(float(ax), 4),
+            "y": round(float(ay), 4),
             "skills": skills,
         })
 

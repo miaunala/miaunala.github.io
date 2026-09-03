@@ -8,8 +8,11 @@ dags/skill_pipeline.py ruft dieselben Funktionen als einzelne Tasks auf.
 from __future__ import annotations
 
 from classify import classify
+from credentials import store as store_credentials
 from export import export
+from llm_evidence import llm_evidence
 from extract import extract
+from github_skills import evidence
 from ingest import ingest
 
 
@@ -17,6 +20,9 @@ def main() -> None:
     print("=== Skill-Pipeline ===")
     ingest()
     extract()
+    evidence()             # Belege aus den eigenen GitHub-Repos
+    store_credentials()    # Belege aus Zertifikaten
+    llm_evidence()         # implizite Skills per lokalem LLM (optional)
     classify()
     export()
     print("=== fertig ===")

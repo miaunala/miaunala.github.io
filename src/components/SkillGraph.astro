@@ -1,5 +1,5 @@
 ---
-import skills from "../data/skills.json";
+import market from "../data/market_skills.json";
 import projects from "../data/projects.json";
 
 type Proj = {
@@ -25,44 +25,76 @@ function projectsForLabel(label: string) {
     .map((p) => ({ id: p.id, title: p.title, repo: p.repo ?? "" }));
 }
 
-type Node = { data: Record<string, any> };
+// Feste Farbe je Kategorie (die "Cluster"-Farben der Scatter-Ansicht).
+const CAT_COLOR: Record<string, string> = {
+  "Data Engineering": "#1f6f92",
+  "Data Science": "#2a9d8f",
+  "Machine Learning": "#e0912f",
+  "NLP": "#8f5bd6",
+};
+// Welche CV-Variante passt zu welcher Kategorie.
+const CAT_CV: Record<string, string> = {
+  "Data Engineering": "data-engineering",
+  "Data Science": "data-science",
+  "Machine Learning": "general",
+  "NLP": "general",
+};
+const GITHUB_USER = "miaunala";   // fuer die Repo-Links der Belege
+const POS = 340; // virtueller Radius; cy.fit() skaliert danach auf den Container
+
+type Node = { data: Record<string, any>; position?: { x: number; y: number } };
 type Edge = { data: Record<string, any> };
+
 const nodes: Node[] = [];
 const edges: Edge[] = [];
-const projSeen = new Set<string>();
+const catByLabel = new Map<string, string>();
 
-function addProjectNodes(sourceId: string, prs: { id: string; title: string; repo: string }[]) {
-  for (const pr of prs) {
-    const pid = `proj/${pr.id}`;
-    if (!projSeen.has(pid)) {
-      projSeen.add(pid);
-      nodes.push({ data: { id: pid, label: pr.title, type: "project", repo: pr.repo } });
-    }
-    edges.push({ data: { id: `e-${sourceId}-${pid}`, source: sourceId, target: pid } });
-  }
+for (const cat of market.categories as any[]) {
+  const cid = `cat/${cat.id}`;
+  catByLabel.set(cat.label, cid);
+  nodes.push({
+    data: {
+      id: cid, label: cat.label, type: "category",
+      description: cat.description ?? "",
+      color: CAT_COLOR[cat.label] ?? "#1f6f92",
+      cvVariant: CAT_CV[cat.label] ?? "",
+    },
+    position: { x: (cat.x ?? 0) * POS, y: -(cat.y ?? 0) * POS },
+  });
 }
 
-for (const cat of skills.categories) {
-  nodes.push({
-    data: { id: cat.id, label: cat.label, type: "category", cvVariant: cat.cvVariant ?? "", description: cat.description ?? "" },
-  });
-  for (const sk of cat.skills) {
-    const skId = `${cat.id}/${slug(sk.label)}`;
-    const skProjects = projectsForLabel(sk.label);
-    nodes.push({ data: { id: skId, label: sk.label, type: "skill", projects: skProjects } });
-    edges.push({ data: { id: `e-${cat.id}-${skId}`, source: cat.id, target: skId } });
-    addProjectNodes(skId, skProjects);
-    for (const ch of (sk as any).children ?? []) {
-      const chId = `${skId}/${slug(ch.label)}`;
-      const chProjects = projectsForLabel(ch.label);
-      nodes.push({ data: { id: chId, label: ch.label, type: "subskill", projects: chProjects } });
-      edges.push({ data: { id: `e-${skId}-${chId}`, source: skId, target: chId } });
-      addProjectNodes(chId, chProjects);
+let mineCount = 0;
+const seen = new Set<string>();
+for (const cat of market.categories as any[]) {
+  for (const sk of cat.skills as any[]) {
+    const sid = `skill/${slug(sk.label)}`;
+    if (!seen.has(sid)) {
+      seen.add(sid);
+      if (sk.mine) mineCount++;
+      nodes.push({
+        data: {
+          id: sid, label: sk.label, type: "skill",
+          count: sk.count ?? 0, trend: sk.trend ?? 0,
+          lang: sk.lang ?? "", primary: cat.label, also: sk.also ?? [],
+          color: CAT_COLOR[cat.label] ?? "#1f6f92",
+          mine: !!sk.mine, declared: !!sk.declared, evidence: sk.evidence ?? [],
+          projects: projectsForLabel(sk.label),
+        },
+        position: { x: (sk.x ?? 0) * POS, y: -(sk.y ?? 0) * POS },
+      });
+    }
+    // Linie zum Cluster-Zentrum (gepunktet)
+    edges.push({ data: { id: `e-${cat.id}-${sid}`, source: `cat/${cat.id}`, target: sid, kind: "primary" } });
+    for (const other of (sk.also ?? []) as string[]) {
+      const oid = catByLabel.get(other);
+      if (oid) edges.push({ data: { id: `e-a-${slug(other)}-${sid}`, source: oid, target: sid, kind: "secondary" } });
     }
   }
 }
 
 const graph = { nodes, edges };
+const totalSkills = nodes.filter((n) => n.data.type === "skill").length;
+const week = (market as any).week ?? null;
 ---
 
 <section id="skills">
@@ -70,231 +102,234 @@ const graph = { nodes, edges };
     <p class="eyebrow">Skills</p>
     <h2>Skill-Netzwerk</h2>
     <p class="lead">
-      Klicke einen Oberbegriff, um tiefere Skills aufzuklappen — bis hin zu den
-      verbundenen Projekten. Lieber eine Liste? Die Tag-Chips bei den
-      <a href="#projects">Projekten</a> filtern nach denselben Themen.
+      Gefragte Skills aus Stellenanzeigen, positioniert nach ihrer semantischen
+      Nähe (Embeddings) und nach Themenfeld eingefärbt. <strong>Kräftige Punkte
+      sind Skills, die ich kann</strong> — die blassen zeigen, wo der Markt sonst
+      noch hinzeigt. Tippe einen Punkt an für Details und verbundene Projekte.
     </p>
 
     <div class="graph-wrap">
       <div id="skill-graph" class="graph" role="img"
-           aria-label="Interaktives Skill-Netzwerk. Alternative: Tag-Filter im Projekte-Bereich."></div>
+           aria-label={`Skill-Netzwerk mit ${totalSkills} Skills in vier Themenfeldern; ${mineCount} davon beherrsche ich. Alternative: Tag-Filter im Projekte-Bereich.`}></div>
       <aside id="skill-panel" class="panel">
-        <p class="panel-hint">Tippe auf einen Knoten, um Details &amp; Projekte zu sehen.</p>
+        <p class="panel-hint">Tippe auf einen Punkt, um Details &amp; Projekte zu sehen.</p>
       </aside>
     </div>
 
+    <div class="legend">
+      <span class="lg-item"><span class="lg-dot mine"></span>kann ich ({mineCount})</span>
+      <span class="lg-item"><span class="lg-dot market"></span>vom Markt gefragt</span>
+      <span class="lg-item"><span class="lg-line"></span>Linie zum Themenfeld</span>
+      <span class="lg-item lg-note">Farbe = Themenfeld · Größe = Nachfrage · Position = semantische Nähe</span>
+    </div>
+
     <div class="graph-controls">
-      <button id="graph-reset" class="chip" type="button">Alles einklappen</button>
+      <button id="graph-reset" class="chip" type="button">Ansicht zurücksetzen</button>
+      {week && <span class="stamp">Marktdaten: Woche {week}</span>}
     </div>
   </div>
 
   <script type="application/json" id="skill-graph-data" set:html={JSON.stringify(graph)}></script>
+  <script type="application/json" id="skill-graph-meta" set:html={JSON.stringify({ githubUser: GITHUB_USER })}></script>
 
   <script>
     import cytoscape from "cytoscape";
 
-    const dataEl = document.getElementById("skill-graph-data");
+    const data = JSON.parse(document.getElementById("skill-graph-data")?.textContent || "{}");
+    const meta = JSON.parse(document.getElementById("skill-graph-meta")?.textContent || "{}");
     const container = document.getElementById("skill-graph");
     const panel = document.getElementById("skill-panel");
-    if (dataEl && container && panel) {
-      const graph = JSON.parse(dataEl.textContent || "{}");
+    const resetBtn = document.getElementById("graph-reset");
+
+    if (container && panel) {
       const css = (name: string) =>
         getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-
       const C = {
         accent: css("--accent") || "#1f6f92",
-        onAccent: css("--on-accent") || "#fff",
-        mid: css("--accent-mid") || "#8fb8cc",
-        soft: css("--accent-soft") || "#dce9f2",
         elev: css("--bg-elev") || "#fff",
+        bg: css("--bg") || "#f4f7fb",
         text: css("--text") || "#16202b",
         muted: css("--text-muted") || "#586675",
-        border: css("--border") || "#dfe6ee",
       };
+      const esc = (s: string) =>
+        String(s).replace(/[&<>"]/g, (c) =>
+          ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c] as string));
+
+      const hint = 'Tippe auf einen Punkt, um Details &amp; Projekte zu sehen.';
+      const resetPanel = () => { panel.innerHTML = `<p class="panel-hint">${hint}</p>`; };
 
       const cy = cytoscape({
-        container,
-        elements: graph,
-        minZoom: 0.4,
-        maxZoom: 2.5,
-        wheelSensitivity: 0.2,
+        container, elements: data,
+        minZoom: 0.3, maxZoom: 3, wheelSensitivity: 0.2,
         style: [
-          {
-            selector: "node",
-            style: {
-              label: "data(label)",
-              color: C.text,
-              "font-size": 12,
-              "font-family": "IBM Plex Sans, sans-serif",
-              "text-valign": "center",
-              "text-halign": "center",
-              "text-wrap": "wrap",
-              "text-max-width": "110px",
-              width: "label",
-              height: "label",
-              padding: "11px",
-              "text-margin-y": 1,
-              shape: "round-rectangle",
-              "border-width": 1,
-              "border-color": C.border,
-              "transition-property": "opacity, border-width, border-color",
-              "transition-duration": "0.18s",
-            },
-          },
-          {
-            selector: 'node[type="category"]',
-            style: {
-              "background-color": C.accent, color: C.onAccent,
-              "font-size": 16, "font-weight": 600, "border-width": 0, padding: "16px",
-            },
-          },
-          { selector: 'node[type="skill"]', style: { "background-color": C.mid, color: C.text, "font-size": 13, padding: "13px" } },
-          { selector: 'node[type="subskill"]', style: { "background-color": C.soft, color: C.text } },
-          {
-            selector: 'node[type="project"]',
-            style: { "background-color": C.elev, color: C.text, "border-color": C.accent, "border-width": 2, "font-style": "italic", shape: "round-rectangle" },
-          },
-          { selector: "node.sel", style: { "border-width": 3, "border-color": C.accent } },
-          { selector: "node.faded", style: { opacity: 0.16 } },
-          {
-            selector: "edge",
-            style: {
-              width: 1.6, "line-color": C.mid, "curve-style": "bezier",
-              "target-arrow-shape": "none", opacity: 0.55,
-              "transition-property": "opacity", "transition-duration": "0.18s",
-            },
-          },
-          { selector: "edge.faded", style: { opacity: 0.06 } },
+          // --- Skills, die ich NICHT kann: blass, kleines transparentes Label ---
+          { selector: 'node[type="skill"]', style: {
+              shape: "ellipse", "background-color": "data(color)", "background-opacity": 0.3,
+              "border-width": 0,
+              width: "mapData(count, 0, 12, 9, 26)", height: "mapData(count, 0, 12, 9, 26)",
+              label: "data(label)", "font-size": 13, "font-family": "IBM Plex Sans, sans-serif",
+              color: C.muted, "text-opacity": 0.5,
+              "text-valign": "bottom", "text-halign": "center", "text-margin-y": 3,
+              "min-zoomed-font-size": 4,
+              "transition-property": "width, height, background-opacity, text-opacity, border-width",
+              "transition-duration": "0.15s",
+            } },
+          // --- Skills, die ich kann: voll gefaerbt, Ring, klares Label ---
+          { selector: 'node[type="skill"][?mine]', style: {
+              "background-opacity": 1, "border-width": 2, "border-color": C.bg,
+              width: "mapData(count, 0, 12, 14, 30)", height: "mapData(count, 0, 12, 14, 30)",
+              color: C.text, "text-opacity": 1, "font-size": 15, "font-weight": 600,
+            } },
+          // --- Themenfeld-Zentren ---
+          { selector: 'node[type="category"]', style: {
+              shape: "round-rectangle", "background-color": "data(color)", color: "#fff",
+              label: "data(label)", "font-size": 13, "font-weight": 700,
+              "text-valign": "center", "text-halign": "center", "text-wrap": "wrap",
+              "text-max-width": "120px", "text-opacity": 1,
+              padding: "11px", width: "label", height: "label",
+              "border-width": 3, "border-color": C.bg,
+            } },
+          // --- Hover/Auswahl: ploppt auf, Label wird voll sichtbar ---
+          { selector: "node.pop", style: {
+              width: "mapData(count, 0, 12, 24, 42)", height: "mapData(count, 0, 12, 24, 42)",
+              "background-opacity": 1, "text-opacity": 1, "font-size": 19, "font-weight": 600,
+              color: C.text, "border-width": 3, "border-color": C.text, "z-index": 999,
+              "text-background-color": C.bg, "text-background-opacity": 0.92,
+              "text-background-padding": "2px",
+            } },
+          { selector: "node.faded", style: { opacity: 0.1 } },
+          // --- gepunktete Linien zum Themenfeld ---
+          { selector: "edge", style: {
+              width: 1.1, "line-color": "data(color)", "line-style": "dotted",
+              "curve-style": "straight", "target-arrow-shape": "none", opacity: 0.3,
+              "transition-property": "opacity, width", "transition-duration": "0.15s",
+            } },
+          { selector: 'edge[kind="secondary"]', style: { opacity: 0.12, width: 1 } },
+          { selector: "edge.faded", style: { opacity: 0.04 } },
+          { selector: "edge.hi", style: { opacity: 0.85, width: 2 } },
         ],
-        layout: { name: "preset" },
+        layout: { name: "preset", fit: true, padding: 55 },
       });
 
-      // Start: only categories visible.
-      const isCategory = (n: any) => n.data("type") === "category";
-      cy.nodes().forEach((n: any) => { if (!isCategory(n)) n.style("display", "none"); });
-      cy.edges().forEach((e: any) => e.style("display", "none"));
+      // Kantenfarbe = Farbe des Themenfelds, aus dem sie kommt.
+      cy.edges().forEach((e: any) => e.data("color", e.source().data("color")));
 
-      const childrenOf = (n: any) => n.outgoers("node");
-      const visible = (n: any) => n.style("display") !== "none";
-
-      function relayout() {
-        const vis = cy.elements().filter((el: any) => el.style("display") !== "none");
-        const hasEdges = vis.edges().length > 0;
-        const opts = hasEdges
-          ? { name: "breadthfirst", animate: true, animationDuration: 450, animationEasing: "ease-out",
-              padding: 40, spacingFactor: 1.1, directed: false, grid: false, avoidOverlap: true }
-          : { name: "circle", animate: true, animationDuration: 400,
-              padding: 40, radius: vis.nodes().length > 1 ? 140 : 0 };
-        const layout = vis.layout(opts as any);
-        layout.one("layoutstop", () => {
-          cy.animate({
-            fit: { eles: vis, padding: 40 },
-            duration: 300,
-            complete: () => { if (cy.zoom() > 1.6) { cy.zoom(1.6); cy.center(vis); } },
-          });
-        });
-        layout.run();
-      }
+      function fit() { cy.resize(); cy.fit(cy.elements(), 55); }
 
       function focusOn(n: any) {
-        const vis = cy.elements().filter((el: any) => el.style("display") !== "none");
-        const keep = n.closedNeighborhood().filter((el: any) => el.style("display") !== "none");
-        vis.addClass("faded");
-        keep.removeClass("faded");
+        cy.elements().addClass("faded");
+        n.closedNeighborhood().removeClass("faded");
       }
-      function clearFocus() { cy.elements().removeClass("faded"); }
-
-      cy.on("mouseover", "node", () => { container.style.cursor = "pointer"; });
-      cy.on("mouseout", "node", () => { container.style.cursor = "default"; });
-      cy.on("tap", (evt: any) => {
-        if (evt.target === cy) { clearFocus(); cy.nodes().removeClass("sel"); }
-      });
-
-      function hideDescendants(n: any) {
-        childrenOf(n).forEach((c: any) => {
-          hideDescendants(c);
-          c.style("display", "none");
-          c.connectedEdges().style("display", "none");
-        });
-      }
-
-      function toggle(n: any) {
-        const kids = childrenOf(n);
-        if (kids.length === 0) return false;
-        const anyVisible = kids.some((c: any) => visible(c));
-        if (anyVisible) {
-          kids.forEach((c: any) => {
-            hideDescendants(c);
-            c.style("display", "none");
-            c.connectedEdges().style("display", "none");
-          });
-        } else {
-          kids.forEach((c: any) => {
-            c.style("display", "element");
-            cy.getElementById(n.id()).edgesTo(c).style("display", "element");
-          });
-        }
-        return true;
-      }
-
-      function esc(s: string) {
-        return String(s).replace(/[&<>"]/g, (c) =>
-          ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c] as string));
-      }
+      const clearFocus = () => cy.elements().removeClass("faded");
 
       function renderPanel(n: any) {
-        const type = n.data("type");
         const label = esc(n.data("label"));
-        let html = `<h3 class="panel-title">${label}</h3>`;
-        if (type === "category") {
+        if (n.data("type") === "category") {
+          let html = `<h3 class="panel-title">${label}</h3>`;
           if (n.data("description")) html += `<p class="panel-desc">${esc(n.data("description"))}</p>`;
           const cv = n.data("cvVariant");
           if (cv) html += `<a class="panel-cv" href="#cv" data-cv="${esc(cv)}">→ Passender Lebenslauf (${esc(cv)})</a>`;
-          html += `<p class="panel-note">Klick auf den Knoten klappt die Skills auf/zu.</p>`;
-        } else if (type === "project") {
-          const repo = n.data("repo");
-          html += `<p class="panel-desc">Projekt</p>`;
-          if (repo) html += `<a class="panel-cv" href="${esc(repo)}" target="_blank" rel="noopener">Repository ↗</a>`;
-        } else {
-          const prs = n.data("projects") || [];
-          if (prs.length) {
-            html += `<p class="panel-desc">Verbundene Projekte:</p><ul class="panel-projects">`;
-            for (const p of prs) {
-              html += `<li>${p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.title)} ↗</a>` : esc(p.title)}</li>`;
-            }
-            html += `</ul>`;
-          } else {
-            html += `<p class="panel-desc">Noch keine verknüpften Projekte.</p>`;
+          html += `<p class="panel-note">Themenfeld — die Linien zeigen, welche Skills dazugehören.</p>`;
+          panel.innerHTML = html;
+          return;
+        }
+        const mine = n.data("mine");
+        const ev = (n.data("evidence") || []) as { repo: string; kind: string }[];
+        const badge = !mine
+          ? `<span class="learn-badge">Lern-Kandidat</span>`
+          : ev.length
+            ? `<span class="mine-badge">✓ belegt in ${new Set(ev.map((e) => e.repo)).size} Repo(s)</span>`
+            : `<span class="mine-badge">✓ kann ich</span>`;
+        let html = `<h3 class="panel-title">${label} ${badge}</h3>`;
+        const also = (n.data("also") || []) as string[];
+        html += `<p class="panel-desc">Themenfeld: <strong>${esc(n.data("primary"))}</strong>${
+          also.length ? " · auch: " + esc(also.join(", ")) : ""}</p>`;
+        const count = n.data("count");
+        const trend = n.data("trend");
+        html += `<p class="panel-meta">`;
+        html += count > 0
+          ? `Nachfrage: <strong>${count}</strong> Anzeige(n) · Trend: ${trend > 0 ? "+" + trend : trend}`
+          : `Im aktuellen Marktausschnitt nicht genannt`;
+        if (n.data("lang")) html += ` · Sprache: ${esc(n.data("lang"))}`;
+        html += `</p>`;
+        if (ev.length) {
+          const KIND: Record<string, string> = {
+            language: "Sprache", file: "Dateien", dependency: "Abhängigkeit",
+            readme: "README", code: "Code", "sql-logic": "SQL-Logik (dplyr/pandas)",
+            certificate: "Zertifikat", llm: "LLM-Analyse",
+          };
+          const byRepo = new Map<string, string[]>();
+          for (const e of ev) {
+            const list = byRepo.get(e.repo) || [];
+            list.push(KIND[e.kind] || e.kind);
+            byRepo.set(e.repo, list);
           }
+          const user = meta.githubUser || "miaunala";
+          html += `<p class="panel-desc">Belegt in meinen Repos:</p><ul class="panel-projects">`;
+          for (const [repo, kinds] of byRepo) {
+            html += `<li><a href="https://github.com/${esc(user)}/${esc(repo)}" target="_blank" rel="noopener">${esc(repo)} ↗</a>`
+                 +  ` <span class="ev-kind">${esc(kinds.join(", "))}</span></li>`;
+          }
+          html += `</ul>`;
+        }
+        const prs = n.data("projects") || [];
+        if (prs.length) {
+          html += `<p class="panel-desc">Verknüpfte Projekte:</p><ul class="panel-projects">`;
+          for (const p of prs)
+            html += `<li>${p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(p.title)} ↗</a>` : esc(p.title)}</li>`;
+          html += `</ul>`;
+        } else if (!mine) {
+          html += `<p class="panel-note">Noch nicht in meinem Netz — ein möglicher nächster Schritt.</p>`;
+        } else if (!ev.length) {
+          html += `<p class="panel-note">Von mir angegeben (noch kein Repo-Beleg).</p>`;
         }
         panel.innerHTML = html;
       }
 
+      cy.on("mouseover", "node", (evt: any) => {
+        container.style.cursor = "pointer";
+        const n = evt.target;
+        n.addClass("pop");
+        n.connectedEdges().addClass("hi");
+      });
+      cy.on("mouseout", "node", (evt: any) => {
+        container.style.cursor = "default";
+        const n = evt.target;
+        if (!n.hasClass("sel")) n.removeClass("pop");
+        n.connectedEdges().removeClass("hi");
+      });
+      cy.on("tap", (evt: any) => {
+        if (evt.target === cy) {
+          clearFocus();
+          cy.nodes().removeClass("sel pop");
+          cy.edges().removeClass("hi");
+          resetPanel();
+        }
+      });
       cy.on("tap", "node", (evt: any) => {
         const n = evt.target;
-        cy.nodes().removeClass("sel");
-        n.addClass("sel");
-        if (n.data("type") === "project") {
-          const repo = n.data("repo");
-          if (repo) window.open(repo, "_blank", "noopener");
-        } else {
-          toggle(n);
-          relayout();
-        }
+        cy.nodes().removeClass("sel pop");
+        cy.edges().removeClass("hi");
+        n.addClass("sel pop");
+        n.connectedEdges().addClass("hi");
         focusOn(n);
         renderPanel(n);
       });
 
-      document.getElementById("graph-reset")?.addEventListener("click", () => {
-        cy.nodes().forEach((n: any) => { if (!isCategory(n)) n.style("display", "none"); });
-        cy.edges().forEach((e: any) => e.style("display", "none"));
-        cy.nodes().removeClass("sel");
+      resetBtn?.addEventListener("click", () => {
+        cy.nodes().removeClass("sel pop");
+        cy.edges().removeClass("hi");
         clearFocus();
-        panel.innerHTML = '<p class="panel-hint">Tippe auf einen Knoten, um Details &amp; Projekte zu sehen.</p>';
-        relayout();
+        resetPanel();
+        fit();
       });
 
-      relayout();
+      // Robust gegen Init in noch nicht sichtbarem Container.
+      requestAnimationFrame(fit);
+      new IntersectionObserver((entries) => {
+        for (const e of entries) if (e.isIntersecting) fit();
+      }, { threshold: 0.15 }).observe(container);
+      window.addEventListener("resize", fit);
     }
   </script>
 </section>
@@ -302,38 +337,49 @@ const graph = { nodes, edges };
 <style>
   .lead { color: var(--text-muted); margin-top: -0.4rem; max-width: 46rem; }
   .graph-wrap {
-    display: grid;
-    grid-template-columns: 1.7fr 1fr;
-    gap: 1rem;
-    margin-top: 1.6rem;
+    display: grid; grid-template-columns: 2.15fr 1fr; gap: 1rem; margin-top: 1.6rem;
   }
-  .graph {
-    height: 460px;
-    background: var(--bg-elev);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
+  /* Bewusst ohne Karte: der Graph sitzt direkt auf der Seitenfarbe. */
+  .graph { height: 560px; background: transparent; border: 0; overflow: hidden; }
   .panel {
-    background: var(--bg-elev);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.2rem 1.3rem;
-    min-height: 0;
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.2rem 1.3rem; min-height: 0;
+    align-self: start;
   }
+  .ev-kind { color: var(--text-muted); font-size: 0.78rem; }
   .panel-hint, .panel-note { color: var(--text-muted); font-size: 0.9rem; }
   .panel-title { margin: 0 0 0.6rem; font-size: 1.15rem; }
   .panel-desc { color: var(--text-muted); margin: 0 0 0.6rem; }
+  .panel-meta { color: var(--text-muted); font-size: 0.9rem; margin: 0 0 0.6rem; }
   .panel-cv { display: inline-block; font-weight: 550; margin-bottom: 0.6rem; }
   .panel-projects { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.35rem; }
-  .graph-controls { margin-top: 0.9rem; }
+  .mine-badge, .learn-badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 600; vertical-align: middle;
+    padding: 0.1rem 0.5rem; border-radius: 999px;
+  }
+  .mine-badge { background: var(--accent-soft); color: var(--accent); }
+  .learn-badge { background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.9rem;
+    font-size: 0.82rem; color: var(--text-muted);
+  }
+  .lg-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .lg-note { opacity: 0.8; }
+  .lg-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+  .lg-dot.mine { background: var(--accent); }
+  .lg-dot.market { background: var(--accent); opacity: 0.3; }
+  .lg-line { width: 20px; height: 0; border-top: 2px dotted var(--text-muted); display: inline-block; }
+  .graph-controls {
+    margin-top: 0.9rem; display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+  }
   .graph-controls .chip {
     font: inherit; font-size: 0.82rem; padding: 0.35rem 0.8rem; border-radius: 999px;
     border: 1px solid var(--border); background: var(--bg-elev); color: var(--text-muted); cursor: pointer;
   }
   .graph-controls .chip:hover { border-color: var(--accent); }
+  .stamp { font-size: 0.78rem; color: var(--text-muted); opacity: 0.75; }
   @media (max-width: 46rem) {
     .graph-wrap { grid-template-columns: 1fr; }
-    .graph { height: 380px; }
+    .graph { height: 420px; }
   }
 </style>

@@ -47,6 +47,43 @@ CREATE TABLE IF NOT EXISTS skill_contexts (
     PRIMARY KEY (term, snippet)
 );
 
+-- Wann wurde ein Repo zuletzt gescannt (pushed_at von GitHub)? Damit werden
+-- beim Wochenlauf nur Repos neu gelesen, die seither neue Commits haben.
+CREATE TABLE IF NOT EXISTS repo_scan (
+    repo       TEXT PRIMARY KEY,
+    pushed_at  TEXT,
+    detector   TEXT,
+    scanned_at TIMESTAMP
+);
+
+-- Welche Repos wurden bereits vom LLM analysiert (teuerster Schritt).
+CREATE TABLE IF NOT EXISTS llm_scan (
+    repo       TEXT PRIMARY KEY,
+    detector   TEXT,
+    scanned_at TIMESTAMP
+);
+
+-- Belege aus eigenen GitHub-Repos: welcher Skill ist wo nachweisbar.
+-- kind: language | file | dependency | readme
+CREATE TABLE IF NOT EXISTS skill_evidence (
+    term TEXT,
+    repo TEXT,
+    kind TEXT,
+    PRIMARY KEY (term, repo, kind)
+);
+
+-- 2D-Koordinaten (PCA der Embeddings) fuer die Scatter-Darstellung.
+CREATE TABLE IF NOT EXISTS skill_coords (
+    term TEXT PRIMARY KEY,
+    x    REAL,
+    y    REAL
+);
+CREATE TABLE IF NOT EXISTS anchor_coords (
+    anchor TEXT PRIMARY KEY,
+    x      REAL,
+    y      REAL
+);
+
 -- Ergebnis des Clustering-Laufs: Begriff -> Anker(n) + Konfidenz.
 -- Mehrere Zeilen pro Begriff moeglich (Mehrfach-Zuordnung); is_primary
 -- markiert den staerksten Anker.

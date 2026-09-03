@@ -12,6 +12,8 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+# Claude-Code-Werkzeugkonfiguration (Dev-Server-Vorschau), nicht Teil der Seite
+.claude/
 # macOS
 .DS_Store
 # Python

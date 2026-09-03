@@ -93,6 +93,20 @@ SEED_SKILLS: dict[str, list[str]] = {
     "dplyr": ["dplyr"],
     "caret": ["caret"],
     "Shiny": ["r shiny", "shiny app"],
+    # --- Sprachen & Werkzeuge (Belege kommen v.a. aus GitHub, s. github_skills.py).
+    # Aliase bewusst eng: "R" als Einzelbuchstabe wuerde ueberall falsch matchen.
+    "R": ["r programming", "rstudio", "r markdown", "rmarkdown"],
+    "Java": ["java"],
+    "Stata": ["stata"],
+    "TypeScript": ["typescript"],
+    "JavaScript": ["javascript"],
+    "Jupyter": ["jupyter", "jupyter notebook"],
+    "LaTeX": ["latex"],
+    "Web Scraping": ["web scraping", "webscraping", "web crawler"],
+    "Topic Modeling": ["topic modeling", "topic modelling"],
+    "Sentiment Analysis": ["sentiment analysis"],
+    "Hypothesis Testing": ["hypothesis testing", "significance testing"],
+    "Data Cleaning": ["data cleaning", "data wrangling"],
 }
 
 # Zuordnung Library -> Programmiersprache. Traegt die Sprach-Info in die Daten,

@@ -1,50 +1,223 @@
 [
   {
-    "id": "churn-nlp",
-    "title": "Churn-Prediction aus Support-Tickets",
-    "summary": "Zero-shot-Klassifikation eingehender Support-Tickets, Feature-Pipeline und Modell zur Vorhersage von Kundenabwanderung.",
-    "repo": "https://github.com/miaunala/example-churn-nlp",
-    "year": 2025,
+    "id": "master-thesis-codes",
+    "title": "Master Thesis Codes",
+    "summary": "Collection of Codes of my Master thesis ",
+    "repo": "https://github.com/miaunala/Master_Thesis_Codes",
+    "year": 2026,
     "highlight": true,
     "tags": {
-      "method": ["zero-shot classification", "text classification"],
-      "domain": ["customer analytics", "nlp"],
-      "tool": ["Python", "Hugging Face", "scikit-learn"]
+      "method": [
+        "classification",
+        "embeddings"
+      ],
+      "domain": [],
+      "tool": [
+        "LLM",
+        "LangChain",
+        "NumPy",
+        "Python",
+        "R",
+        "dplyr",
+        "ggplot2",
+        "matplotlib",
+        "pandas",
+        "scikit-learn"
+      ]
     },
     "cv_bullets": [
-      "[Platzhalter — messbares Ergebnis, z. B. „Churn-Fehlklassifikation um X % reduziert.“]"
+      "[Platzhalter — messbares Ergebnis ergänzen.]"
     ]
   },
   {
-    "id": "lakehouse-pipeline",
-    "title": "Lakehouse-Datenpipeline",
-    "summary": "End-to-end ELT-Pipeline mit dbt und Orchestrierung; modellierte Datenschichten für Analytics-Teams.",
-    "repo": "https://github.com/miaunala/example-lakehouse",
-    "year": 2024,
+    "id": "popety-uster-pipeline",
+    "title": "popety uster pipeline",
+    "summary": "Construction permits data pipeline for Uster (CH) – Popety technical test",
+    "repo": "https://github.com/miaunala/popety-uster-pipeline",
+    "year": 2026,
     "highlight": true,
     "tags": {
-      "method": ["elt", "data modeling"],
-      "domain": ["data engineering"],
-      "tool": ["dbt", "Airflow", "SQL", "Python"]
+      "method": [
+        "data modeling",
+        "named entity recognition",
+        "time series forecasting"
+      ],
+      "domain": [],
+      "tool": [
+        "Airflow",
+        "Docker",
+        "FastAPI",
+        "Jupyter",
+        "Polars",
+        "Python",
+        "SQLAlchemy",
+        "pandas"
+      ]
     },
     "cv_bullets": [
-      "[Platzhalter — z. B. „Reduzierte Pipeline-Laufzeit um X %.“]"
+      "[Platzhalter — messbares Ergebnis ergänzen.]"
     ]
   },
   {
-    "id": "demand-forecast",
-    "title": "Nachfrageprognose (Time Series)",
-    "summary": "Prognosemodelle für Nachfrage mit Feature-Engineering und Backtesting; Vergleich klassischer und ML-Verfahren.",
-    "repo": "https://github.com/miaunala/example-forecast",
-    "year": 2024,
+    "id": "social-computing",
+    "title": "Social Computing",
+    "summary": "[Platzhalter — kurze Beschreibung des Projekts.]",
+    "repo": "https://github.com/miaunala/Social_Computing",
+    "year": 2026,
+    "highlight": true,
+    "tags": {
+      "method": [
+        "regression",
+        "sentiment analysis",
+        "time series forecasting"
+      ],
+      "domain": [],
+      "tool": [
+        "NLTK",
+        "NumPy",
+        "Python",
+        "SciPy",
+        "matplotlib",
+        "pandas",
+        "scikit-learn",
+        "statsmodels"
+      ]
+    },
+    "cv_bullets": [
+      "[Platzhalter — messbares Ergebnis ergänzen.]"
+    ]
+  },
+  {
+    "id": "adhd-persona-pierres",
+    "title": "ADHD persona Pierres",
+    "summary": "tba",
+    "repo": "https://github.com/miaunala/ADHD_persona_Pierres",
+    "year": 2026,
+    "highlight": true,
+    "tags": {
+      "method": [
+        "data modeling",
+        "zero-shot classification"
+      ],
+      "domain": [],
+      "tool": [
+        "Hugging Face",
+        "LLM",
+        "NLTK",
+        "NumPy",
+        "Polars",
+        "Pydantic",
+        "Python",
+        "pandas"
+      ]
+    },
+    "cv_bullets": [
+      "[Platzhalter — messbares Ergebnis ergänzen.]"
+    ]
+  },
+  {
+    "id": "ambizione-nathalie",
+    "title": "Ambizione Nathalie",
+    "summary": "[Platzhalter — kurze Beschreibung des Projekts.]",
+    "repo": "https://github.com/miaunala/Ambizione_Nathalie",
+    "year": 2026,
+    "highlight": true,
+    "tags": {
+      "method": [
+        "embeddings",
+        "zero-shot classification"
+      ],
+      "domain": [],
+      "tool": [
+        "Hugging Face",
+        "LLM",
+        "NLTK",
+        "NumPy",
+        "Polars",
+        "Pydantic",
+        "Python",
+        "pandas"
+      ]
+    },
+    "cv_bullets": [
+      "[Platzhalter — messbares Ergebnis ergänzen.]"
+    ]
+  },
+  {
+    "id": "computational-forensics",
+    "title": "Computational Forensics",
+    "summary": "Term Paper and Code of Authorship Analysis Project from Computational Forensics Course in Fall Semester 2023, UZH.",
+    "repo": "https://github.com/miaunala/Computational_Forensics",
+    "year": 2026,
+    "highlight": true,
+    "tags": {
+      "method": [
+        "regression"
+      ],
+      "domain": [],
+      "tool": [
+        "NumPy",
+        "Python",
+        "matplotlib",
+        "pandas",
+        "scikit-learn",
+        "seaborn",
+        "spaCy"
+      ]
+    },
+    "cv_bullets": [
+      "[Platzhalter — messbares Ergebnis ergänzen.]"
+    ]
+  },
+  {
+    "id": "data-visualisation-fs23",
+    "title": "Data Visualisation FS23",
+    "summary": "Data Visualisation Module in Spring Semester 2023 at UZH, Department of Political Science.",
+    "repo": "https://github.com/miaunala/Data_Visualisation_FS23",
+    "year": 2026,
+    "highlight": true,
+    "tags": {
+      "method": [
+        "regression"
+      ],
+      "domain": [],
+      "tool": [
+        "Data Visualization",
+        "JavaScript",
+        "R",
+        "Stata",
+        "dplyr",
+        "ggplot2",
+        "tidyverse"
+      ]
+    },
+    "cv_bullets": [
+      "[Platzhalter — messbares Ergebnis ergänzen.]"
+    ]
+  },
+  {
+    "id": "epr-merging-2024-ra",
+    "title": "EPR Merging 2024 RA",
+    "summary": "Work Work",
+    "repo": "https://github.com/miaunala/EPR_Merging_2024_RA",
+    "year": 2026,
     "highlight": false,
     "tags": {
-      "method": ["time series forecasting", "regression"],
-      "domain": ["data science"],
-      "tool": ["Python", "pandas", "XGBoost"]
+      "method": [
+        "data modeling",
+        "regression",
+        "time series forecasting"
+      ],
+      "domain": [],
+      "tool": [
+        "LaTeX",
+        "R",
+        "dplyr",
+        "ggplot2"
+      ]
     },
     "cv_bullets": [
-      "[Platzhalter — z. B. „Prognosefehler (MAPE) um X Prozentpunkte verbessert.“]"
+      "[Platzhalter — messbares Ergebnis ergänzen.]"
     ]
   }
 ]
