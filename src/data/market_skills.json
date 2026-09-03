@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-03T00:29:28",
+  "generated_at": "2026-09-03T23:45:39",
   "week": "2026-08-31",
   "categories": [
     {
       "id": "data-engineering",
       "label": "Data Engineering",
       "description": "Robuste Datenbasis: Pipelines, Modellierung, Orchestrierung.",
-      "x": -0.4193,
-      "y": 0.4244,
+      "x": -0.422,
+      "y": 0.4235,
       "skills": [
         {
           "label": "Python",
@@ -18,8 +18,8 @@
             "Machine Learning",
             "NLP"
           ],
-          "x": -0.1698,
-          "y": -0.0459,
+          "x": -0.1738,
+          "y": -0.0506,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -112,8 +112,8 @@
           "confidence": 0.767,
           "trend": 9,
           "also": [],
-          "x": -0.4036,
-          "y": 0.0361,
+          "x": -0.4067,
+          "y": 0.0364,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -138,8 +138,8 @@
           "confidence": 0.745,
           "trend": 6,
           "also": [],
-          "x": -0.7146,
-          "y": 0.5403,
+          "x": -0.7132,
+          "y": 0.535,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -156,12 +156,16 @@
           "confidence": 0.742,
           "trend": 5,
           "also": [],
-          "x": -0.6991,
-          "y": 0.5077,
+          "x": -0.6889,
+          "y": 0.5027,
           "mine": true,
           "declared": false,
           "suggested": false,
           "evidence": [
+            {
+              "repo": "Docker lernen",
+              "kind": "certificate"
+            },
             {
               "repo": "popety-uster-pipeline",
               "kind": "code"
@@ -174,25 +178,39 @@
           "confidence": 0.732,
           "trend": 4,
           "also": [],
-          "x": -0.6387,
-          "y": 0.6189,
-          "mine": false,
+          "x": -0.6264,
+          "y": 0.6137,
+          "mine": true,
           "declared": false,
           "suggested": false,
-          "evidence": []
+          "evidence": [
+            {
+              "repo": "Kubernetes Grundkurs",
+              "kind": "certificate"
+            }
+          ]
         },
         {
           "label": "CI/CD",
           "count": 4,
-          "confidence": 0.694,
+          "confidence": 0.705,
           "trend": 4,
           "also": [],
-          "x": -0.6795,
-          "y": 0.2315,
-          "mine": false,
+          "x": -0.6223,
+          "y": 0.2278,
+          "mine": true,
           "declared": false,
           "suggested": false,
-          "evidence": []
+          "evidence": [
+            {
+              "repo": "DevOps in 10 Minuten",
+              "kind": "certificate"
+            },
+            {
+              "repo": "Einführung in GitOps",
+              "kind": "certificate"
+            }
+          ]
         },
         {
           "label": "dbt",
@@ -200,8 +218,8 @@
           "confidence": 0.784,
           "trend": 3,
           "also": [],
-          "x": -0.4662,
-          "y": 0.3028,
+          "x": -0.4666,
+          "y": 0.3036,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -213,8 +231,8 @@
           "confidence": 0.684,
           "trend": 3,
           "also": [],
-          "x": -0.6878,
-          "y": 0.4544,
+          "x": -0.6758,
+          "y": 0.4531,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -226,8 +244,8 @@
           "confidence": 0.758,
           "trend": 3,
           "also": [],
-          "x": -0.4119,
-          "y": 0.2496,
+          "x": -0.416,
+          "y": 0.2503,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -242,8 +260,8 @@
             "Data Science",
             "Machine Learning"
           ],
-          "x": 0.0726,
-          "y": -0.0738,
+          "x": 0.0744,
+          "y": -0.0712,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -276,12 +294,17 @@
           "confidence": 0.763,
           "trend": 2,
           "also": [],
-          "x": -0.8485,
-          "y": 0.2575,
-          "mine": false,
+          "x": -0.7848,
+          "y": 0.2426,
+          "mine": true,
           "declared": false,
           "suggested": false,
-          "evidence": []
+          "evidence": [
+            {
+              "repo": "Amazon Web Services (AWS): Basiswissen für Entwickler:innen",
+              "kind": "certificate"
+            }
+          ]
         },
         {
           "label": "Fivetran",
@@ -289,8 +312,8 @@
           "confidence": 0.74,
           "trend": 2,
           "also": [],
-          "x": -0.3766,
-          "y": 0.3166,
+          "x": -0.3823,
+          "y": 0.3133,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -299,15 +322,20 @@
         {
           "label": "Git",
           "count": 2,
-          "confidence": 0.674,
+          "confidence": 0.689,
           "trend": 2,
           "also": [],
-          "x": -0.6041,
-          "y": 0.1603,
-          "mine": false,
+          "x": -0.5458,
+          "y": 0.1819,
+          "mine": true,
           "declared": false,
           "suggested": false,
-          "evidence": []
+          "evidence": [
+            {
+              "repo": "Einführung in GitOps",
+              "kind": "certificate"
+            }
+          ]
         },
         {
           "label": "Kafka",
@@ -315,8 +343,8 @@
           "confidence": 0.74,
           "trend": 2,
           "also": [],
-          "x": -0.5409,
-          "y": 0.4068,
+          "x": -0.5261,
+          "y": 0.4048,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -328,8 +356,8 @@
           "confidence": 0.737,
           "trend": 2,
           "also": [],
-          "x": -0.5372,
-          "y": -0.0932,
+          "x": -0.5408,
+          "y": -0.092,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -341,8 +369,8 @@
           "confidence": 0.808,
           "trend": 2,
           "also": [],
-          "x": -0.6387,
-          "y": 0.2165,
+          "x": -0.6347,
+          "y": 0.214,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -354,7 +382,7 @@
           "confidence": 0.8,
           "trend": 1,
           "also": [],
-          "x": -0.1447,
+          "x": -0.155,
           "y": 0.2354,
           "mine": true,
           "declared": true,
@@ -369,8 +397,8 @@
           "also": [
             "Data Science"
           ],
-          "x": -0.3543,
-          "y": 0.0921,
+          "x": -0.3702,
+          "y": 0.0963,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -382,8 +410,8 @@
           "confidence": 0.636,
           "trend": 0,
           "also": [],
-          "x": -0.1506,
-          "y": 0.1952,
+          "x": -0.1765,
+          "y": 0.1928,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -412,8 +440,8 @@
             "NLP",
             "Machine Learning"
           ],
-          "x": -0.2065,
-          "y": 0.04,
+          "x": -0.2366,
+          "y": 0.0401,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -430,8 +458,8 @@
           "confidence": 0.746,
           "trend": 0,
           "also": [],
-          "x": -0.3583,
-          "y": 0.355,
+          "x": -0.3648,
+          "y": 0.3546,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -443,8 +471,8 @@
       "id": "data-science",
       "label": "Data Science",
       "description": "Analysen, Prognosen und aussagekraeftige Auswertungen.",
-      "x": 0.2929,
-      "y": -0.4649,
+      "x": 0.2868,
+      "y": -0.4661,
       "skills": [
         {
           "label": "pandas",
@@ -455,8 +483,8 @@
             "Machine Learning",
             "NLP"
           ],
-          "x": 0.1951,
-          "y": -0.408,
+          "x": 0.1902,
+          "y": -0.4141,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -500,8 +528,8 @@
           "also": [
             "Data Engineering"
           ],
-          "x": -0.3719,
-          "y": -0.5552,
+          "x": -0.3752,
+          "y": -0.5438,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -527,6 +555,10 @@
               "kind": "llm"
             },
             {
+              "repo": "Power BI for Beginners",
+              "kind": "certificate"
+            },
+            {
               "repo": "ResearchDesign_Homeworks",
               "kind": "llm"
             },
@@ -544,8 +576,8 @@
           "also": [
             "Machine Learning"
           ],
-          "x": 0.2185,
-          "y": -0.3958,
+          "x": 0.2146,
+          "y": -0.4004,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -565,8 +597,8 @@
           "also": [
             "Machine Learning"
           ],
-          "x": 0.1206,
-          "y": -0.4036,
+          "x": 0.1174,
+          "y": -0.4082,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -606,8 +638,8 @@
           "also": [
             "Data Engineering"
           ],
-          "x": -0.3492,
-          "y": -0.7375,
+          "x": -0.3503,
+          "y": -0.7288,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -622,8 +654,8 @@
           "also": [
             "Machine Learning"
           ],
-          "x": 0.2873,
-          "y": -0.4027,
+          "x": 0.2849,
+          "y": -0.4066,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -680,8 +712,8 @@
           "confidence": 0.784,
           "trend": 3,
           "also": [],
-          "x": 0.0541,
-          "y": -0.5138,
+          "x": 0.0576,
+          "y": -0.516,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -702,8 +734,8 @@
           "confidence": 0.867,
           "trend": 3,
           "also": [],
-          "x": 0.1902,
-          "y": -0.4531,
+          "x": 0.1924,
+          "y": -0.4575,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -730,8 +762,8 @@
           "also": [
             "Machine Learning"
           ],
-          "x": 0.0199,
-          "y": -0.3519,
+          "x": 0.0236,
+          "y": -0.356,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -745,8 +777,8 @@
           "also": [
             "Data Engineering"
           ],
-          "x": -0.4277,
-          "y": -0.54,
+          "x": -0.4301,
+          "y": -0.532,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -765,18 +797,23 @@
         {
           "label": "Power BI",
           "count": 2,
-          "confidence": 0.734,
+          "confidence": 0.733,
           "trend": 2,
           "also": [
             "Data Engineering",
             "Machine Learning"
           ],
-          "x": -0.3249,
-          "y": -0.3524,
-          "mine": false,
+          "x": -0.2862,
+          "y": -0.2822,
+          "mine": true,
           "declared": false,
           "suggested": false,
-          "evidence": []
+          "evidence": [
+            {
+              "repo": "Power BI for Beginners",
+              "kind": "certificate"
+            }
+          ]
         },
         {
           "label": "Tableau",
@@ -786,8 +823,8 @@
           "also": [
             "Data Engineering"
           ],
-          "x": -0.3512,
-          "y": -0.4257,
+          "x": -0.3522,
+          "y": -0.411,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -801,8 +838,8 @@
           "also": [
             "Data Engineering"
           ],
-          "x": -0.3555,
-          "y": -0.7448,
+          "x": -0.3611,
+          "y": -0.7389,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -828,7 +865,7 @@
           "confidence": 0.704,
           "trend": 1,
           "also": [],
-          "x": 0.2323,
+          "x": 0.2254,
           "y": -1.0,
           "mine": true,
           "declared": false,
@@ -879,8 +916,8 @@
           "confidence": 0.717,
           "trend": 1,
           "also": [],
-          "x": 0.2106,
-          "y": -0.949,
+          "x": 0.2071,
+          "y": -0.9493,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -920,8 +957,8 @@
           "also": [
             "Machine Learning"
           ],
-          "x": 0.3445,
-          "y": -0.4748,
+          "x": 0.3513,
+          "y": -0.4751,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -933,8 +970,8 @@
           "confidence": 0.73,
           "trend": 1,
           "also": [],
-          "x": 0.1836,
-          "y": -0.8348,
+          "x": 0.1818,
+          "y": -0.8326,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -970,8 +1007,8 @@
           "also": [
             "Machine Learning"
           ],
-          "x": 0.2035,
-          "y": -0.2515,
+          "x": 0.2041,
+          "y": -0.2565,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -986,8 +1023,8 @@
             "NLP",
             "Machine Learning"
           ],
-          "x": -0.0003,
-          "y": -0.4201,
+          "x": -0.0026,
+          "y": -0.4195,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1011,8 +1048,8 @@
             "NLP",
             "Machine Learning"
           ],
-          "x": 0.0474,
-          "y": -0.2415,
+          "x": 0.0406,
+          "y": -0.2383,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1041,8 +1078,8 @@
             "NLP",
             "Machine Learning"
           ],
-          "x": 0.1626,
-          "y": -0.5399,
+          "x": 0.1586,
+          "y": -0.5346,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1121,8 +1158,8 @@
           "also": [
             "Machine Learning"
           ],
-          "x": 0.1104,
-          "y": -0.374,
+          "x": 0.1018,
+          "y": -0.3792,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1140,8 +1177,8 @@
           "confidence": 0.673,
           "trend": 0,
           "also": [],
-          "x": 0.1071,
-          "y": -0.8502,
+          "x": 0.1016,
+          "y": -0.848,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1170,8 +1207,8 @@
       "id": "machine-learning",
       "label": "Machine Learning",
       "description": "Modelle von Klassifikation bis Deep Learning.",
-      "x": 0.8607,
-      "y": 0.3214,
+      "x": 0.8598,
+      "y": 0.3126,
       "skills": [
         {
           "label": "Feature Engineering",
@@ -1179,8 +1216,8 @@
           "confidence": 0.859,
           "trend": 4,
           "also": [],
-          "x": 0.3321,
-          "y": 0.2836,
+          "x": 0.3358,
+          "y": 0.28,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -1196,8 +1233,8 @@
             "Data Engineering",
             "NLP"
           ],
-          "x": 0.0972,
-          "y": -0.1369,
+          "x": 0.0891,
+          "y": -0.1416,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -1210,8 +1247,8 @@
           "confidence": 0.797,
           "trend": 4,
           "also": [],
-          "x": 0.353,
-          "y": -0.1064,
+          "x": 0.3484,
+          "y": -0.1133,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -1237,8 +1274,8 @@
           "confidence": 0.86,
           "trend": 3,
           "also": [],
-          "x": 0.739,
-          "y": 0.5594,
+          "x": 0.7461,
+          "y": 0.5539,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -1250,8 +1287,8 @@
           "confidence": 0.742,
           "trend": 3,
           "also": [],
-          "x": 0.1735,
-          "y": 0.1783,
+          "x": 0.1704,
+          "y": 0.1751,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -1264,8 +1301,8 @@
           "confidence": 0.802,
           "trend": 3,
           "also": [],
-          "x": 0.5149,
-          "y": 0.5151,
+          "x": 0.5184,
+          "y": 0.5096,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -1281,8 +1318,8 @@
             "Data Engineering",
             "NLP"
           ],
-          "x": -0.2232,
-          "y": 0.4518,
+          "x": -0.2129,
+          "y": 0.4478,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1302,8 +1339,8 @@
           "also": [
             "NLP"
           ],
-          "x": 0.5205,
-          "y": 0.4131,
+          "x": 0.5106,
+          "y": 0.4097,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -1318,8 +1355,8 @@
           "also": [
             "NLP"
           ],
-          "x": 0.8007,
-          "y": 0.415,
+          "x": 0.7919,
+          "y": 0.4119,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -1347,8 +1384,8 @@
           "also": [
             "NLP"
           ],
-          "x": 0.226,
-          "y": 0.1211,
+          "x": 0.2212,
+          "y": 0.1195,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -1361,8 +1398,8 @@
           "confidence": 0.819,
           "trend": 2,
           "also": [],
-          "x": 0.0582,
-          "y": 0.6073,
+          "x": 0.0665,
+          "y": 0.5983,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -1374,8 +1411,8 @@
           "confidence": 0.833,
           "trend": 2,
           "also": [],
-          "x": 0.5457,
-          "y": 0.545,
+          "x": 0.5484,
+          "y": 0.5376,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -1390,8 +1427,8 @@
           "also": [
             "NLP"
           ],
-          "x": 0.7929,
-          "y": 0.2264,
+          "x": 0.7824,
+          "y": 0.2219,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -1414,8 +1451,8 @@
           "also": [
             "NLP"
           ],
-          "x": 0.464,
-          "y": 0.4054,
+          "x": 0.4544,
+          "y": 0.4009,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1433,8 +1470,8 @@
           "confidence": 0.812,
           "trend": 1,
           "also": [],
-          "x": 0.5821,
-          "y": 0.4155,
+          "x": 0.5874,
+          "y": 0.4123,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -1447,8 +1484,8 @@
       "id": "nlp",
       "label": "NLP",
       "description": "Sprache verstehen: Embeddings, LLMs, Textklassifikation.",
-      "x": 0.9609,
-      "y": 0.2975,
+      "x": 0.9505,
+      "y": 0.2967,
       "skills": [
         {
           "label": "Classification",
@@ -1458,8 +1495,8 @@
           "also": [
             "Machine Learning"
           ],
-          "x": 0.748,
-          "y": 0.1649,
+          "x": 0.7417,
+          "y": 0.1622,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1484,8 +1521,8 @@
           "confidence": 0.875,
           "trend": 2,
           "also": [],
-          "x": 0.8706,
-          "y": 0.3235,
+          "x": 0.8619,
+          "y": 0.3233,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1508,8 +1545,8 @@
           "also": [
             "Machine Learning"
           ],
-          "x": 0.7401,
-          "y": 0.3597,
+          "x": 0.731,
+          "y": 0.3583,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1538,8 +1575,8 @@
           "confidence": 0.764,
           "trend": 2,
           "also": [],
-          "x": 0.4406,
-          "y": 0.3188,
+          "x": 0.4235,
+          "y": 0.3191,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1557,8 +1594,8 @@
           "confidence": 0.888,
           "trend": 2,
           "also": [],
-          "x": 0.8311,
-          "y": 0.2732,
+          "x": 0.828,
+          "y": 0.275,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1575,8 +1612,8 @@
           "confidence": 0.9,
           "trend": 2,
           "also": [],
-          "x": 0.968,
-          "y": 0.253,
+          "x": 0.9622,
+          "y": 0.2524,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -1588,8 +1625,8 @@
           "confidence": 0.761,
           "trend": 1,
           "also": [],
-          "x": 0.3199,
-          "y": 0.3214,
+          "x": 0.3061,
+          "y": 0.3204,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1626,8 +1663,8 @@
             "Data Engineering",
             "Data Science"
           ],
-          "x": -0.0497,
-          "y": -0.4268,
+          "x": -0.0398,
+          "y": -0.42,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1651,8 +1688,8 @@
             "Data Science",
             "Data Engineering"
           ],
-          "x": 0.0717,
-          "y": -0.4391,
+          "x": 0.0462,
+          "y": -0.4341,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1672,8 +1709,8 @@
             "Machine Learning",
             "Data Science"
           ],
-          "x": 0.0519,
-          "y": 0.0388,
+          "x": 0.0524,
+          "y": 0.0384,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1701,8 +1738,8 @@
           "also": [
             "Data Engineering"
           ],
-          "x": -0.0776,
-          "y": -0.0266,
+          "x": -0.0816,
+          "y": -0.0191,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1720,8 +1757,8 @@
           "confidence": 0.731,
           "trend": 0,
           "also": [],
-          "x": 0.3725,
-          "y": -0.2483,
+          "x": 0.3706,
+          "y": -0.2463,
           "mine": true,
           "declared": false,
           "suggested": false,
@@ -1750,8 +1787,8 @@
           "confidence": 0.675,
           "trend": 0,
           "also": [],
-          "x": -0.0353,
-          "y": -0.3297,
+          "x": -0.0395,
+          "y": -0.3218,
           "mine": true,
           "declared": false,
           "suggested": false,

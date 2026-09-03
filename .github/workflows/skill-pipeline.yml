@@ -40,7 +40,7 @@ jobs:
         run: |
           git config user.name "skill-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/data/market_skills.json pipeline/warehouse.duckdb
+          git add src/data/market_skills.json src/data/duolingo.json pipeline/warehouse.duckdb
           if git diff --staged --quiet; then
             echo "Keine Aenderungen."
           else

@@ -1,6 +1,16 @@
 ---
 import testimonials from "../data/testimonials.json";
-const items = testimonials ?? [];
+
+// Sprache der Seite. Sobald die DE/EN-Routen stehen, kommt der Wert aus
+// Astro.currentLocale -- die Daten liegen bereits zweisprachig vor.
+const LOCALE: "de" | "en" = "de";
+
+type Bi = { de: string; en: string };
+type Item = { id: string; quote: Bi; role: Bi; industry: Bi; year: number; project?: string };
+
+// Fallback, falls fuer eine Sprache nichts hinterlegt ist.
+const t = (v: Bi) => v?.[LOCALE] || v?.de || v?.en || "";
+const items = (testimonials.items ?? []) as Item[];
 ---
 
 {items.length > 0 && (
@@ -9,16 +19,16 @@ const items = testimonials ?? [];
       <p class="eyebrow">Referenzen</p>
       <h2>Stimmen zu meiner Arbeit</h2>
       <p class="lead">
-        Zitate aus Arbeitszeugnissen, attribuiert nach Rolle und Branche.
+        Zitate aus Referenzschreiben, attribuiert nach Lehrstuhl bzw. Institut.
       </p>
 
       <div class="quote-grid">
-        {items.map((t: { quote: string; role: string; industry: string; year: number }) => (
+        {items.map((item) => (
           <figure class="quote">
-            <blockquote>{t.quote}</blockquote>
+            <blockquote>{t(item.quote)}</blockquote>
             <figcaption>
-              <span class="src">{t.role}</span>
-              <span class="meta">{t.industry} · {t.year}</span>
+              <span class="src">{t(item.role)}</span>
+              <span class="meta">{t(item.industry)} · {item.year}</span>
             </figcaption>
           </figure>
         ))}

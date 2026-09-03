@@ -1,16 +1,61 @@
-[
-  {
-    "quote": "[Platzhalter — wörtliches Zitat aus einem Arbeitszeugnis. 1–2 Sätze, sinngemäss korrekt.]",
-    "role": "[Rolle der Referenz — z. B. Teamlead]",
-    "industry": "[Branche — z. B. Logistik]",
-    "year": 2024,
-    "project": "lakehouse-pipeline"
-  },
-  {
-    "quote": "[Platzhalter — zweites Zitat.]",
-    "role": "[Rolle — z. B. Projektleitung]",
-    "industry": "[Branche — z. B. E-Commerce]",
-    "year": 2023,
-    "project": ""
-  }
-]
+{
+  "note": "Woertliche Zitate aus Referenzschreiben, zweisprachig. 'de' und 'en' stammen aus den vom jeweiligen Verfasser selbst erstellten Fassungen -- keine Maschinenuebersetzung. Zitierregeln: [eckige Klammern] = ersetzter Name zur Anonymisierung, [...] = Auslassung. Sonst Wortlaut unveraendert (nur Trennstriche aus dem PDF-Umbruch bereinigt). Ausnahme: 'informatik-2022' existiert nur auf Englisch, dort steht in beiden Sprachen das englische Original. Personen sind bewusst nicht namentlich genannt, nur Lehrstuhl/Institut und Universitaet.",
+  "items": [
+    {
+      "id": "ambizione-2025",
+      "quote": {
+        "de": "Sie entwickelte und pflegte Datenpipelines, stellte die Datenqualität durch automatisierte Prüfungen sicher und wandte fortschrittliche Methoden der Datenmodellierung und -analyse an, darunter die Arbeit mit Social-Media-Daten und Claim-Matching.",
+        "en": "She developed and maintained data pipelines, ensured data quality through automated checks, and applied advanced methods of data modelling and analysis, including work with social media data and claim matching."
+      },
+      "role": {
+        "de": "Ambizione-Forschungsprojekt, Institut für Politikwissenschaft",
+        "en": "Ambizione research project, Department of Political Science"
+      },
+      "industry": { "de": "Universität Zürich", "en": "University of Zurich" },
+      "year": 2025,
+      "project": "ambizione-nathalie"
+    },
+    {
+      "id": "verhaltensforschung-2024",
+      "quote": {
+        "de": "[Sie] programmierte dazu eigenständig komplexen Code in der statistischen Software R und entwickelte Lösungen sowohl für die Analyse als auch für die visuelle Darstellung der Ergebnisse gross angelegter Untersuchungen von Sozialen Medien Daten.",
+        "en": "[She] independently programmed complex code in the statistical software R and developed solutions for both analyzing and visually representing results of large-scale social media data analyses."
+      },
+      "role": {
+        "de": "Lehrstuhl für Politische Verhaltensforschung und Digitale Medien",
+        "en": "Chair of Political Behavior and Digital Media"
+      },
+      "industry": { "de": "Universität Zürich", "en": "University of Zurich" },
+      "year": 2024,
+      "project": ""
+    },
+    {
+      "id": "informatik-2022",
+      "quote": {
+        "de": "[She] was not simply fulfilling the assigned tasks according to the instructions provided by me, but also on multiple occasions showed remarkable initiative and independent critical thinking suggesting adjustments that helped to improve the research process greatly.",
+        "en": "[She] was not simply fulfilling the assigned tasks according to the instructions provided by me, but also on multiple occasions showed remarkable initiative and independent critical thinking suggesting adjustments that helped to improve the research process greatly."
+      },
+      "role": {
+        "de": "Social Computing Group, Institut für Informatik",
+        "en": "Social Computing Group, Department of Informatics"
+      },
+      "industry": { "de": "Universität Zürich", "en": "University of Zurich" },
+      "year": 2022,
+      "project": ""
+    },
+    {
+      "id": "clds-2024",
+      "quote": {
+        "de": "Ich habe [sie] als eine intellektuell neugierige, reflektierte und analytisch denkende Persönlichkeit kennengelernt. […] Sie hat selbständig gearbeitet, bringt eigene Ideen ein und hat sich stets durch grosse Flexibilität ausgezeichnet.",
+        "en": "I have come to know [her] as an intellectually curious, thoughtful, and analytically minded individual. […] She worked independently, contributed her own ideas, and was always highly flexible."
+      },
+      "role": {
+        "de": "Center for Legal Data Science",
+        "en": "Center for Legal Data Science"
+      },
+      "industry": { "de": "Universität Zürich", "en": "University of Zurich" },
+      "year": 2024,
+      "project": ""
+    }
+  ]
+}
