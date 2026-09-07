@@ -9,12 +9,12 @@
     "open": true,
     "text": "offen für neue Projekte & Rollen"
   },
-  "location": "[Ort — Platzhalter]",
+  "location": "Zürich",
   "bio": [
-    "[Platzhalter — kurze Vorstellung: Wer bist du, was machst du, wofür brennst du? 2–3 Sätze.]",
-    "[Platzhalter — zweiter Absatz: dein Hintergrund, Schwerpunkte, was dich auszeichnet.]"
+    "Ich baue Systeme, die aus unstrukturierten Daten belastbare Antworten machen — von der Pipeline über das Modell bis zur Anwendung, die am Ende jemand wirklich benutzt. Mein Hintergrund ist bewusst interdisziplinär: Politikwissenschaft, Computerlinguistik und Informatik. In der Praxis heisst das, dass ich nicht nur ein Modell trainiere, sondern die Frage dahinter verstehe — und ebenso, was seine Ergebnisse aussagen und was eben nicht.",
+    "Konkret arbeite ich mit Python, R und SQL: Datenpipelines mit automatisierter Qualitätssicherung, Retrieval-Systeme mit lokal betriebenen Sprachmodellen, Klassifikation und Claim-Matching auf grossen Textkorpora, reproduzierbare statistische Auswertungen. Mein Schwerpunkt liegt derzeit auf digitaler Souveränität: Open-Source-Werkzeuge und KI, die im eigenen Haus läuft, damit Organisationen unabhängig von einzelnen Anbietern bleiben. Ob das Data Engineering, Data Science, Machine Learning oder Beratung heisst, entscheidet das Projekt — die Arbeit dahinter ist dieselbe."
   ],
-  "current": "[Platzhalter — woran arbeitest du gerade? Aktuelle Rolle, Projekt oder Studium.]",
+  "current": "Ich baue an dieser Webseite — vor allem am Skill-Netz und daran, gefragte Skills aus Stellenanzeigen automatisch einzubinden. Bei der Arbeit entsteht parallel ein Wiki-Assistent für openDesk: ein XWiki-Panel mit lokal betriebenem Sprachmodell, damit keine Daten das Haus verlassen.",
   "links": {
     "github": "https://github.com/miaunala",
     "linkedin": "https://www.linkedin.com/in/nathalie-guibert-293476162/",
@@ -77,19 +77,35 @@
   ],
   "engagement": [
     {
-      "label": "[Engagement/Community — Platzhalter]",
-      "url": "https://example.com"
+      "label": "Ausländer:innenbeirat der Stadt Zürich, Mitglied (2026–2030)",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/unterstuetzung-und-beratung/diversitaet-und-inklusion/integration/auslaenderbeirat.html"
+    },
+    {
+      "label": "VSS — Co-Präsidium CodEg, Hochschulpolitische Kommission (HoPoKo)",
+      "url": "https://www.vss-unes.ch"
+    },
+    {
+      "label": "VSUZH — Kommission für Studium und Bildung (KSB), Bildungskommission (BiKo)",
+      "url": "https://www.vsuzh.ch"
+    },
+    {
+      "label": "UZH-Gremien: Senat, Campusrat Oerlikon, Informatikkommission, Immobilienentwicklungskommission, Mensaboard (ehemalig)",
+      "url": "https://www.uzh.ch"
+    },
+    {
+      "label": "Una Europa — Student Board, Local Task Force (ehemalig)",
+      "url": "https://www.una-europa.eu"
     }
   ],
   "events": [
     {
-      "name": "[Veranstaltung/Talk — Platzhalter]",
-      "date": "2026-09-01",
+      "name": "Disability Awareness Day 2026",
+      "date": "2026",
       "url": ""
     }
   ],
   "booking": {
-    "intro": "Ich unterstütze Teams und Projekte flexibel — von der Datenpipeline über Analysen bis zum ML-Modell. Für Anfragen einfach melden.",
+    "intro": "Ich begleite Teams und Organisationen von der ersten Frage bis zum laufenden System: Datenpipelines aufbauen, Analysen belastbar machen, KI-Anwendungen souverän betreiben — wo sinnvoll mit Open Source und lokal laufenden Modellen. Aktuell tue ich das im Umfeld des Zentrums SDS (Souveräne Digitale Schweiz). Für Anfragen einfach melden.",
     "cta_label": "Anfrage per E-Mail"
   },
   "services": [

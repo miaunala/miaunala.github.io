@@ -61,7 +61,7 @@
   {
     "id": "social-computing",
     "title": "Social Computing",
-    "summary": "[Platzhalter — kurze Beschreibung des Projekts.]",
+    "summary": "Wie schlägt ein Social-Media-Shitstorm auf den Aktienkurs durch? Reddit-Beiträge zur Bud-Light-Kontroverse über die Pushshift- und Reddit-API gesammelt, Sentiment ausgewertet und per Interrupted Time Series (ARIMA) gegen Börsendaten geprüft.",
     "repo": "https://github.com/miaunala/Social_Computing",
     "year": 2026,
     "highlight": true,
@@ -90,7 +90,7 @@
   {
     "id": "adhd-persona-pierres",
     "title": "ADHD persona Pierres",
-    "summary": "tba",
+    "summary": "Synthetische Personas per LLM in vier Sprachen (DE, EN, FR, ZH), mit und ohne ADHS, zum Zeitmanagement im Studium. Die generierten Interviews werden anschliessend quantitativ verglichen — Wortschatzvielfalt (TTR, MTLD), Sentiment und thematische Kohärenz.",
     "repo": "https://github.com/miaunala/ADHD_persona_Pierres",
     "year": 2026,
     "highlight": true,
@@ -118,7 +118,7 @@
   {
     "id": "ambizione-nathalie",
     "title": "Ambizione Nathalie",
-    "summary": "[Platzhalter — kurze Beschreibung des Projekts.]",
+    "summary": "Claim-Matching für ein Forschungsprojekt zu Influencer:innen und Falschinformation: Kandidatenpaare parallelisiert erzeugt, mit SBERT neu sortiert und per LLM klassifiziert. Dazu ein eigenes CLI-Werkzeug, das die Annotation in Argilla samt Aufgabenverteilung organisiert.",
     "repo": "https://github.com/miaunala/Ambizione_Nathalie",
     "year": 2026,
     "highlight": true,
@@ -198,7 +198,7 @@
   {
     "id": "epr-merging-2024-ra",
     "title": "EPR Merging 2024 RA",
-    "summary": "Work Work",
+    "summary": "Zusammenführung von Social-Media-Daten mit den Datensätzen Ethnic Organizations Online und Ethnic Power Relations: Mehrtabellen-Joins über zusammengesetzte Schlüssel in R, dokumentiert über Codebooks, mit Auswertung als R Markdown.",
     "repo": "https://github.com/miaunala/EPR_Merging_2024_RA",
     "year": 2026,
     "highlight": false,
