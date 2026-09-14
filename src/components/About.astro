@@ -17,7 +17,7 @@ const showStreak = (duo?.streak ?? 0) > 0 && streakAgeDays <= MAX_AGE_DAYS;
   <div class="wrap about-grid">
     <div class="about-main">
       <p class="eyebrow">Über mich</p>
-      <h2>{profile.alias}, kurz vorgestellt</h2>
+      <h2>{profile.name.split(" ")[0]}, kurz vorgestellt</h2>
       {profile.bio.map((para: string) => <p>{para}</p>)}
       <p><a class="more-link" href="#interests">Neben der Arbeit: meine Interessen &amp; Engagement ↓</a></p>
     </div>
