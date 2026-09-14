@@ -109,6 +109,13 @@ const matchData = { items: matchItems, synonyms: cv.synonyms, extraText: cvExtra
   <script type="application/json" id="cv-match-data" set:html={JSON.stringify(matchData)}></script>
 </Layout>
 
+<style is:global>
+  @font-face { font-family: "Computer Modern Serif"; src: url("/fonts/cmunrm.woff") format("woff"); font-weight: normal; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Computer Modern Serif"; src: url("/fonts/cmunbx.woff") format("woff"); font-weight: bold; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Computer Modern Serif"; src: url("/fonts/cmunti.woff") format("woff"); font-weight: normal; font-style: italic; font-display: swap; }
+  @font-face { font-family: "Computer Modern Serif"; src: url("/fonts/cmunbi.woff") format("woff"); font-weight: bold; font-style: italic; font-display: swap; }
+</style>
+
 <style>
   .cv-page { max-width: 58rem; margin-inline: auto; padding: 1.5rem 1.25rem 4rem; }
 
@@ -133,30 +140,30 @@ const matchData = { items: matchItems, synonyms: cv.synonyms, extraText: cvExtra
   .cv-doc {
     background: #fff; color: #111; border: 1px solid var(--border); border-radius: var(--radius);
     padding: clamp(1.6rem, 4vw, 3rem); box-shadow: var(--shadow);
-    font-family: var(--font-serif); font-size: 0.86rem; line-height: 1.45;
+    font-family: "Computer Modern Serif", Georgia, serif; font-size: 0.98rem; line-height: 1.32;
   }
-  .cv-head { text-align: center; margin-bottom: 1.2rem; }
-  .cv-head h1 { font-size: 2rem; font-weight: 600; font-variant: small-caps; letter-spacing: 0.06em; margin: 0 0 0.35rem; color: #000; }
-  .contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem 0.55rem; font-size: 0.8rem; color: #333; margin: 0; }
+  .cv-head { text-align: center; margin-bottom: 0.85rem; }
+  .cv-head h1 { font-size: 2.2rem; font-weight: 700; font-variant: small-caps; letter-spacing: 0.02em; margin: 0 0 0.2rem; color: #000; }
+  .contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.1rem 0.5rem; font-size: 0.86rem; color: #222; margin: 0; }
   .contact > * { position: relative; }
-  .contact > * + *::before { content: "|"; color: #bbb; margin-right: 0.55rem; }
-  .contact a { color: #111; text-decoration: none; }
-  .role-tagline { font-style: italic; color: var(--accent); font-size: 0.85rem; margin: 0.45rem 0 0; }
+  .contact > * + *::before { content: "|"; color: #999; margin-right: 0.5rem; }
+  .contact a { color: #111; text-decoration: underline; }
+  .role-tagline { font-style: italic; color: #555; font-size: 0.9rem; margin: 0.3rem 0 0; }
 
-  .cv-sec { margin-top: 1.2rem; }
+  .cv-sec { margin-top: 0.95rem; }
   .cv-sec h2 {
-    font-family: var(--font-sans); font-variant: small-caps; text-transform: lowercase;
-    font-size: 1.02rem; font-weight: 600; letter-spacing: 0.04em; color: #000;
-    border-bottom: 1px solid #000; padding-bottom: 0.1rem; margin: 0 0 0.6rem;
+    font-family: "Computer Modern Serif", Georgia, serif; font-variant: small-caps;
+    font-size: 1.2rem; font-weight: 700; letter-spacing: 0.01em; color: #000;
+    border-bottom: 1px solid #000; padding-bottom: 0.02rem; margin: 0 0 0.45rem;
   }
-  .cv-item { margin-bottom: 0.7rem; position: relative; }
+  .cv-item { margin-bottom: 0.5rem; position: relative; }
   .ci-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
   .ci-title { font-weight: 700; color: #000; }
   .ci-date { color: #333; font-size: 0.8rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .ci-sub { display: flex; justify-content: space-between; gap: 1rem; color: #333; font-size: 0.82rem; }
   .ci-sub .it { font-style: italic; }
-  .cv-item ul { margin: 0.3rem 0 0; padding-left: 1.05rem; }
-  .cv-item li { margin-bottom: 0.15rem; }
+  .cv-item ul { margin: 0.2rem 0 0; padding-left: 1rem; }
+  .cv-item li { margin-bottom: 0.08rem; }
   .ci-desc { margin: 0.15rem 0 0; color: #222; }
   .ci-link { color: var(--accent); text-decoration: none; }
   .skgroup { margin: 0 0 0.4rem; }
@@ -173,7 +180,8 @@ const matchData = { items: matchItems, synonyms: cv.synonyms, extraText: cvExtra
     :global(body) { background: #fff !important; }
     .no-print { display: none !important; }
     .cv-page { max-width: none; padding: 0; }
-    .cv-doc { border: 0; box-shadow: none; border-radius: 0; padding: 0; font-size: 10pt; }
+    .cv-doc { border: 0; box-shadow: none; border-radius: 0; padding: 0; font-size: 10.5pt; }
+    .role-tagline { display: none; }
     .cv-item, .cv-sec { break-inside: avoid; }
     .cv-item.matched::before { display: none; }
     a { color: #111 !important; }
