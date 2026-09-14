@@ -120,6 +120,10 @@
     {
       "title": "Machine Learning / NLP",
       "desc": "Modelle von Klassifikation bis NLP (z. B. Zero-shot), inkl. Evaluierung und Einbettung in Pipelines."
+    },
+    {
+      "title": "Public Sector & Digitale Souveränität",
+      "desc": "Transformation im öffentlichen Sektor: Open-Source-Tools, lokal betriebene KI, Stakeholder-Netzwerke — damit Organisationen unabhängig bleiben."
     }
   ],
   "languagesLearning": [
