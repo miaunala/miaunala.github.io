@@ -1,0 +1,217 @@
+{
+  "note": "Strukturierter Lebenslauf – eine Quelle fuer alle Rollen-CVs und den Job-Matcher. 'roles' steuert, in welcher Variante ein Eintrag erscheint (ai-ml, data-engineering, data-science, consulting). 'skills' speist den Job-Matcher (Abgleich mit eingefuegten Stellenanzeigen). Sprache bewusst Englisch (international). PROJEKTE mit \"fromComment\": true stammen aus auskommentierten Stellen deines LaTeX – bitte pruefen. TODO Kennzahlen: wo moeglich messbare Ergebnisse ergaenzen (z. B. 'reduced runtime 2 days -> 30 min' ist gut).",
+  "roles": [
+    { "id": "ai-ml", "label": "AI & ML", "tagline": "Machine Learning, NLP und LLMs – von der Idee bis zum betriebenen Modell." },
+    { "id": "data-engineering", "label": "Data Engineering", "tagline": "Robuste Pipelines, CLIs und Orchestrierung – reproduzierbar und im Betrieb." },
+    { "id": "data-science", "label": "Data Science", "tagline": "Analysen, Statistik und Auswertungen, die Entscheidungen tragen." },
+    { "id": "consulting", "label": "Tech Consulting", "tagline": "Technische Beratung mit Fokus oeffentlicher Sektor und digitale Souveraenitaet." }
+  ],
+  "header": {
+    "phone": "+41 77 530 79 04",
+    "permit": "Permit B",
+    "nationality": "DE / FR"
+  },
+  "education": [
+    {
+      "institution": "University of Zurich (UZH)",
+      "location": "Zurich, Switzerland",
+      "degree": "Teaching Diploma (Lehrdiplom Sek II)",
+      "dates": "Feb 2026 – present",
+      "roles": ["ai-ml", "data-engineering", "data-science", "consulting"],
+      "bullets": [
+        "General Didactics, Educational Psychology, Educational Testing & Measurement"
+      ]
+    },
+    {
+      "institution": "University of Zurich (UZH)",
+      "location": "Zurich, Switzerland",
+      "degree": "M.A. Political Science with Computational Linguistics",
+      "grade": "5.2 / 6",
+      "dates": "Sep 2021 – Mar 2026",
+      "roles": ["ai-ml", "data-engineering", "data-science", "consulting"],
+      "skills": ["Python", "LLM", "GPT-4", "prompt engineering", "classification", "Telethon", "R", "ggplot2", "scikit-learn", "spaCy", "TF-IDF"],
+      "bullets": [
+        "MA thesis (grade 5.5): “Amplifying Grievances in Digital Spaces: harmful speech and populist-right actors in the Covidskeptic and Farmer-Protest movements, using LLMs” – Python prompt engineering & LLM classification (GPT-3.5-turbo/4.0, tiktoken), Telegram scraping (Telethon), R visualisation (ggplot2, ggExtra)",
+        "Authorship Attribution via NLP classification (scikit-learn: Naive Bayes, SVC, Logistic Regression); feature engineering with word/char n-grams, POS bigrams (spaCy), TF-IDF; StratifiedKFold CV, oversampling, FeatureUnion pipeline",
+        "Reddit Sentiment & Stock-Price analysis: PRAW/Pushshift collection, VADER sentiment (NLTK), Interrupted Time Series (ARIMA, statsmodels) correlating sentiment with stock prices"
+      ]
+    },
+    {
+      "institution": "KU Leuven",
+      "location": "Leuven, Belgium",
+      "degree": "Summer School: Europe Inside Out",
+      "dates": "Jul 2023",
+      "roles": ["consulting"],
+      "bullets": [
+        "Tracks: Politics and Policies in Europe; Doing Business with Europe"
+      ]
+    },
+    {
+      "institution": "University of Zurich (UZH)",
+      "location": "Zurich, Switzerland",
+      "degree": "B.A. Political Science with Sociology",
+      "dates": "Feb 2019 – Jul 2021",
+      "roles": ["ai-ml", "data-engineering", "data-science", "consulting"],
+      "skills": ["Stata", "logistic regression", "panel data", "statistics"],
+      "bullets": [
+        "BA thesis: “What role did the EU's throughput legitimacy play in the Brexit referendum” – Stata: logistic regression on panel data, data cleaning & recoding, multicollinearity checks (VIF), outlier detection (Cook's D), marginal effects, Hosmer-Lemeshow goodness-of-fit",
+        "Semesters 1–3: Political and Social Studies at the University of Wuerzburg"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "Research Assistant",
+      "org": "Institute of Public Sector Transformation, BFH",
+      "location": "Berne, Switzerland",
+      "dates": "Jun 2026 – present",
+      "roles": ["consulting", "data-engineering", "ai-ml"],
+      "skills": ["public sector", "open source", "OpenDesk", "Swiss Open Cloud Stack", "open source AI", "stakeholder management", "survey design", "workshop facilitation", "procurement"],
+      "bullets": [
+        "Co-building the Souveraene Digitale Schweiz centre: coordinate 4 workstreams (OSS procurement, OpenDesk, Swiss Open Cloud Stack, Open-Source AI)",
+        "Stakeholder management, survey design & analysis, workshop facilitation"
+      ]
+    },
+    {
+      "title": "Teaching / Research Assistant (ML, LLMs & NLP)",
+      "org": "Digital Society Initiative, UZH",
+      "location": "Zurich, Switzerland",
+      "dates": "Nov 2025 – present",
+      "roles": ["ai-ml", "data-science", "data-engineering"],
+      "skills": ["PyTorch", "Word2Vec", "DistilBERT", "HuggingFace", "Trainer API", "LLM", "SBERT", "LoRA", "Llama", "Pydantic", "NLTK", "langdetect", "CLI", "argparse", "Ollama", "OpenAI", "Mistral"],
+      "bullets": [
+        "Designed & corrected programming exercises and ran walk-in sessions for the 10-faculty module “Interdisciplinary Introduction to Machine Learning”: students implemented Word2Vec skip-gram from scratch (PyTorch, backpropagation, embedding visualisation) and fine-tuned DistilBERT for sentiment classification (HuggingFace Trainer API); topics incl. Bayesian Networks, Deep Learning, NLP & Transformers (Python/Jupyter, Colab T4 GPU)",
+        "Designed an end-to-end argparse CLI pipeline for a scientific paper: generated synthetic ADHD-vs-control student personas in 4 languages (EN/DE/FR/ZH) with Pydantic-validated JSON; automated LLM interviews across 5 providers (OpenAI, Mistral, DeepSeek, OpenRouter, Ollama – local & API); quantified linguistic differences via NLTK (TTR, MTLD, hedging), langdetect, SBERT (semantic coherence) & ableist-language detection (LoRA-finetuned Llama-3.1-8B-Instruct)"
+      ]
+    },
+    {
+      "title": "Research Assistant (Data & Software Engineering)",
+      "org": "Institute of Political Science, UZH",
+      "location": "Zurich, Switzerland",
+      "dates": "May 2024 – Dec 2025",
+      "roles": ["data-engineering", "ai-ml", "data-science"],
+      "skills": ["Typer", "CLI", "Argilla", "Prolific", "Pydantic", "httpx", "pytest", "Parquet", "BM25", "SBERT", "NLI", "LLM", "polars", "HPC", "Slurm", "dplyr", "fixest", "fixed effects", "ggplot2", "R"],
+      "bullets": [
+        "Built a production-grade Typer CLI (argilla-cli) integrating Argilla and Prolific APIs: automated study creation, participant credential generation, dataset export (JSONL/CSV/Parquet); pydantic-settings, httpx, pytest, pipx-installable",
+        "Claim-matching pipeline for misinformation research: BM25 candidate retrieval + SBERT semantic reranking (all-MiniLM-L6-v2) + LLM-based NLI classification with Pydantic-validated outputs – reduced runtime from 2 days to 30 min via polars, parallel processing & HPC cluster",
+        "Data pipeline & statistical evaluation: merged ethnic-organisation social-media data with EPR datasets via relational joins (dplyr); fixed-effects regression (fixest, lfe); visualisation (ggplot2); deployed on HPC cluster (Slurm, R)"
+      ]
+    },
+    {
+      "title": "Research Assistant",
+      "org": "Immigration Policy Lab, ETH",
+      "location": "Zurich, Switzerland",
+      "dates": "Feb 2024 – Apr 2024",
+      "roles": ["ai-ml"],
+      "skills": ["annotation", "hate speech", "NLP", "data labelling"],
+      "bullets": [
+        "Manual annotation of hate speech & toxic comments in online newspapers"
+      ]
+    },
+    {
+      "title": "Academic Assistant",
+      "org": "Center for Legal Data Science, UZH",
+      "location": "Zurich, Switzerland",
+      "dates": "Sep 2022 – Mar 2024",
+      "roles": ["consulting"],
+      "skills": ["stakeholder communication", "strategic development", "presentations"],
+      "bullets": [
+        "Strategic development, stakeholder communication & preparation of presentations for executive & scientific board meetings"
+      ]
+    },
+    {
+      "title": "Research Assistant",
+      "org": "Department of Informatics, UZH",
+      "location": "Zurich, Switzerland",
+      "dates": "Feb 2022 – Jul 2022",
+      "roles": ["data-engineering", "data-science"],
+      "skills": ["Selenium", "web scraping", "surveys", "Telegram"],
+      "bullets": [
+        "Web scraping with Selenium, online surveys, analysis of Telegram groups"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "RAG Annotation Pipeline",
+      "repo": "https://github.com/miaunala/Master_Thesis_Codes/tree/feature/rag-langchain",
+      "roles": ["ai-ml", "data-engineering"],
+      "skills": ["RAG", "LangChain", "FAISS", "OpenAIEmbeddings", "Pydantic", "argparse", "LLM"],
+      "desc": "Refactored a thesis annotation pipeline from full-codebook prompting to Retrieval-Augmented Generation: codebook PDF chunked & embedded (OpenAIEmbeddings) into a FAISS vectorstore; at inference only the 3 most relevant sections are retrieved per message, cutting token cost & prompt noise. LangChain, FAISS, Pydantic, argparse."
+    },
+    {
+      "name": "Uster Construction-Permits Pipeline",
+      "repo": "https://github.com/miaunala/popety-uster-pipeline",
+      "roles": ["data-engineering"],
+      "skills": ["Airflow", "DAG", "PostGIS", "geocoding", "swisstopo", "Nominatim", "Elasticsearch", "geopandas", "polars", "folium"],
+      "fromComment": true,
+      "desc": "Technical test: Airflow DAG orchestrating parallel download/insert tasks for plots, construction permits & public-transport stops (Uster, CH) into a PostGIS database; multi-stage geocoding (swisstopo API, Nominatim, Elasticsearch fuzzy-match fallback); interactive maps (folium, geopandas, shapely, polars)."
+    },
+    {
+      "name": "sibylle-thoma.ch",
+      "repo": "",
+      "url": "https://sibylle-thoma.ch",
+      "roles": ["consulting"],
+      "skills": ["HTML", "CSS", "SEO", "Web Accessibility", "WCAG", "Core Web Vitals"],
+      "fromComment": true,
+      "desc": "Election website for a cantonal-court candidate (Glarus, 2025): SEO informed by prior Google-snippet scraping research; Core Web Vitals optimisation for performance & accessibility. HTML/CSS, SEO, WCAG."
+    }
+  ],
+  "skillGroups": [
+    {
+      "label": "Programming",
+      "roles": ["ai-ml", "data-engineering", "data-science", "consulting"],
+      "items": ["Python (esp. ML, NLP & LLMs)", "SQL", "R (data pipelines, statistics, visualisation)", "Bash / Shell", "C", "HTML"]
+    },
+    {
+      "label": "LLMs & GenAI",
+      "roles": ["ai-ml"],
+      "items": ["OpenAI", "Ollama", "LangChain (FAISS, RetrievalQA, OpenAIEmbeddings)", "HuggingFace (transformers, Trainer API, PEFT/LoRA)", "SentenceTransformers / SBERT", "tiktoken", "Claude Code / Codex"]
+    },
+    {
+      "label": "Machine Learning",
+      "roles": ["ai-ml", "data-science"],
+      "items": ["scikit-learn", "PyTorch", "statsmodels (ARIMA)", "dtaidistance"]
+    },
+    {
+      "label": "NLP",
+      "roles": ["ai-ml"],
+      "items": ["NLTK", "spaCy", "langdetect", "jieba"]
+    },
+    {
+      "label": "Data",
+      "roles": ["data-engineering", "data-science"],
+      "items": ["pandas", "polars", "numpy", "scipy", "Argilla", "pdfplumber"]
+    },
+    {
+      "label": "APIs & Scraping",
+      "roles": ["data-engineering"],
+      "items": ["requests", "httpx", "Telethon", "PRAW", "Selenium"]
+    },
+    {
+      "label": "CLI & Dev",
+      "roles": ["data-engineering", "ai-ml"],
+      "items": ["Typer", "argparse", "Pydantic", "dotenv", "pytest", "Git / GitLab"]
+    },
+    {
+      "label": "Statistics & Econometrics (R)",
+      "roles": ["data-science"],
+      "items": ["lme4", "fixest", "lfe", "MASS", "nnet", "VGAM", "Matching", "rddtools", "sandwich", "lmtest", "car", "stargazer", "sjPlot", "effsize"]
+    },
+    {
+      "label": "Data & Wrangling (R)",
+      "roles": ["data-science"],
+      "items": ["tidyverse", "haven", "rio", "countrycode", "texreg", "guardianapi"]
+    },
+    {
+      "label": "Visualisation",
+      "roles": ["ai-ml", "data-science"],
+      "items": ["matplotlib", "seaborn", "wordcloud", "ggplot2", "ggExtra", "ggiraph", "ggrepel", "viridis", "cowplot"]
+    },
+    {
+      "label": "Infrastructure",
+      "roles": ["data-engineering", "consulting"],
+      "items": ["Docker", "Kubernetes", "Airflow", "HPC cluster (Slurm)", "Databricks", "Power BI", "M365 (SharePoint)", "GitHub / GitLab"]
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+---
+import Layout from "../layouts/Layout.astro";
+import profile from "../data/profile.json";
+import cv from "../data/cv.json";
+
+const roles = cv.roles;
+const today = new Date().toLocaleDateString("de-CH", { year: "numeric", month: "long", day: "numeric" });
+const sk = (arr?: string[]) => (arr ?? []).map((s) => s.toLowerCase()).join("|");
+const first = roles[0].id;
+---
+
+<Layout title="Lebenslauf · Nathalie Guibert" description="Lebenslauf von Nathalie Guibert — nach Rolle gefiltert oder auf eine Stellenanzeige zugeschnitten.">
+  <div class="cv-page">
+    <div class="controls no-print">
+      <a class="back" href="/#cv">← zurück zur Seite</a>
+
+      <div class="tabs" role="tablist" aria-label="CV-Variante">
+        {roles.map((r, i) => (
+          <button class={`tab ${i === 0 ? "is-active" : ""}`} data-role={r.id} data-tagline={r.tagline} type="button" role="tab" aria-selected={i === 0 ? "true" : "false"}>{r.label}</button>
+        ))}
+      </div>
+
+      <details class="matcher">
+        <summary>🔎 Auf eine Stellenanzeige zuschneiden</summary>
+        <p class="matcher-hint">Text der Stellenanzeige einfügen — die Seite erkennt, welche deiner Skills gefragt sind, und wählt die passende Rolle.</p>
+        <textarea id="jobtext" placeholder="Stellenbeschreibung hier einfügen …" rows="5"></textarea>
+        <div id="match-summary" class="match-summary" hidden></div>
+      </details>
+
+      <button id="print-btn" class="btn btn-primary" type="button">Als PDF drucken ↧</button>
+    </div>
+
+    <article class="cv-doc" data-role={first}>
+      <header class="cv-head">
+        <h1>{profile.name}</h1>
+        <p class="contact">
+          {cv.header.phone}<span class="sep">·</span>
+          <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a><span class="sep">·</span>
+          <a href={profile.links.github} target="_blank" rel="noopener">github.com/{profile.handle}</a>
+          {profile.links.linkedin && (<><span class="sep">·</span><a href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a></>)}
+          <span class="sep">·</span>{cv.header.permit}, Nat. {cv.header.nationality}
+        </p>
+        <p class="role-tagline" id="role-tagline">{roles[0].tagline}</p>
+      </header>
+
+      <section class="cv-sec">
+        <h2>Work Experience</h2>
+        {cv.experience.map((x: any) => (
+          <div class="cv-item" data-roles={x.roles.join("|")} data-skills={sk(x.skills)}>
+            <div class="ci-head"><span class="ci-title">{x.title}</span><span class="ci-date">{x.dates}</span></div>
+            <div class="ci-sub"><span>{x.org}</span><span>{x.location}</span></div>
+            <ul>{x.bullets.map((b: string) => <li>{b}</li>)}</ul>
+          </div>
+        ))}
+      </section>
+
+      <section class="cv-sec">
+        <h2>Education</h2>
+        {cv.education.map((x: any) => (
+          <div class="cv-item" data-roles={x.roles.join("|")} data-skills={sk(x.skills)}>
+            <div class="ci-head"><span class="ci-title">{x.institution}{x.grade ? `  ·  ${x.grade}` : ""}</span><span class="ci-date">{x.dates}</span></div>
+            <div class="ci-sub"><span>{x.degree}</span><span>{x.location}</span></div>
+            <ul>{x.bullets.map((b: string) => <li>{b}</li>)}</ul>
+          </div>
+        ))}
+      </section>
+
+      <section class="cv-sec">
+        <h2>Projects</h2>
+        {cv.projects.map((x: any) => (
+          <div class="cv-item" data-roles={x.roles.join("|")} data-skills={sk(x.skills)}>
+            <div class="ci-head">
+              <span class="ci-title">{x.name}{(x.repo || x.url) && (<a class="ci-link" href={x.url || x.repo} target="_blank" rel="noopener"> ↗</a>)}</span>
+            </div>
+            <p class="ci-desc">{x.desc}</p>
+          </div>
+        ))}
+      </section>
+
+      <section class="cv-sec cv-skills">
+        <h2>Technical Skills</h2>
+        {cv.skillGroups.map((g: any) => (
+          <p class="skgroup" data-roles={g.roles.join("|")}><strong>{g.label}:</strong> {g.items.join(" · ")}</p>
+        ))}
+      </section>
+
+      <section class="cv-sec">
+        <h2>Languages</h2>
+        <p class="langs">{profile.languages.map((l: any) => `${l.name} (${l.level})`).join("  ·  ")}</p>
+      </section>
+
+      <p class="cv-stamp">Stand: {today}</p>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .cv-page { max-width: 60rem; margin-inline: auto; padding: 1.5rem 1.25rem 4rem; }
+
+  /* ---- Controls (screen only) ---- */
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .back { font-weight: 500; margin-right: auto; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tab {
+    font: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--bg-elev); color: var(--text-muted);
+  }
+  .tab:hover { border-color: var(--accent); }
+  .tab.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .matcher { flex-basis: 100%; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.6rem 1rem; }
+  .matcher summary { cursor: pointer; font-weight: 500; }
+  .matcher-hint { color: var(--text-muted); font-size: 0.9rem; margin: 0.6rem 0; }
+  #jobtext { width: 100%; box-sizing: border-box; font: inherit; font-size: 0.9rem; padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); resize: vertical; }
+  .match-summary { margin-top: 0.8rem; font-size: 0.9rem; }
+  .match-summary .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
+  .chip-skill { font-size: 0.75rem; padding: 0.15rem 0.55rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+
+  /* ---- CV document ---- */
+  .cv-doc {
+    background: #fff; color: #1a1a1a; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: clamp(1.5rem, 4vw, 3rem); box-shadow: var(--shadow);
+    font-size: 0.9rem; line-height: 1.5;
+  }
+  .cv-head { text-align: center; margin-bottom: 1.4rem; }
+  .cv-head h1 { font-family: var(--font-serif); font-size: 1.9rem; margin: 0 0 0.4rem; color: #111; }
+  .contact { font-size: 0.82rem; color: #444; margin: 0 0 0.4rem; }
+  .contact a { color: #1a1a1a; text-decoration: none; }
+  .contact .sep { margin: 0 0.4rem; color: #aaa; }
+  .role-tagline { font-size: 0.86rem; color: var(--accent); font-style: italic; margin: 0.2rem 0 0; }
+
+  .cv-sec { margin-top: 1.3rem; }
+  .cv-sec h2 {
+    font-family: var(--font-sans); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #111; border-bottom: 1px solid #ccc; padding-bottom: 0.2rem; margin: 0 0 0.7rem;
+  }
+  .cv-item { margin-bottom: 0.85rem; }
+  .ci-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+  .ci-title { font-weight: 600; color: #111; }
+  .ci-date { color: #555; font-size: 0.82rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .ci-sub { display: flex; justify-content: space-between; gap: 1rem; font-style: italic; color: #555; font-size: 0.85rem; }
+  .cv-item ul { margin: 0.35rem 0 0; padding-left: 1.1rem; }
+  .cv-item li { margin-bottom: 0.2rem; }
+  .ci-desc { margin: 0.2rem 0 0; color: #333; }
+  .ci-link { color: var(--accent); text-decoration: none; }
+  .skgroup { margin: 0 0 0.45rem; }
+  .skgroup strong { color: #111; }
+  .langs { margin: 0; }
+  .cv-stamp { text-align: right; color: #888; font-size: 0.78rem; margin-top: 1.5rem; }
+
+  /* matched emphasis (from job matcher) */
+  .cv-item.matched { position: relative; }
+  .cv-item.matched::before {
+    content: ""; position: absolute; left: -0.9rem; top: 0.15rem; bottom: 0.15rem; width: 3px;
+    background: var(--accent); border-radius: 2px;
+  }
+
+  /* ---- Print ---- */
+  @media print {
+    :global(body) { background: #fff !important; }
+    .no-print { display: none !important; }
+    .cv-page { max-width: none; padding: 0; }
+    .cv-doc { border: 0; box-shadow: none; border-radius: 0; padding: 0; font-size: 10.5pt; }
+    .cv-stamp { display: none; }
+    .cv-item, .cv-sec { break-inside: avoid; }
+    .cv-item.matched::before { display: none; }
+    a { color: #1a1a1a !important; }
+  }
+</style>
+
+<script>
+  const doc = document.querySelector<HTMLElement>(".cv-doc");
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".tab"));
+  const summary = document.getElementById("match-summary");
+
+  function setRole(role: string) {
+    if (!doc) return;
+    doc.dataset.role = role;
+    tabs.forEach((t) => {
+      const on = t.dataset.role === role;
+      t.classList.toggle("is-active", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    // Sichtbarkeit nach Rolle
+    document.querySelectorAll<HTMLElement>(".cv-item[data-roles]").forEach((el) => {
+      el.hidden = !(el.dataset.roles || "").split("|").includes(role);
+    });
+    document.querySelectorAll<HTMLElement>(".skgroup[data-roles]").forEach((el) => {
+      el.hidden = !(el.dataset.roles || "").split("|").includes(role);
+    });
+    const tl = document.getElementById("role-tagline");
+    const active = tabs.find((t) => t.dataset.role === role);
+    if (tl && active && active.dataset.tagline) tl.textContent = active.dataset.tagline;
+  }
+
+  tabs.forEach((t) => t.addEventListener("click", () => setRole(t.dataset.role!)));
+
+  // --- Job-Matcher ---
+  const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const rx = (skill: string) => new RegExp("(?:^|[^a-z0-9+.#])" + esc(skill) + "(?:[^a-z0-9+.#]|$)", "i");
+
+  const jobtext = document.getElementById("jobtext") as HTMLTextAreaElement | null;
+  let timer: number | undefined;
+  jobtext?.addEventListener("input", () => {
+    window.clearTimeout(timer);
+    timer = window.setTimeout(runMatch, 250);
+  });
+
+  function runMatch() {
+    if (!jobtext || !summary) return;
+    const text = jobtext.value.toLowerCase();
+    if (text.trim().length < 15) {
+      summary.hidden = true;
+      document.querySelectorAll(".cv-item.matched").forEach((el) => el.classList.remove("matched"));
+      return;
+    }
+    const roleScore: Record<string, number> = {};
+    const matchedSkills = new Set<string>();
+    document.querySelectorAll<HTMLElement>(".cv-item[data-skills]").forEach((el) => {
+      const skills = (el.dataset.skills || "").split("|").filter(Boolean);
+      let hits = 0;
+      skills.forEach((s) => { if (rx(s).test(text)) { hits++; matchedSkills.add(s); } });
+      el.classList.toggle("matched", hits > 0);
+      if (hits > 0) (el.dataset.roles || "").split("|").forEach((r) => (roleScore[r] = (roleScore[r] || 0) + hits));
+    });
+
+    const best = Object.entries(roleScore).sort((a, b) => b[1] - a[1])[0];
+    if (best) setRole(best[0]);
+
+    const chips = [...matchedSkills].slice(0, 30).map((s) => `<span class="chip-skill">${s}</span>`).join("");
+    const roleName = best ? (tabs.find((t) => t.dataset.role === best[0])?.textContent ?? "") : "";
+    summary.innerHTML = matchedSkills.size
+      ? `<strong>${matchedSkills.size}</strong> deiner Skills passen zu dieser Anzeige${best ? ` — beste Variante: <strong>${roleName}</strong>` : ""}.<div class="chips">${chips}</div>`
+      : "Keine passenden Skills erkannt — versuch mehr Text der Anzeige.";
+    summary.hidden = false;
+  }
+
+  document.getElementById("print-btn")?.addEventListener("click", () => window.print());
+
+  const hashRole = location.hash.replace("#", "");
+  const validRole = tabs.some((t) => t.dataset.role === hashRole);
+  setRole(validRole ? hashRole : (doc?.dataset.role || ""));
+</script>
