@@ -71,7 +71,8 @@
       "icon": "🌈",
       "image": "",
       "label": "Inklusion & Awareness",
-      "note": "[optional — Engagement, Themen]"
+      "note": "",
+      "showEngagement": true
     }
   ],
   "engagement": [
@@ -98,8 +99,8 @@
   ],
   "events": [
     {
-      "name": "Disability Awareness Day 2026",
-      "date": "2026",
+      "name": "Disability Awareness Day",
+      "date": "2026-12-03",
       "url": ""
     }
   ],

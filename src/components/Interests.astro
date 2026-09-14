@@ -1,6 +1,7 @@
 ---
 import profile from "../data/profile.json";
 const interests = profile.interests ?? [];
+const engagement = profile.engagement ?? [];
 ---
 
 {interests.length > 0 && (
@@ -8,20 +9,32 @@ const interests = profile.interests ?? [];
     <div class="wrap">
       <p class="eyebrow">Neben der Arbeit</p>
       <h2>Interessen &amp; Engagement</h2>
-      <p class="lead">Was mich ausserhalb von Code und Daten ausmacht.</p>
+      <p class="lead">Klick ein Feld für mehr.</p>
 
       <ul class="interest-grid">
-        {interests.map((it: { icon?: string; image?: string; label: string; note?: string }) => (
+        {interests.map((it: { icon?: string; image?: string; label: string; note?: string; showEngagement?: boolean }) => (
           <li class="interest">
-            <span class={`thumb ${it.image ? "has-image" : ""}`} aria-hidden="true">
-              {it.image
-                ? <img src={it.image} alt="" loading="lazy" />
-                : <span class="emoji">{it.icon}</span>}
-            </span>
-            <div>
-              <span class="label">{it.label}</span>
-              {it.note && <span class="note">{it.note}</span>}
-            </div>
+            <details>
+              <summary>
+                <span class="thumb" aria-hidden="true">
+                  {it.image ? <img src={it.image} alt="" loading="lazy" /> : <span class="emoji">{it.icon}</span>}
+                </span>
+                <span class="label">{it.label}</span>
+                <span class="chev" aria-hidden="true">›</span>
+              </summary>
+
+              <div class="body">
+                {it.showEngagement && engagement.length > 0 ? (
+                  <ul class="eng-list">
+                    {engagement.map((e: { label: string; url: string }) => (
+                      <li>{e.url ? <a href={e.url} target="_blank" rel="noopener">{e.label} ↗</a> : e.label}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="soon">{it.note ? it.note : "Mehr dazu folgt."}</p>
+                )}
+              </div>
+            </details>
           </li>
         ))}
       </ul>
@@ -29,37 +42,50 @@ const interests = profile.interests ?? [];
   </section>
 )}
 
+<script>
+  // Offenes Feld auf volle Breite (Fallback für Browser ohne :has-Support).
+  document.querySelectorAll<HTMLDetailsElement>("#interests .interest details").forEach((d) => {
+    d.addEventListener("toggle", () => {
+      d.closest(".interest")?.classList.toggle("is-open", d.open);
+    });
+  });
+</script>
+
 <style>
   .lead { color: var(--text-muted); margin-top: -0.4rem; }
   .interest-grid {
-    list-style: none;
-    margin: 1.6rem 0 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
-    gap: 0.9rem;
+    list-style: none; margin: 1.6rem 0 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    gap: 0.9rem; align-items: start;
   }
   .interest {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    background: var(--bg-elev);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 0.9rem 1.1rem;
+    background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
   }
+  /* Offenes Feld nimmt die volle Breite -- damit die Engagement-Links Platz haben */
+  .interest.is-open { grid-column: 1 / -1; border-color: var(--accent); }
+
+  details { }
+  summary {
+    display: flex; align-items: center; gap: 0.9rem;
+    padding: 0.9rem 1.1rem; cursor: pointer; list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; border-radius: var(--radius); }
   .thumb {
-    flex: 0 0 auto;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-    background: var(--accent-soft);
+    flex: 0 0 auto; width: 3rem; height: 3rem; border-radius: 50%; overflow: hidden;
+    display: grid; place-items: center; background: var(--accent-soft);
   }
   .thumb img { width: 100%; height: 100%; object-fit: cover; }
   .emoji { font-size: 1.5rem; line-height: 1; }
-  .label { display: block; font-weight: 550; }
-  .note { display: block; color: var(--text-muted); font-size: 0.85rem; }
+  .label { flex: 1; font-weight: 550; }
+  .chev { color: var(--text-muted); transition: transform 0.15s ease; }
+  details[open] .chev { transform: rotate(90deg); }
+  .body { padding: 0 1.1rem 1.1rem; }
+  .eng-list {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: 0.5rem 1.5rem;
+  }
+  .eng-list a { font-weight: 500; }
+  .soon { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
 </style>

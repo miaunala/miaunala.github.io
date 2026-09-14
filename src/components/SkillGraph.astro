@@ -1,6 +1,14 @@
 ---
 import market from "../data/market_skills.json";
 import projects from "../data/projects.json";
+import profile from "../data/profile.json";
+// Von der Pipeline erzeugt (pipeline/duolingo.py) -- Streak-Sicherung wie in About.
+import duo from "../data/duolingo.json";
+const MAX_AGE_DAYS = 7;
+const streakAgeDays = duo?.generated_at
+  ? (Date.now() - new Date(duo.generated_at).getTime()) / 86_400_000
+  : Infinity;
+const showStreak = (duo?.streak ?? 0) > 0 && streakAgeDays <= MAX_AGE_DAYS;
 
 type Proj = {
   id: string; title: string; repo?: string;
@@ -111,8 +119,32 @@ const week = (market as any).week ?? null;
     <div class="graph-wrap">
       <div id="skill-graph" class="graph" role="img"
            aria-label={`Skill-Netzwerk mit ${totalSkills} Skills in vier Themenfeldern; ${mineCount} davon beherrsche ich. Alternative: Tag-Filter im Projekte-Bereich.`}></div>
-      <aside id="skill-panel" class="panel">
-        <p class="panel-hint">Tippe auf einen Punkt, um Details &amp; Projekte zu sehen.</p>
+      <aside class="side-col">
+        <div id="skill-panel" class="panel">
+          <p class="panel-hint">Tippe auf einen Punkt, um Details &amp; Projekte zu sehen.</p>
+        </div>
+
+        {profile.languages?.length > 0 && (
+          <div class="lang-block">
+            <h3>Sprachen</h3>
+            <ul class="lang-list">
+              {profile.languages.map((l: { name: string; level: string }) => (
+                <li><span class="lang-name">{l.name}</span> <span class="lang-lvl">{l.level}</span></li>
+              ))}
+            </ul>
+            {profile.languagesLearning?.length > 0 && (
+              <p class="lang-learning">Ausserdem gerade am Lernen: {profile.languagesLearning.join(", ")}</p>
+            )}
+            {profile.links.duolingo && (
+              <p class="duo-row">
+                <a class="duo" href={profile.links.duolingo} target="_blank" rel="noopener">🦉 Duolingo ↗</a>
+                {showStreak && (
+                  <span class="streak" title={`${duo.total_xp.toLocaleString("de-CH")} XP insgesamt`}>🔥 {duo.streak} Tage Streak</span>
+                )}
+              </p>
+            )}
+          </div>
+        )}
       </aside>
     </div>
 
@@ -341,10 +373,29 @@ const week = (market as any).week ?? null;
   }
   /* Bewusst ohne Karte: der Graph sitzt direkt auf der Seitenfarbe. */
   .graph { height: 560px; background: transparent; border: 0; overflow: hidden; }
+  .side-col { display: flex; flex-direction: column; gap: 1rem; align-self: start; }
   .panel {
     background: var(--bg-elev); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 1.2rem 1.3rem; min-height: 0;
-    align-self: start;
+  }
+  .lang-block {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.2rem 1.3rem;
+  }
+  .lang-block h3 {
+    font-family: var(--font-sans); font-size: 0.78rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--accent); margin: 0 0 0.7rem;
+  }
+  .lang-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .lang-list li { display: flex; justify-content: space-between; gap: 0.75rem; }
+  .lang-name { font-weight: 500; }
+  .lang-lvl { color: var(--text-muted); font-size: 0.9rem; }
+  .lang-learning { margin: 0.7rem 0 0; font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; }
+  .duo-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0.75rem; margin: 0.9rem 0 0; }
+  .duo { font-size: 0.9rem; font-weight: 500; }
+  .streak {
+    font-size: 0.78rem; font-weight: 600; padding: 0.15rem 0.55rem; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); white-space: nowrap;
   }
   .ev-kind { color: var(--text-muted); font-size: 0.78rem; }
   .panel-hint, .panel-note { color: var(--text-muted); font-size: 0.9rem; }
