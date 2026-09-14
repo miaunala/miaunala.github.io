@@ -5,25 +5,33 @@ import cv from "../data/cv.json";
 
 const roles = cv.roles;
 const today = new Date().toLocaleDateString("de-CH", { year: "numeric", month: "long", day: "numeric" });
-const sk = (arr?: string[]) => (arr ?? []).map((s) => s.toLowerCase()).join("|");
 const first = roles[0].id;
+
+// Korpus fuer den Matcher (Text pro Eintrag + Rollen), ID passt zum data-id im DOM.
+const matchItems = [
+  ...cv.experience.map((x: any, i: number) => ({ id: `exp-${i}`, roles: x.roles, text: [x.title, x.org, ...(x.bullets || []), ...(x.skills || []), ...(x.concepts || [])].join(" ") })),
+  ...cv.projects.map((x: any, i: number) => ({ id: `proj-${i}`, roles: x.roles, text: [x.name, x.desc, ...(x.skills || []), ...(x.concepts || [])].join(" ") })),
+  ...cv.education.map((x: any, i: number) => ({ id: `edu-${i}`, roles: x.roles, text: [x.institution, x.degree, ...(x.bullets || []), ...(x.skills || [])].join(" ") })),
+];
+const matchData = { items: matchItems, synonyms: cv.synonyms };
 ---
 
-<Layout title="Lebenslauf · Nathalie Guibert" description="Lebenslauf von Nathalie Guibert — nach Rolle gefiltert oder auf eine Stellenanzeige zugeschnitten.">
+<Layout title="Lebenslauf · Nathalie Guibert" description="Lebenslauf von Nathalie Guibert — nach Rolle oder auf eine Stellenanzeige zugeschnitten (BM25-Matching im Browser).">
   <div class="cv-page">
     <div class="controls no-print">
       <a class="back" href="/#cv">← zurück zur Seite</a>
 
       <div class="tabs" role="tablist" aria-label="CV-Variante">
-        {roles.map((r, i) => (
+        {roles.map((r: any, i: number) => (
           <button class={`tab ${i === 0 ? "is-active" : ""}`} data-role={r.id} data-tagline={r.tagline} type="button" role="tab" aria-selected={i === 0 ? "true" : "false"}>{r.label}</button>
         ))}
       </div>
 
       <details class="matcher">
         <summary>🔎 Auf eine Stellenanzeige zuschneiden</summary>
-        <p class="matcher-hint">Text der Stellenanzeige einfügen — die Seite erkennt, welche deiner Skills gefragt sind, und wählt die passende Rolle.</p>
+        <p class="matcher-hint">Anzeige einfügen — der CV sortiert die passenden Stationen nach oben, hebt Treffer hervor und wählt die beste Rolle. Läuft komplett im Browser (BM25 + Synonyme DE/EN).</p>
         <textarea id="jobtext" placeholder="Stellenbeschreibung hier einfügen …" rows="5"></textarea>
+        <div class="matcher-actions"><button id="clear-btn" class="mini" type="button" hidden>zurücksetzen</button></div>
         <div id="match-summary" class="match-summary" hidden></div>
       </details>
 
@@ -34,21 +42,21 @@ const first = roles[0].id;
       <header class="cv-head">
         <h1>{profile.name}</h1>
         <p class="contact">
-          {cv.header.phone}<span class="sep">·</span>
-          <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a><span class="sep">·</span>
+          <span>{cv.header.phone}</span>
+          <a href={`mailto:${profile.links.email}`}>{profile.links.email}</a>
           <a href={profile.links.github} target="_blank" rel="noopener">github.com/{profile.handle}</a>
-          {profile.links.linkedin && (<><span class="sep">·</span><a href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a></>)}
-          <span class="sep">·</span>{cv.header.permit}, Nat. {cv.header.nationality}
+          {profile.links.linkedin && <a href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
+          <span>{cv.header.permit}, Nat. {cv.header.nationality}</span>
         </p>
         <p class="role-tagline" id="role-tagline">{roles[0].tagline}</p>
       </header>
 
       <section class="cv-sec">
         <h2>Work Experience</h2>
-        {cv.experience.map((x: any) => (
-          <div class="cv-item" data-roles={x.roles.join("|")} data-skills={sk(x.skills)}>
+        {cv.experience.map((x: any, i: number) => (
+          <div class="cv-item" data-id={`exp-${i}`} data-order={i} data-roles={x.roles.join("|")}>
             <div class="ci-head"><span class="ci-title">{x.title}</span><span class="ci-date">{x.dates}</span></div>
-            <div class="ci-sub"><span>{x.org}</span><span>{x.location}</span></div>
+            <div class="ci-sub"><span class="it">{x.org}</span><span class="it">{x.location}</span></div>
             <ul>{x.bullets.map((b: string) => <li>{b}</li>)}</ul>
           </div>
         ))}
@@ -56,10 +64,10 @@ const first = roles[0].id;
 
       <section class="cv-sec">
         <h2>Education</h2>
-        {cv.education.map((x: any) => (
-          <div class="cv-item" data-roles={x.roles.join("|")} data-skills={sk(x.skills)}>
+        {cv.education.map((x: any, i: number) => (
+          <div class="cv-item" data-id={`edu-${i}`} data-order={i} data-roles={x.roles.join("|")}>
             <div class="ci-head"><span class="ci-title">{x.institution}{x.grade ? `  ·  ${x.grade}` : ""}</span><span class="ci-date">{x.dates}</span></div>
-            <div class="ci-sub"><span>{x.degree}</span><span>{x.location}</span></div>
+            <div class="ci-sub"><span class="it">{x.degree}</span><span class="it">{x.location}</span></div>
             <ul>{x.bullets.map((b: string) => <li>{b}</li>)}</ul>
           </div>
         ))}
@@ -67,11 +75,9 @@ const first = roles[0].id;
 
       <section class="cv-sec">
         <h2>Projects</h2>
-        {cv.projects.map((x: any) => (
-          <div class="cv-item" data-roles={x.roles.join("|")} data-skills={sk(x.skills)}>
-            <div class="ci-head">
-              <span class="ci-title">{x.name}{(x.repo || x.url) && (<a class="ci-link" href={x.url || x.repo} target="_blank" rel="noopener"> ↗</a>)}</span>
-            </div>
+        {cv.projects.map((x: any, i: number) => (
+          <div class="cv-item" data-id={`proj-${i}`} data-order={i} data-roles={x.roles.join("|")}>
+            <div class="ci-head"><span class="ci-title">{x.name}{(x.repo || x.url) && <a class="ci-link" href={x.url || x.repo} target="_blank" rel="noopener"> ↗</a>}</span></div>
             <p class="ci-desc">{x.desc}</p>
           </div>
         ))}
@@ -89,82 +95,81 @@ const first = roles[0].id;
         <p class="langs">{profile.languages.map((l: any) => `${l.name} (${l.level})`).join("  ·  ")}</p>
       </section>
 
-      <p class="cv-stamp">Stand: {today}</p>
+      <p class="cv-stamp no-print">Stand: {today}</p>
     </article>
   </div>
+
+  <script type="application/json" id="cv-match-data" set:html={JSON.stringify(matchData)}></script>
 </Layout>
 
 <style>
-  .cv-page { max-width: 60rem; margin-inline: auto; padding: 1.5rem 1.25rem 4rem; }
+  .cv-page { max-width: 58rem; margin-inline: auto; padding: 1.5rem 1.25rem 4rem; }
 
-  /* ---- Controls (screen only) ---- */
   .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
   .back { font-weight: 500; margin-right: auto; }
   .tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .tab {
-    font: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 999px; cursor: pointer;
-    border: 1px solid var(--border); background: var(--bg-elev); color: var(--text-muted);
-  }
+  .tab { font: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 999px; cursor: pointer; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text-muted); }
   .tab:hover { border-color: var(--accent); }
   .tab.is-active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
   .matcher { flex-basis: 100%; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.6rem 1rem; }
   .matcher summary { cursor: pointer; font-weight: 500; }
   .matcher-hint { color: var(--text-muted); font-size: 0.9rem; margin: 0.6rem 0; }
-  #jobtext { width: 100%; box-sizing: border-box; font: inherit; font-size: 0.9rem; padding: 0.6rem 0.75rem;
-    border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); resize: vertical; }
-  .match-summary { margin-top: 0.8rem; font-size: 0.9rem; }
-  .match-summary .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
+  #jobtext { width: 100%; box-sizing: border-box; font: inherit; font-size: 0.9rem; padding: 0.6rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); resize: vertical; }
+  .matcher-actions { margin-top: 0.5rem; }
+  .mini { font: inherit; font-size: 0.82rem; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; text-decoration: underline; }
+  .match-summary { margin-top: 0.8rem; font-size: 0.9rem; line-height: 1.6; }
+  .match-summary .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.35rem 0 0.6rem; }
   .chip-skill { font-size: 0.75rem; padding: 0.15rem 0.55rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .chip-gap { font-size: 0.75rem; padding: 0.15rem 0.55rem; border-radius: 999px; background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
 
-  /* ---- CV document ---- */
+  /* ---- CV document: an dein LaTeX-Layout angelehnt ---- */
   .cv-doc {
-    background: #fff; color: #1a1a1a; border: 1px solid var(--border); border-radius: var(--radius);
-    padding: clamp(1.5rem, 4vw, 3rem); box-shadow: var(--shadow);
-    font-size: 0.9rem; line-height: 1.5;
+    background: #fff; color: #111; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: clamp(1.6rem, 4vw, 3rem); box-shadow: var(--shadow);
+    font-family: var(--font-serif); font-size: 0.86rem; line-height: 1.45;
   }
-  .cv-head { text-align: center; margin-bottom: 1.4rem; }
-  .cv-head h1 { font-family: var(--font-serif); font-size: 1.9rem; margin: 0 0 0.4rem; color: #111; }
-  .contact { font-size: 0.82rem; color: #444; margin: 0 0 0.4rem; }
-  .contact a { color: #1a1a1a; text-decoration: none; }
-  .contact .sep { margin: 0 0.4rem; color: #aaa; }
-  .role-tagline { font-size: 0.86rem; color: var(--accent); font-style: italic; margin: 0.2rem 0 0; }
+  .cv-head { text-align: center; margin-bottom: 1.2rem; }
+  .cv-head h1 { font-size: 2rem; font-weight: 600; font-variant: small-caps; letter-spacing: 0.06em; margin: 0 0 0.35rem; color: #000; }
+  .contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem 0.55rem; font-size: 0.8rem; color: #333; margin: 0; }
+  .contact > * { position: relative; }
+  .contact > * + *::before { content: "|"; color: #bbb; margin-right: 0.55rem; }
+  .contact a { color: #111; text-decoration: none; }
+  .role-tagline { font-style: italic; color: var(--accent); font-size: 0.85rem; margin: 0.45rem 0 0; }
 
-  .cv-sec { margin-top: 1.3rem; }
+  .cv-sec { margin-top: 1.2rem; }
   .cv-sec h2 {
-    font-family: var(--font-sans); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;
-    color: #111; border-bottom: 1px solid #ccc; padding-bottom: 0.2rem; margin: 0 0 0.7rem;
+    font-family: var(--font-sans); font-variant: small-caps; text-transform: lowercase;
+    font-size: 1.02rem; font-weight: 600; letter-spacing: 0.04em; color: #000;
+    border-bottom: 1px solid #000; padding-bottom: 0.1rem; margin: 0 0 0.6rem;
   }
-  .cv-item { margin-bottom: 0.85rem; }
+  .cv-item { margin-bottom: 0.7rem; position: relative; }
   .ci-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
-  .ci-title { font-weight: 600; color: #111; }
-  .ci-date { color: #555; font-size: 0.82rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
-  .ci-sub { display: flex; justify-content: space-between; gap: 1rem; font-style: italic; color: #555; font-size: 0.85rem; }
-  .cv-item ul { margin: 0.35rem 0 0; padding-left: 1.1rem; }
-  .cv-item li { margin-bottom: 0.2rem; }
-  .ci-desc { margin: 0.2rem 0 0; color: #333; }
+  .ci-title { font-weight: 700; color: #000; }
+  .ci-date { color: #333; font-size: 0.8rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .ci-sub { display: flex; justify-content: space-between; gap: 1rem; color: #333; font-size: 0.82rem; }
+  .ci-sub .it { font-style: italic; }
+  .cv-item ul { margin: 0.3rem 0 0; padding-left: 1.05rem; }
+  .cv-item li { margin-bottom: 0.15rem; }
+  .ci-desc { margin: 0.15rem 0 0; color: #222; }
   .ci-link { color: var(--accent); text-decoration: none; }
-  .skgroup { margin: 0 0 0.45rem; }
-  .skgroup strong { color: #111; }
+  .skgroup { margin: 0 0 0.4rem; }
+  .skgroup strong { color: #000; }
   .langs { margin: 0; }
-  .cv-stamp { text-align: right; color: #888; font-size: 0.78rem; margin-top: 1.5rem; }
+  .cv-stamp { text-align: right; color: #888; font-size: 0.78rem; margin-top: 1.4rem; }
 
-  /* matched emphasis (from job matcher) */
-  .cv-item.matched { position: relative; }
   .cv-item.matched::before {
-    content: ""; position: absolute; left: -0.9rem; top: 0.15rem; bottom: 0.15rem; width: 3px;
+    content: ""; position: absolute; left: -0.85rem; top: 0.1rem; bottom: 0.1rem; width: 3px;
     background: var(--accent); border-radius: 2px;
   }
 
-  /* ---- Print ---- */
   @media print {
     :global(body) { background: #fff !important; }
     .no-print { display: none !important; }
     .cv-page { max-width: none; padding: 0; }
-    .cv-doc { border: 0; box-shadow: none; border-radius: 0; padding: 0; font-size: 10.5pt; }
-    .cv-stamp { display: none; }
+    .cv-doc { border: 0; box-shadow: none; border-radius: 0; padding: 0; font-size: 10pt; }
     .cv-item, .cv-sec { break-inside: avoid; }
     .cv-item.matched::before { display: none; }
-    a { color: #1a1a1a !important; }
+    a { color: #111 !important; }
   }
 </style>
 
@@ -172,6 +177,9 @@ const first = roles[0].id;
   const doc = document.querySelector<HTMLElement>(".cv-doc");
   const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".tab"));
   const summary = document.getElementById("match-summary");
+  const clearBtn = document.getElementById("clear-btn") as HTMLButtonElement | null;
+  const raw = document.getElementById("cv-match-data")?.textContent || "{}";
+  const DATA = JSON.parse(raw) as { items: { id: string; roles: string[]; text: string }[]; synonyms: Record<string, string[]> };
 
   function setRole(role: string) {
     if (!doc) return;
@@ -181,63 +189,117 @@ const first = roles[0].id;
       t.classList.toggle("is-active", on);
       t.setAttribute("aria-selected", on ? "true" : "false");
     });
-    // Sichtbarkeit nach Rolle
-    document.querySelectorAll<HTMLElement>(".cv-item[data-roles]").forEach((el) => {
-      el.hidden = !(el.dataset.roles || "").split("|").includes(role);
-    });
-    document.querySelectorAll<HTMLElement>(".skgroup[data-roles]").forEach((el) => {
-      el.hidden = !(el.dataset.roles || "").split("|").includes(role);
-    });
+    document.querySelectorAll<HTMLElement>(".cv-item[data-roles]").forEach((el) => { el.hidden = !(el.dataset.roles || "").split("|").includes(role); });
+    document.querySelectorAll<HTMLElement>(".skgroup[data-roles]").forEach((el) => { el.hidden = !(el.dataset.roles || "").split("|").includes(role); });
     const tl = document.getElementById("role-tagline");
     const active = tabs.find((t) => t.dataset.role === role);
-    if (tl && active && active.dataset.tagline) tl.textContent = active.dataset.tagline;
+    if (tl && active?.dataset.tagline) tl.textContent = active.dataset.tagline;
+  }
+  tabs.forEach((t) => t.addEventListener("click", () => { resetOrder(); setRole(t.dataset.role!); }));
+
+  // ---------- Linguistik: Synonyme -> kanonische Tokens ----------
+  const STOP = new Set("the a an and or of to in on for with at by from as is are be you your our we du und der die das ein eine mit fuer für von im in zu den dem als auf bei ist sie deine dein wir uns unsere sowie bzw dass sich es".split(/\s+/));
+  const pairs: [string, string][] = [];
+  for (const [canon, forms] of Object.entries(DATA.synonyms || {})) {
+    const tok = canon.replace(/\s+/g, "_");
+    for (const f of forms) pairs.push([f.toLowerCase(), tok]);
+  }
+  pairs.sort((a, b) => b[0].length - a[0].length);
+  const conceptTokens = new Set(Object.keys(DATA.synonyms || {}).map((c) => c.replace(/\s+/g, "_")));
+  const pretty = (tok: string) => tok.replace(/_/g, " ");
+  const escRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  function normalize(text: string): string[] {
+    let t = " " + text.toLowerCase().replace(/[^a-z0-9äöüß\s\-]/g, " ") + " ";
+    for (const [f, tok] of pairs) {
+      t = t.replace(new RegExp("(^|[^a-z0-9_])" + escRe(f) + "(?=[^a-z0-9_]|$)", "g"), "$1 " + tok + " ");
+    }
+    return t.split(/[^a-z0-9_äöüß]+/).filter((w) => w.length > 1 && !STOP.has(w));
   }
 
-  tabs.forEach((t) => t.addEventListener("click", () => setRole(t.dataset.role!)));
+  // ---------- BM25-Index ----------
+  const docs = DATA.items.map((it) => ({ id: it.id, roles: it.roles, toks: normalize(it.text) }));
+  const N = docs.length || 1;
+  const df: Record<string, number> = {};
+  docs.forEach((d) => new Set(d.toks).forEach((t) => (df[t] = (df[t] || 0) + 1)));
+  const avgdl = docs.reduce((s, d) => s + d.toks.length, 0) / N;
+  const idf = (t: string) => Math.log(1 + (N - (df[t] || 0) + 0.5) / ((df[t] || 0) + 0.5));
+  function bm25(q: Set<string>, d: { toks: string[] }) {
+    const k1 = 1.5, b = 0.75; const tf: Record<string, number> = {};
+    d.toks.forEach((t) => (tf[t] = (tf[t] || 0) + 1));
+    let s = 0;
+    q.forEach((t) => { const f = tf[t]; if (f) s += idf(t) * (f * (k1 + 1)) / (f + k1 * (1 - b + b * d.toks.length / avgdl)); });
+    return s;
+  }
 
-  // --- Job-Matcher ---
-  const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const rx = (skill: string) => new RegExp("(?:^|[^a-z0-9+.#])" + esc(skill) + "(?:[^a-z0-9+.#]|$)", "i");
+  const corpusTokens = new Set<string>(); docs.forEach((d) => d.toks.forEach((t) => corpusTokens.add(t)));
+
+  function applyScores(scoreById: Record<string, number>) {
+    document.querySelectorAll<HTMLElement>(".cv-item").forEach((el) => {
+      const sc = scoreById[el.dataset.id || ""] || 0;
+      el.dataset.score = String(sc);
+      el.classList.toggle("matched", sc > 0.01);
+    });
+    document.querySelectorAll<HTMLElement>(".cv-sec").forEach((sec) => {
+      const items = Array.from(sec.querySelectorAll<HTMLElement>(".cv-item"));
+      items.sort((a, b) => (parseFloat(b.dataset.score || "0") - parseFloat(a.dataset.score || "0")) || (parseInt(a.dataset.order || "0") - parseInt(b.dataset.order || "0")));
+      items.forEach((el) => sec.appendChild(el));
+    });
+  }
+  function resetOrder() {
+    document.querySelectorAll<HTMLElement>(".cv-item").forEach((el) => { el.classList.remove("matched"); el.dataset.score = "0"; });
+    document.querySelectorAll<HTMLElement>(".cv-sec").forEach((sec) => {
+      const items = Array.from(sec.querySelectorAll<HTMLElement>(".cv-item"));
+      items.sort((a, b) => parseInt(a.dataset.order || "0") - parseInt(b.dataset.order || "0"));
+      items.forEach((el) => sec.appendChild(el));
+    });
+  }
 
   const jobtext = document.getElementById("jobtext") as HTMLTextAreaElement | null;
   let timer: number | undefined;
-  jobtext?.addEventListener("input", () => {
-    window.clearTimeout(timer);
-    timer = window.setTimeout(runMatch, 250);
-  });
+  jobtext?.addEventListener("input", () => { window.clearTimeout(timer); timer = window.setTimeout(runMatch, 250); });
+  clearBtn?.addEventListener("click", () => { if (jobtext) jobtext.value = ""; runMatch(); });
 
   function runMatch() {
     if (!jobtext || !summary) return;
-    const text = jobtext.value.toLowerCase();
+    const text = jobtext.value;
     if (text.trim().length < 15) {
-      summary.hidden = true;
-      document.querySelectorAll(".cv-item.matched").forEach((el) => el.classList.remove("matched"));
+      summary.hidden = true; if (clearBtn) clearBtn.hidden = true; resetOrder();
       return;
     }
+    if (clearBtn) clearBtn.hidden = false;
+    const qtoks = normalize(text);
+    const q = new Set(qtoks);
+    const scoreById: Record<string, number> = {};
     const roleScore: Record<string, number> = {};
-    const matchedSkills = new Set<string>();
-    document.querySelectorAll<HTMLElement>(".cv-item[data-skills]").forEach((el) => {
-      const skills = (el.dataset.skills || "").split("|").filter(Boolean);
-      let hits = 0;
-      skills.forEach((s) => { if (rx(s).test(text)) { hits++; matchedSkills.add(s); } });
-      el.classList.toggle("matched", hits > 0);
-      if (hits > 0) (el.dataset.roles || "").split("|").forEach((r) => (roleScore[r] = (roleScore[r] || 0) + hits));
+    docs.forEach((d) => {
+      const s = bm25(q, d);
+      scoreById[d.id] = s;
+      if (s > 0.01) d.roles.forEach((r) => (roleScore[r] = (roleScore[r] || 0) + s));
     });
-
     const best = Object.entries(roleScore).sort((a, b) => b[1] - a[1])[0];
     if (best) setRole(best[0]);
+    applyScores(scoreById);
 
-    const chips = [...matchedSkills].slice(0, 30).map((s) => `<span class="chip-skill">${s}</span>`).join("");
+    // Getroffene Konzepte (in Anzeige UND in deinem CV) und Luecken (Anzeige will, CV nicht)
+    const matched = [...q].filter((t) => conceptTokens.has(t) && corpusTokens.has(t));
+    const gaps = [...q].filter((t) => conceptTokens.has(t) && !corpusTokens.has(t));
     const roleName = best ? (tabs.find((t) => t.dataset.role === best[0])?.textContent ?? "") : "";
-    summary.innerHTML = matchedSkills.size
-      ? `<strong>${matchedSkills.size}</strong> deiner Skills passen zu dieser Anzeige${best ? ` — beste Variante: <strong>${roleName}</strong>` : ""}.<div class="chips">${chips}</div>`
-      : "Keine passenden Skills erkannt — versuch mehr Text der Anzeige.";
+    const topItems = Object.entries(scoreById).filter(([, s]) => s > 0.01).sort((a, b) => b[1] - a[1]).slice(0, 3)
+      .map(([id]) => document.querySelector<HTMLElement>(`.cv-item[data-id="${id}"] .ci-title`)?.textContent?.trim()).filter(Boolean);
+
+    let html = best
+      ? `Beste Variante: <strong>${roleName}</strong>. Passende Stationen stehen jetzt oben.`
+      : "Keine klaren Treffer — versuch mehr Text der Anzeige.";
+    if (matched.length) html += `<div class="chips">${matched.map((t) => `<span class="chip-skill">${pretty(t)}</span>`).join("")}</div>`;
+    if (topItems.length) html += `<div>Stärkste Treffer: ${topItems.join(" · ")}.</div>`;
+    if (gaps.length) html += `<div style="margin-top:.4rem">Gefragt, (noch) nicht im CV: <span class="chips" style="display:inline-flex">${gaps.map((t) => `<span class="chip-gap">${pretty(t)}</span>`).join("")}</span></div>`;
+    summary.innerHTML = html;
     summary.hidden = false;
   }
 
   document.getElementById("print-btn")?.addEventListener("click", () => window.print());
 
   const hashRole = location.hash.replace("#", "");
-  const validRole = tabs.some((t) => t.dataset.role === hashRole);
-  setRole(validRole ? hashRole : (doc?.dataset.role || ""));
+  setRole(tabs.some((t) => t.dataset.role === hashRole) ? hashRole : (doc?.dataset.role || ""));
 </script>

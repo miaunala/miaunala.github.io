@@ -4,8 +4,33 @@
     { "id": "ai-ml", "label": "AI & ML", "tagline": "Machine Learning, NLP und LLMs – von der Idee bis zum betriebenen Modell." },
     { "id": "data-engineering", "label": "Data Engineering", "tagline": "Robuste Pipelines, CLIs und Orchestrierung – reproduzierbar und im Betrieb." },
     { "id": "data-science", "label": "Data Science", "tagline": "Analysen, Statistik und Auswertungen, die Entscheidungen tragen." },
-    { "id": "consulting", "label": "Tech Consulting", "tagline": "Technische Beratung mit Fokus oeffentlicher Sektor und digitale Souveraenitaet." }
+    { "id": "consulting", "label": "Tech Consulting", "tagline": "Technische Beratung mit Fokus öffentlicher Sektor und digitale Souveränität." }
   ],
+  "synonyms": {
+    "public sector": ["public sector", "oeffentlicher sektor", "öffentlicher sektor", "oeffentliche verwaltung", "öffentliche verwaltung", "verwaltung", "government", "behoerde", "behörde", "behoerden", "behörden", "oeffentliche hand", "öffentliche hand", "public administration", "psd", "ministerium", "amt", "aemter", "ämter"],
+    "digital sovereignty": ["digital sovereignty", "digitale souveraenitaet", "digitale souveränität", "souveraenitaet", "souveränität", "sovereignty"],
+    "networking": ["networking", "vernetzung", "netzwerk", "network", "beziehungen", "relationship", "relationships", "connect", "verbindendes element"],
+    "stakeholder management": ["stakeholder", "stakeholders", "stakeholder management", "anspruchsgruppen", "entscheider", "meinungsbildner"],
+    "project lead": ["project lead", "projektleitung", "projektleiter", "aufbau", "lead", "leitung", "steuerung", "orchestrate", "orchestrieren", "orchestriert", "coordination", "koordination"],
+    "strategy": ["strategy", "strategic", "strategie", "strategisch", "positionierung", "positioning", "wachstumschancen", "initiativen"],
+    "procurement": ["procurement", "beschaffung", "beschaffungsvorhaben", "ausschreibung", "rahmenvertrag", "presales"],
+    "communication": ["communication", "kommunikation", "praesentation", "präsentation", "presentation", "presentations", "kommunikationsfaehigkeiten"],
+    "open source": ["open source", "oss", "opendesk", "open-source", "openesk"],
+    "ai": ["ai", "artificial intelligence", "ki", "kuenstliche intelligenz", "künstliche intelligenz", "genai"],
+    "llm": ["llm", "llms", "large language model", "sprachmodell", "sprachmodelle", "gpt"],
+    "machine learning": ["machine learning", "ml", "deep learning", "maschinelles lernen"],
+    "nlp": ["nlp", "natural language processing", "sprachverarbeitung", "computational linguistics"],
+    "data engineering": ["data engineering", "datenpipeline", "datenpipelines", "data pipeline", "pipeline", "pipelines", "etl", "elt", "orchestration", "orchestrierung"],
+    "data science": ["data science", "statistics", "statistik", "analysis", "analyse", "analytics", "econometrics", "oekonometrie", "ökonometrie"],
+    "transformation": ["transformation", "digitalisierung", "digitalisation", "digital transformation", "digitale transformation"],
+    "python": ["python"],
+    "sql": ["sql"],
+    "airflow": ["airflow"],
+    "docker": ["docker"],
+    "kubernetes": ["kubernetes", "k8s"],
+    "german": ["german", "deutsch", "deutschkenntnisse"],
+    "english": ["english", "englisch", "englischkenntnisse"]
+  },
   "header": {
     "phone": "+41 77 530 79 04",
     "permit": "Permit B",
@@ -66,10 +91,11 @@
       "location": "Berne, Switzerland",
       "dates": "Jun 2026 – present",
       "roles": ["consulting", "data-engineering", "ai-ml"],
-      "skills": ["public sector", "open source", "OpenDesk", "Swiss Open Cloud Stack", "open source AI", "stakeholder management", "survey design", "workshop facilitation", "procurement"],
+      "skills": ["public sector", "digital sovereignty", "open source", "OpenDesk", "Swiss Open Cloud Stack", "open source AI", "stakeholder network", "networking", "project lead", "strategy", "survey design", "workshop facilitation", "procurement"],
+      "concepts": ["public sector", "government", "public administration", "digital sovereignty", "stakeholder network", "networking", "project lead", "strategy", "procurement", "open source", "AI", "workshop facilitation"],
       "bullets": [
-        "Co-building the Souveraene Digitale Schweiz centre: coordinate 4 workstreams (OSS procurement, OpenDesk, Swiss Open Cloud Stack, Open-Source AI)",
-        "Stakeholder management, survey design & analysis, workshop facilitation"
+        "Project lead in building up the Souveräne Digitale Schweiz centre (digital sovereignty for the Swiss public sector): coordinate 4 workstreams — OSS procurement, OpenDesk, Swiss Open Cloud Stack, Open-Source AI",
+        "Build and steer the stakeholder network across public administration, politics, research and technology partners; strategic positioning, survey design & analysis, workshop facilitation"
       ]
     },
     {
@@ -114,7 +140,8 @@
       "location": "Zurich, Switzerland",
       "dates": "Sep 2022 – Mar 2024",
       "roles": ["consulting"],
-      "skills": ["stakeholder communication", "strategic development", "presentations"],
+      "skills": ["stakeholder communication", "strategic development", "presentations", "executive communication"],
+      "concepts": ["stakeholder communication", "strategy", "executive communication", "presentations", "governance"],
       "bullets": [
         "Strategic development, stakeholder communication & preparation of presentations for executive & scientific board meetings"
       ]
