@@ -13,7 +13,14 @@ const matchItems = [
   ...cv.projects.map((x: any, i: number) => ({ id: `proj-${i}`, roles: x.roles, text: [x.name, x.desc, ...(x.skills || []), ...(x.concepts || [])].join(" ") })),
   ...cv.education.map((x: any, i: number) => ({ id: `edu-${i}`, roles: x.roles, text: [x.institution, x.degree, ...(x.bullets || []), ...(x.skills || [])].join(" ") })),
 ];
-const matchData = { items: matchItems, synonyms: cv.synonyms };
+// Zusätzlicher Wortschatz für Treffer/Lücken (nicht für Umsortierung): Skills + Sprachen.
+const cvExtraText = [
+  ...cv.skillGroups.flatMap((g: any) => g.items),
+  ...profile.languages.map((l: any) => `${l.name} ${l.level}`),
+  ...(profile.languagesLearning || []),
+  "native Muttersprache",
+].join(" ");
+const matchData = { items: matchItems, synonyms: cv.synonyms, extraText: cvExtraText };
 ---
 
 <Layout title="Lebenslauf · Nathalie Guibert" description="Lebenslauf von Nathalie Guibert — nach Rolle oder auf eine Stellenanzeige zugeschnitten (BM25-Matching im Browser).">
@@ -179,7 +186,7 @@ const matchData = { items: matchItems, synonyms: cv.synonyms };
   const summary = document.getElementById("match-summary");
   const clearBtn = document.getElementById("clear-btn") as HTMLButtonElement | null;
   const raw = document.getElementById("cv-match-data")?.textContent || "{}";
-  const DATA = JSON.parse(raw) as { items: { id: string; roles: string[]; text: string }[]; synonyms: Record<string, string[]> };
+  const DATA = JSON.parse(raw) as { items: { id: string; roles: string[]; text: string }[]; synonyms: Record<string, string[]>; extraText?: string };
 
   function setRole(role: string) {
     if (!doc) return;
@@ -233,6 +240,8 @@ const matchData = { items: matchItems, synonyms: cv.synonyms };
   }
 
   const corpusTokens = new Set<string>(); docs.forEach((d) => d.toks.forEach((t) => corpusTokens.add(t)));
+  // Skills + Sprachen zählen zum Wortschatz (für Treffer/Lücken), aber nicht zur Umsortierung.
+  normalize(DATA.extraText || "").forEach((t) => corpusTokens.add(t));
 
   function applyScores(scoreById: Record<string, number>) {
     document.querySelectorAll<HTMLElement>(".cv-item").forEach((el) => {

@@ -29,7 +29,8 @@
     "docker": ["docker"],
     "kubernetes": ["kubernetes", "k8s"],
     "german": ["german", "deutsch", "deutschkenntnisse"],
-    "english": ["english", "englisch", "englischkenntnisse"]
+    "english": ["english", "englisch", "englischkenntnisse"],
+    "french": ["french", "franzoesisch", "französisch", "francais", "français"]
   },
   "header": {
     "phone": "+41 77 530 79 04",
