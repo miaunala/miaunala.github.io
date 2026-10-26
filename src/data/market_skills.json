@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-19T08:15:19",
-  "week": "2026-10-19",
+  "generated_at": "2026-10-26T08:15:35",
+  "week": "2026-10-26",
   "categories": [
     {
       "id": "data-engineering",
@@ -11,7 +11,7 @@
       "skills": [
         {
           "label": "Python",
-          "count": 96,
+          "count": 108,
           "confidence": 0.718,
           "trend": 0,
           "also": [
@@ -108,7 +108,7 @@
         },
         {
           "label": "SQL",
-          "count": 72,
+          "count": 81,
           "confidence": 0.767,
           "trend": 0,
           "also": [],
@@ -134,7 +134,7 @@
         },
         {
           "label": "Airflow",
-          "count": 48,
+          "count": 54,
           "confidence": 0.745,
           "trend": 0,
           "also": [],
@@ -152,7 +152,7 @@
         },
         {
           "label": "Docker",
-          "count": 40,
+          "count": 45,
           "confidence": 0.742,
           "trend": 0,
           "also": [],
@@ -173,26 +173,8 @@
           ]
         },
         {
-          "label": "Kubernetes",
-          "count": 32,
-          "confidence": 0.732,
-          "trend": 0,
-          "also": [],
-          "x": -0.6268,
-          "y": 0.6138,
-          "mine": true,
-          "declared": false,
-          "suggested": false,
-          "evidence": [
-            {
-              "repo": "Kubernetes Grundkurs",
-              "kind": "certificate"
-            }
-          ]
-        },
-        {
           "label": "CI/CD",
-          "count": 32,
+          "count": 36,
           "confidence": 0.705,
           "trend": 0,
           "also": [],
@@ -213,21 +195,26 @@
           ]
         },
         {
-          "label": "dbt",
-          "count": 24,
-          "confidence": 0.784,
+          "label": "Kubernetes",
+          "count": 36,
+          "confidence": 0.732,
           "trend": 0,
           "also": [],
-          "x": -0.4669,
-          "y": 0.3033,
+          "x": -0.6268,
+          "y": 0.6138,
           "mine": true,
-          "declared": true,
+          "declared": false,
           "suggested": false,
-          "evidence": []
+          "evidence": [
+            {
+              "repo": "Kubernetes Grundkurs",
+              "kind": "certificate"
+            }
+          ]
         },
         {
           "label": "Terraform",
-          "count": 24,
+          "count": 27,
           "confidence": 0.684,
           "trend": 0,
           "also": [],
@@ -240,7 +227,7 @@
         },
         {
           "label": "Snowflake",
-          "count": 24,
+          "count": 27,
           "confidence": 0.758,
           "trend": 0,
           "also": [],
@@ -253,7 +240,7 @@
         },
         {
           "label": "Data Modeling",
-          "count": 24,
+          "count": 27,
           "confidence": 0.822,
           "trend": 0,
           "also": [
@@ -289,39 +276,21 @@
           ]
         },
         {
-          "label": "AWS",
-          "count": 16,
-          "confidence": 0.763,
+          "label": "dbt",
+          "count": 27,
+          "confidence": 0.784,
           "trend": 0,
           "also": [],
-          "x": -0.785,
-          "y": 0.2426,
+          "x": -0.4669,
+          "y": 0.3033,
           "mine": true,
-          "declared": false,
-          "suggested": false,
-          "evidence": [
-            {
-              "repo": "Amazon Web Services (AWS): Basiswissen für Entwickler:innen",
-              "kind": "certificate"
-            }
-          ]
-        },
-        {
-          "label": "Fivetran",
-          "count": 16,
-          "confidence": 0.74,
-          "trend": 0,
-          "also": [],
-          "x": -0.3827,
-          "y": 0.3133,
-          "mine": false,
-          "declared": false,
+          "declared": true,
           "suggested": false,
           "evidence": []
         },
         {
           "label": "Git",
-          "count": 16,
+          "count": 18,
           "confidence": 0.689,
           "trend": 0,
           "also": [],
@@ -338,13 +307,13 @@
           ]
         },
         {
-          "label": "Kafka",
-          "count": 16,
+          "label": "Fivetran",
+          "count": 18,
           "confidence": 0.74,
           "trend": 0,
           "also": [],
-          "x": -0.5265,
-          "y": 0.4047,
+          "x": -0.3827,
+          "y": 0.3133,
           "mine": false,
           "declared": false,
           "suggested": false,
@@ -352,7 +321,7 @@
         },
         {
           "label": "BigQuery",
-          "count": 16,
+          "count": 18,
           "confidence": 0.737,
           "trend": 0,
           "also": [],
@@ -364,8 +333,21 @@
           "evidence": []
         },
         {
+          "label": "Kafka",
+          "count": 18,
+          "confidence": 0.74,
+          "trend": 0,
+          "also": [],
+          "x": -0.5265,
+          "y": 0.4047,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
           "label": "Databricks",
-          "count": 16,
+          "count": 18,
           "confidence": 0.808,
           "trend": 0,
           "also": [],
@@ -377,28 +359,53 @@
           "evidence": []
         },
         {
+          "label": "Data Warehousing",
+          "count": 18,
+          "confidence": 0.811,
+          "trend": 0,
+          "also": [],
+          "x": -0.3777,
+          "y": 0.0881,
+          "mine": false,
+          "declared": false,
+          "suggested": true,
+          "evidence": [
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "llm"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "llm"
+            }
+          ]
+        },
+        {
+          "label": "AWS",
+          "count": 18,
+          "confidence": 0.763,
+          "trend": 0,
+          "also": [],
+          "x": -0.785,
+          "y": 0.2426,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Amazon Web Services (AWS): Basiswissen für Entwickler:innen",
+              "kind": "certificate"
+            }
+          ]
+        },
+        {
           "label": "ELT",
-          "count": 8,
+          "count": 9,
           "confidence": 0.8,
           "trend": 0,
           "also": [],
           "x": -0.1552,
           "y": 0.235,
-          "mine": true,
-          "declared": true,
-          "suggested": false,
-          "evidence": []
-        },
-        {
-          "label": "DAGs",
-          "count": 0,
-          "confidence": 0.722,
-          "trend": 0,
-          "also": [
-            "Data Science"
-          ],
-          "x": -0.3704,
-          "y": 0.096,
           "mine": true,
           "declared": true,
           "suggested": false,
@@ -464,6 +471,21 @@
           "declared": true,
           "suggested": false,
           "evidence": []
+        },
+        {
+          "label": "DAGs",
+          "count": 0,
+          "confidence": 0.722,
+          "trend": 0,
+          "also": [
+            "Data Science"
+          ],
+          "x": -0.3704,
+          "y": 0.096,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": []
         }
       ]
     },
@@ -476,7 +498,7 @@
       "skills": [
         {
           "label": "pandas",
-          "count": 32,
+          "count": 36,
           "confidence": 0.751,
           "trend": 0,
           "also": [
@@ -521,8 +543,51 @@
           "lang": "Python"
         },
         {
+          "label": "Statistics",
+          "count": 27,
+          "confidence": 0.784,
+          "trend": 0,
+          "also": [],
+          "x": 0.0577,
+          "y": -0.5159,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "code"
+            },
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "readme"
+            }
+          ]
+        },
+        {
+          "label": "statsmodels",
+          "count": 27,
+          "confidence": 0.756,
+          "trend": 0,
+          "also": [
+            "Machine Learning"
+          ],
+          "x": 0.215,
+          "y": -0.4,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            }
+          ],
+          "lang": "Python"
+        },
+        {
           "label": "Data Visualization",
-          "count": 24,
+          "count": 27,
           "confidence": 0.792,
           "trend": 0,
           "also": [
@@ -569,29 +634,8 @@
           ]
         },
         {
-          "label": "statsmodels",
-          "count": 24,
-          "confidence": 0.756,
-          "trend": 0,
-          "also": [
-            "Machine Learning"
-          ],
-          "x": 0.215,
-          "y": -0.4,
-          "mine": true,
-          "declared": false,
-          "suggested": false,
-          "evidence": [
-            {
-              "repo": "Social_Computing",
-              "kind": "code"
-            }
-          ],
-          "lang": "Python"
-        },
-        {
           "label": "NumPy",
-          "count": 24,
+          "count": 27,
           "confidence": 0.735,
           "trend": 0,
           "also": [
@@ -632,7 +676,7 @@
         },
         {
           "label": "Plotly",
-          "count": 24,
+          "count": 27,
           "confidence": 0.71,
           "trend": 0,
           "also": [
@@ -647,8 +691,34 @@
           "lang": "Python"
         },
         {
+          "label": "Time Series Forecasting",
+          "count": 27,
+          "confidence": 0.867,
+          "trend": 0,
+          "also": [],
+          "x": 0.1925,
+          "y": -0.4574,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "code"
+            },
+            {
+              "repo": "Social_Computing",
+              "kind": "code"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ]
+        },
+        {
           "label": "Regression",
-          "count": 24,
+          "count": 27,
           "confidence": 0.828,
           "trend": 0,
           "also": [
@@ -707,56 +777,8 @@
           ]
         },
         {
-          "label": "Statistics",
-          "count": 24,
-          "confidence": 0.784,
-          "trend": 0,
-          "also": [],
-          "x": 0.0577,
-          "y": -0.5159,
-          "mine": true,
-          "declared": false,
-          "suggested": false,
-          "evidence": [
-            {
-              "repo": "ComputationalSocialScienceFS22",
-              "kind": "code"
-            },
-            {
-              "repo": "ComputationalSocialScienceFS22",
-              "kind": "readme"
-            }
-          ]
-        },
-        {
-          "label": "Time Series Forecasting",
-          "count": 24,
-          "confidence": 0.867,
-          "trend": 0,
-          "also": [],
-          "x": 0.1925,
-          "y": -0.4574,
-          "mine": true,
-          "declared": true,
-          "suggested": false,
-          "evidence": [
-            {
-              "repo": "EPR_Merging_2024_RA",
-              "kind": "code"
-            },
-            {
-              "repo": "Social_Computing",
-              "kind": "code"
-            },
-            {
-              "repo": "popety-uster-pipeline",
-              "kind": "code"
-            }
-          ]
-        },
-        {
           "label": "A/B Testing",
-          "count": 24,
+          "count": 27,
           "confidence": 0.765,
           "trend": 0,
           "also": [
@@ -771,7 +793,7 @@
         },
         {
           "label": "seaborn",
-          "count": 16,
+          "count": 18,
           "confidence": 0.71,
           "trend": 0,
           "also": [
@@ -795,44 +817,8 @@
           "lang": "Python"
         },
         {
-          "label": "Power BI",
-          "count": 16,
-          "confidence": 0.733,
-          "trend": 0,
-          "also": [
-            "Data Engineering",
-            "Machine Learning"
-          ],
-          "x": -0.2861,
-          "y": -0.2826,
-          "mine": true,
-          "declared": false,
-          "suggested": false,
-          "evidence": [
-            {
-              "repo": "Power BI for Beginners",
-              "kind": "certificate"
-            }
-          ]
-        },
-        {
-          "label": "Tableau",
-          "count": 16,
-          "confidence": 0.712,
-          "trend": 0,
-          "also": [
-            "Data Engineering"
-          ],
-          "x": -0.3521,
-          "y": -0.4113,
-          "mine": false,
-          "declared": false,
-          "suggested": false,
-          "evidence": []
-        },
-        {
           "label": "matplotlib",
-          "count": 16,
+          "count": 18,
           "confidence": 0.682,
           "trend": 0,
           "also": [
@@ -860,8 +846,135 @@
           "lang": "Python"
         },
         {
+          "label": "Power BI",
+          "count": 18,
+          "confidence": 0.733,
+          "trend": 0,
+          "also": [
+            "Data Engineering",
+            "Machine Learning"
+          ],
+          "x": -0.2861,
+          "y": -0.2826,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Power BI for Beginners",
+              "kind": "certificate"
+            }
+          ]
+        },
+        {
+          "label": "Tableau",
+          "count": 18,
+          "confidence": 0.712,
+          "trend": 0,
+          "also": [
+            "Data Engineering"
+          ],
+          "x": -0.3521,
+          "y": -0.4113,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": []
+        },
+        {
+          "label": "tidyverse",
+          "count": 9,
+          "confidence": 0.73,
+          "trend": 0,
+          "also": [],
+          "x": 0.1823,
+          "y": -0.8327,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "code"
+            },
+            {
+              "repo": "Language_Technology_for_Social_Media_Analysis",
+              "kind": "code"
+            },
+            {
+              "repo": "Reddit_Mormons_SM_HS23",
+              "kind": "code"
+            },
+            {
+              "repo": "ResearchDesign_Homeworks",
+              "kind": "code"
+            },
+            {
+              "repo": "Statistical_Modelling",
+              "kind": "code"
+            }
+          ],
+          "lang": "R"
+        },
+        {
+          "label": "Great Expectations",
+          "count": 9,
+          "confidence": 0.582,
+          "trend": 0,
+          "also": [
+            "Data Engineering",
+            "Machine Learning"
+          ],
+          "x": -0.4565,
+          "y": 0.0297,
+          "mine": false,
+          "declared": false,
+          "suggested": false,
+          "evidence": [],
+          "lang": "Python"
+        },
+        {
+          "label": "dplyr",
+          "count": 9,
+          "confidence": 0.717,
+          "trend": 0,
+          "also": [],
+          "x": 0.2073,
+          "y": -0.9495,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ComputationalSocialScienceFS22",
+              "kind": "code"
+            },
+            {
+              "repo": "Data_Visualisation_FS23",
+              "kind": "code"
+            },
+            {
+              "repo": "EPR_Merging_2024_RA",
+              "kind": "code"
+            },
+            {
+              "repo": "Master_Thesis_Codes",
+              "kind": "code"
+            },
+            {
+              "repo": "PPE_ResearchSeminar_HS23FS24",
+              "kind": "code"
+            },
+            {
+              "repo": "ResearchDesign_Homeworks",
+              "kind": "code"
+            }
+          ],
+          "lang": "R"
+        },
+        {
           "label": "ggplot2",
-          "count": 8,
+          "count": 9,
           "confidence": 0.704,
           "trend": 0,
           "also": [],
@@ -911,163 +1024,34 @@
           "lang": "R"
         },
         {
-          "label": "dplyr",
-          "count": 8,
-          "confidence": 0.717,
+          "label": "Stata",
+          "count": 0,
+          "confidence": 0.673,
           "trend": 0,
           "also": [],
-          "x": 0.2073,
-          "y": -0.9495,
+          "x": 0.1017,
+          "y": -0.848,
           "mine": true,
           "declared": false,
           "suggested": false,
           "evidence": [
             {
-              "repo": "ComputationalSocialScienceFS22",
-              "kind": "code"
+              "repo": "BAThesis",
+              "kind": "file"
+            },
+            {
+              "repo": "BAThesis",
+              "kind": "language"
             },
             {
               "repo": "Data_Visualisation_FS23",
-              "kind": "code"
-            },
-            {
-              "repo": "EPR_Merging_2024_RA",
-              "kind": "code"
-            },
-            {
-              "repo": "Master_Thesis_Codes",
-              "kind": "code"
-            },
-            {
-              "repo": "PPE_ResearchSeminar_HS23FS24",
-              "kind": "code"
-            },
-            {
-              "repo": "ResearchDesign_Homeworks",
-              "kind": "code"
-            }
-          ],
-          "lang": "R"
-        },
-        {
-          "label": "Hypothesis Testing",
-          "count": 8,
-          "confidence": 0.743,
-          "trend": 0,
-          "also": [
-            "Machine Learning"
-          ],
-          "x": 0.3515,
-          "y": -0.4751,
-          "mine": false,
-          "declared": false,
-          "suggested": false,
-          "evidence": []
-        },
-        {
-          "label": "tidyverse",
-          "count": 8,
-          "confidence": 0.73,
-          "trend": 0,
-          "also": [],
-          "x": 0.1823,
-          "y": -0.8327,
-          "mine": true,
-          "declared": false,
-          "suggested": false,
-          "evidence": [
-            {
-              "repo": "Data_Visualisation_FS23",
-              "kind": "code"
-            },
-            {
-              "repo": "Language_Technology_for_Social_Media_Analysis",
-              "kind": "code"
-            },
-            {
-              "repo": "Reddit_Mormons_SM_HS23",
-              "kind": "code"
-            },
-            {
-              "repo": "ResearchDesign_Homeworks",
               "kind": "code"
             },
             {
               "repo": "Statistical_Modelling",
               "kind": "code"
             }
-          ],
-          "lang": "R"
-        },
-        {
-          "label": "Backtesting",
-          "count": 0,
-          "confidence": 0.785,
-          "trend": 0,
-          "also": [
-            "Machine Learning"
-          ],
-          "x": 0.2047,
-          "y": -0.2565,
-          "mine": true,
-          "declared": true,
-          "suggested": false,
-          "evidence": []
-        },
-        {
-          "label": "Jupyter",
-          "count": 0,
-          "confidence": 0.623,
-          "trend": 0,
-          "also": [
-            "NLP",
-            "Machine Learning"
-          ],
-          "x": -0.0025,
-          "y": -0.4197,
-          "mine": true,
-          "declared": false,
-          "suggested": false,
-          "evidence": [
-            {
-              "repo": "popety-uster-pipeline",
-              "kind": "file"
-            },
-            {
-              "repo": "popety-uster-pipeline",
-              "kind": "language"
-            }
           ]
-        },
-        {
-          "label": "Polars",
-          "count": 0,
-          "confidence": 0.614,
-          "trend": 0,
-          "also": [
-            "NLP",
-            "Machine Learning"
-          ],
-          "x": 0.0409,
-          "y": -0.2384,
-          "mine": true,
-          "declared": false,
-          "suggested": false,
-          "evidence": [
-            {
-              "repo": "ADHD_persona_Pierres",
-              "kind": "code"
-            },
-            {
-              "repo": "Ambizione_Nathalie",
-              "kind": "code"
-            },
-            {
-              "repo": "popety-uster-pipeline",
-              "kind": "code"
-            }
-          ],
-          "lang": "Python"
         },
         {
           "label": "R",
@@ -1151,6 +1135,76 @@
           ]
         },
         {
+          "label": "Polars",
+          "count": 0,
+          "confidence": 0.614,
+          "trend": 0,
+          "also": [
+            "NLP",
+            "Machine Learning"
+          ],
+          "x": 0.0409,
+          "y": -0.2384,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "ADHD_persona_Pierres",
+              "kind": "code"
+            },
+            {
+              "repo": "Ambizione_Nathalie",
+              "kind": "code"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "code"
+            }
+          ],
+          "lang": "Python"
+        },
+        {
+          "label": "Jupyter",
+          "count": 0,
+          "confidence": 0.623,
+          "trend": 0,
+          "also": [
+            "NLP",
+            "Machine Learning"
+          ],
+          "x": -0.0025,
+          "y": -0.4197,
+          "mine": true,
+          "declared": false,
+          "suggested": false,
+          "evidence": [
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "file"
+            },
+            {
+              "repo": "popety-uster-pipeline",
+              "kind": "language"
+            }
+          ]
+        },
+        {
+          "label": "Backtesting",
+          "count": 0,
+          "confidence": 0.785,
+          "trend": 0,
+          "also": [
+            "Machine Learning"
+          ],
+          "x": 0.2047,
+          "y": -0.2565,
+          "mine": true,
+          "declared": true,
+          "suggested": false,
+          "evidence": []
+        },
+        {
           "label": "SciPy",
           "count": 0,
           "confidence": 0.655,
@@ -1170,36 +1224,6 @@
             }
           ],
           "lang": "Python"
-        },
-        {
-          "label": "Stata",
-          "count": 0,
-          "confidence": 0.673,
-          "trend": 0,
-          "also": [],
-          "x": 0.1017,
-          "y": -0.848,
-          "mine": true,
-          "declared": false,
-          "suggested": false,
-          "evidence": [
-            {
-              "repo": "BAThesis",
-              "kind": "file"
-            },
-            {
-              "repo": "BAThesis",
-              "kind": "language"
-            },
-            {
-              "repo": "Data_Visualisation_FS23",
-              "kind": "code"
-            },
-            {
-              "repo": "Statistical_Modelling",
-              "kind": "code"
-            }
-          ]
         }
       ]
     },
@@ -1212,7 +1236,7 @@
       "skills": [
         {
           "label": "Feature Engineering",
-          "count": 32,
+          "count": 36,
           "confidence": 0.859,
           "trend": 0,
           "also": [],
@@ -1225,7 +1249,7 @@
         },
         {
           "label": "XGBoost",
-          "count": 32,
+          "count": 36,
           "confidence": 0.736,
           "trend": 0,
           "also": [
@@ -1243,7 +1267,7 @@
         },
         {
           "label": "scikit-learn",
-          "count": 32,
+          "count": 36,
           "confidence": 0.797,
           "trend": 0,
           "also": [],
@@ -1270,7 +1294,7 @@
         },
         {
           "label": "Deep Learning",
-          "count": 24,
+          "count": 27,
           "confidence": 0.86,
           "trend": 0,
           "also": [],
@@ -1283,7 +1307,7 @@
         },
         {
           "label": "Optuna",
-          "count": 24,
+          "count": 27,
           "confidence": 0.742,
           "trend": 0,
           "also": [],
@@ -1297,7 +1321,7 @@
         },
         {
           "label": "PyTorch",
-          "count": 24,
+          "count": 27,
           "confidence": 0.802,
           "trend": 0,
           "also": [],
@@ -1311,7 +1335,7 @@
         },
         {
           "label": "FastAPI",
-          "count": 16,
+          "count": 18,
           "confidence": 0.7,
           "trend": 0,
           "also": [
@@ -1333,7 +1357,7 @@
         },
         {
           "label": "Gensim",
-          "count": 16,
+          "count": 18,
           "confidence": 0.77,
           "trend": 0,
           "also": [
@@ -1349,7 +1373,7 @@
         },
         {
           "label": "Hugging Face",
-          "count": 16,
+          "count": 18,
           "confidence": 0.774,
           "trend": 0,
           "also": [
@@ -1378,7 +1402,7 @@
         },
         {
           "label": "LightGBM",
-          "count": 16,
+          "count": 18,
           "confidence": 0.716,
           "trend": 0,
           "also": [
@@ -1394,7 +1418,7 @@
         },
         {
           "label": "MLflow",
-          "count": 16,
+          "count": 18,
           "confidence": 0.819,
           "trend": 0,
           "also": [],
@@ -1407,7 +1431,7 @@
         },
         {
           "label": "TensorFlow",
-          "count": 16,
+          "count": 18,
           "confidence": 0.833,
           "trend": 0,
           "also": [],
@@ -1421,7 +1445,7 @@
         },
         {
           "label": "Zero-shot Classification",
-          "count": 16,
+          "count": 18,
           "confidence": 0.775,
           "trend": 0,
           "also": [
@@ -1445,7 +1469,7 @@
         },
         {
           "label": "spaCy",
-          "count": 16,
+          "count": 18,
           "confidence": 0.749,
           "trend": 0,
           "also": [
@@ -1466,7 +1490,7 @@
         },
         {
           "label": "Keras",
-          "count": 8,
+          "count": 9,
           "confidence": 0.812,
           "trend": 0,
           "also": [],
@@ -1489,7 +1513,7 @@
       "skills": [
         {
           "label": "Classification",
-          "count": 24,
+          "count": 27,
           "confidence": 0.835,
           "trend": 0,
           "also": [
@@ -1517,7 +1541,7 @@
         },
         {
           "label": "Embeddings",
-          "count": 16,
+          "count": 18,
           "confidence": 0.875,
           "trend": 0,
           "also": [],
@@ -1539,7 +1563,7 @@
         },
         {
           "label": "LLM",
-          "count": 16,
+          "count": 18,
           "confidence": 0.818,
           "trend": 0,
           "also": [
@@ -1571,7 +1595,7 @@
         },
         {
           "label": "LangChain",
-          "count": 16,
+          "count": 18,
           "confidence": 0.764,
           "trend": 0,
           "also": [],
@@ -1590,7 +1614,7 @@
         },
         {
           "label": "Named Entity Recognition",
-          "count": 16,
+          "count": 18,
           "confidence": 0.888,
           "trend": 0,
           "also": [],
@@ -1608,7 +1632,7 @@
         },
         {
           "label": "Text Classification",
-          "count": 16,
+          "count": 18,
           "confidence": 0.9,
           "trend": 0,
           "also": [],
@@ -1621,7 +1645,7 @@
         },
         {
           "label": "NLTK",
-          "count": 8,
+          "count": 9,
           "confidence": 0.761,
           "trend": 0,
           "also": [],
